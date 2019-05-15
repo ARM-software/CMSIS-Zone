@@ -108,27 +108,15 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="IrqSetupType">
-    <xs:sequence>
-      <xs:element name="irq"       type="xs:string"/>
-      <xs:element name="name"      type="xs:string"/>
-      <xs:element name="index"     type="NonNegativeInteger"/>
-      <xs:element name="value"     type="NonNegativeInteger"/>
-      <xs:element name="security"  type="SecurityTypeEnum"/>
-      <xs:element name="privilege" type="PrivilegeTypeEnum"/>
-    </xs:sequence>
-  </xs:complexType>
-
   <xs:complexType name="MpcSetupType">
-    <xs:sequence>
-      <xs:element name="name"        type="xs:string"/>
-      <xs:element name="memory"      type="xs:string"/>
-      <xs:element name="blk_size"    type="NonNegativeInteger"/>
-      <xs:element name="S_lut"       type="NonNegativeInteger" maxOccurs="unbounded"/>
-      <xs:element name="P_lut"       type="NonNegativeInteger" maxOccurs="unbounded"/>
-      <xs:element name="lut"         type="NonNegativeInteger" maxOccurs="unbounded"/>
-      <xs:element name="lut_comment" type="xs:string"          maxOccurs="unbounded"/>
-    </xs:sequence>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="name"         type="xs:string"/>
+      <xs:element name="memory"       type="xs:string"/>
+      <xs:element name="blk_size"     type="NonNegativeInteger"/>
+      <xs:element name="S_bit"        type="NonNegativeInteger" maxOccurs="unbounded"/>
+      <xs:element name="P_bit"        type="NonNegativeInteger" maxOccurs="unbounded"/>
+      <xs:element name="bits_comment" type="NonNegativeInteger" maxOccurs="unbounded"/>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="MemoryType">
@@ -140,6 +128,10 @@
       <xs:element name="security"  type="SecurityType"/>
       <xs:element name="access"    type="AccessType"/>
       <xs:element name="privilege" type="PrivilegeType"/>
+      <xs:element name="startup"   type="xs:boolean"/>
+      <xs:element name="uninit"    type="xs:boolean"/>
+      <xs:element name="shared"    type="xs:boolean"/>
+      <xs:element name="dma"       type="xs:boolean"/>
       <xs:element name="info"      type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
@@ -153,6 +145,8 @@
       <xs:element name="security"  type="SecurityType"/>
       <xs:element name="access"    type="AccessType"/>
       <xs:element name="privilege" type="PrivilegeType"/>
+      <xs:element name="shared"    type="xs:boolean"/>
+      <xs:element name="dma"       type="xs:boolean"/>
       <xs:element name="info"      type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
@@ -192,9 +186,9 @@
 
   <xs:complexType name="ProcessorType">
     <xs:sequence>
-      <xs:element name="Pname"         type="xs:string"/>
-      <xs:element name="NumInterrupts" type="xs:string"/>
-      <xs:element name="sauNumRegions" type="xs:string"/>
+      <xs:element name="Pname"          type="xs:string"/>
+      <xs:element name="DnumInterrupts" type="xs:string"/>
+      <xs:element name="DnumSauRegions" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   

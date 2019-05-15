@@ -175,8 +175,8 @@
     <xs:complexType>
       <xs:all>
         <xs:element name="rzone"     type="RzoneFileRefType" minOccurs="0"/>
-        <xs:element name="configure" type="ConfigureType"    minOccurs="1"/>
-        <xs:element name="partition" type="PartitionType"    minOccurs="1"/>
+        <xs:element name="configure" type="ConfigureType"    minOccurs="0"/>
+        <xs:element name="partition" type="PartitionType"    minOccurs="0"/>
         <xs:element name="zones"     type="ZonesType"        minOccurs="0"/>
       </xs:all>
       <xs:attribute name="schemaVersion" type="SchemaVersionType" use="required" />

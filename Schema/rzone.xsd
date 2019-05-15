@@ -273,6 +273,7 @@
           <xs:attribute name="security" type="SecurityTypeEnum"/>
         </xs:complexType>
       </xs:element>
+      <xs:element name="setup"      type="SetupType"      minOccurs="0"/>
     </xs:choice>
     <xs:attribute name="name"      type="xs:string"          use="required"/>
     <xs:attribute name="start"     type="NonNegativeInteger" use="optional"/>
@@ -305,7 +306,7 @@
 
   <xs:complexType name="SetupType">
     <xs:attribute name="name"      type="xs:string"          use="required"/>
-    <xs:attribute name="index"     type="NonNegativeInteger" use="required"/>
+    <xs:attribute name="index"     type="NonNegativeInteger" use="optional"/>
     <xs:attribute name="value"     type="NonNegativeInteger" use="required"/>
     <xs:attribute name="security"  type="SecurityTypeEnum"   use="optional"/>
     <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="optional"/>
@@ -317,7 +318,7 @@
       <xs:element name="sau_init" type="SauInitType" minOccurs="0" maxOccurs="1"/>
       <xs:element name="memories" minOccurs="0" maxOccurs="1">
         <xs:complexType>
-          <xs:sequence>
+          <xs:choice maxOccurs="unbounded">
             <xs:element name="mpc" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:attribute name="name"      type="xs:string"          use="required"/>
@@ -327,7 +328,6 @@
                 <xs:attribute name="type"      type="MpcTypeEnum"        use="optional"/>
                 <xs:attribute name="info"      type="xs:string"          use ="optional"/>
               </xs:complexType>
-
             </xs:element>
             <xs:element name="memory"             minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
@@ -348,7 +348,7 @@
                 <xs:attribute name="info"      type="xs:string"          use="optional"/>
               </xs:complexType>
             </xs:element>
-          </xs:sequence>
+          </xs:choice>
         </xs:complexType>
       </xs:element>
       <xs:element name="peripherals" minOccurs="0">
@@ -356,10 +356,10 @@
           <xs:choice maxOccurs="unbounded">
             <xs:element name="group">
               <xs:complexType>
-                <xs:sequence>
+                <xs:choice maxOccurs="unbounded">
                   <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
                   <xs:element name="setup"      type="SetupType"      minOccurs="0"/>
-                </xs:sequence>
+                </xs:choice>
                 <xs:attribute name="name"      type="xs:string"          use="required"/>
                 <xs:attribute name="start"     type="NonNegativeInteger" use="optional"/>
                 <xs:attribute name="start_s"   type="NonNegativeInteger" use="optional"/>
