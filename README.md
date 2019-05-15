@@ -6,7 +6,13 @@ The relevant part of the [documentation](https://arm-software.github.io/CMSIS-Zo
 https://arm-software.github.io/CMSIS-Zone/index.html.
 
 This alpha version of CMSIS-Zone focuses on the TrustZone configuration of single or multi-core Cortex-M33 systems.
-It implements the setup required for SAU, Interrupts, Memory Protection Controller (MPC), and Peripheral Protection Controller (PPC).
+It implements currently the infra-structure that is required for:
+  - Split of a multi-processor system for single processor views and secure/non-secure views
+  - TrustZone setup (SAU, Interrupt assignment to Secure/Non-Secure)
+  - Setup of device specific Memory Protection Controller (MPC)
+  - Setup of device specific Peripheral Protection Controller (PPC)
+  - Generation of linker scatter files.
+  
 We will show how to apply this concept using example projects.
 
 The following CMSIS-Zone features are still under development and not yet available in the alpha version:
@@ -30,19 +36,10 @@ For further details see also the [Slides of the Embedded World CMSIS Partner Mee
 
 | Directory            | Content                                                   |                
 | -------------------- | --------------------------------------------------------- |
-| CMSIS/Core           | CMSIS-Core(M) related files (for release)                 |
-| CMSIS/Core_A         | CMSIS-Core(A) related files (for release)                 |
-| CMSIS/CoreValidation | Validation for Core(M) and Core(A) (NOT part of release)  |
-| CMSIS/DAP            | CMSIS-DAP related files and examples                      |
-| CMSIS/Driver         | CMSIS-Driver API headers and template files               |
-| CMSIS/DSP            | CMSIS-DSP related files                                   |
-| CMSIS/NN             | CMSIS-NN related files                                    |
-| CMSIS/RTOS           | RTOS v1 related files (for Cortex-M)                      |
-| CMSIS/RTOS2          | RTOS v2 related files (for Cortex-M & Armv8-M)            |
-| CMSIS/Pack           | CMSIS-Pack examples and tutorials                         |
-| CMSIS/DoxyGen        | Source of the documentation                               |
-| CMSIS/Utilities      | Utility programs                                          |
-
+| Example              | Example projects that show the usage of CMSIS-Zone        |
+| Schema               | XML schema files for content validation                   |
+| Templates            | FreeMarker templates that generate output files           |
+| docs                 | The documentation for CMSIS-Zone                          |
 
 ## License
 
