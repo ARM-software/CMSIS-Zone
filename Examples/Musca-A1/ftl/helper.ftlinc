@@ -29,7 +29,7 @@ Example:
 <#function num2hex num prefix="0x" pad=8>
   <#local result=""/>
   <#if num / 16 gte 1.0>
-    <#local result = num2hex((num/16, "", 1)?floor)/>
+    <#local result = num2hex((num/16)?floor, "", 1)/>
   </#if>
   <#if num % 16 gte 10>
     <#local result += ((num % 16)-9)?upper_abc/>

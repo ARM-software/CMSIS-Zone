@@ -46,43 +46,43 @@
       <peripheral access="rwp" info="Non-secure Privilege Control Block" name="NS_PCTRL" security="n" size="0x1000" start_ns="0x40080000"/>
       <peripheral access="rwp" info="CMSDK Timer running on S32KCLK" name="S32KTIMER" size="0x1000" start_ns="0x4002F000" start_s="0x5002F000">
         <interrupt info="CMSDK Timer S32K" irqn="002" name="S32KTIMER"/>
-        <setup name="APBNSPPC1" security="s" value="0x00000001"/>
+        <setup name="APBNSPPC1" security="n" value="0x00000001"/>
         <setup name="APBSPPPC1" privilegde="u" security="s" value="0x00000001"/>
         <setup name="APBNSPPPC1" privilegde="u" security="n" value="0x00000001"/>
       </peripheral>
       <peripheral access="rwp" info="System Information Block" name="SYSINFO" size="0x1000" start_ns="0x40020000" start_s="0x50020000"/>
       <peripheral access="rwp" info="Message Handling Unit 1" name="MHU1" size="0x1000" start_ns="0x40004000" start_s="0x50004000">
         <interrupt info="Message Handling Unit 1" irqn="007" name="MHU1"/>
-        <setup name="APBNSPPC0" security="s" value="0x00000010"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000010"/>
         <setup name="APBSPPPC0" privilegde="u" security="s" value="0x00000010"/>
         <setup name="APBNSPPPC0" privilegde="u" security="n" value="0x00000010"/>
       </peripheral>
       <peripheral access="rwp" info="Message Handling Unit 0" name="MHU0" size="0x1000" start_ns="0x40003000" start_s="0x50003000">
         <interrupt info="Message Handling Unit 0" irqn="006" name="MHU0"/>
-        <setup name="APBNSPPC0" security="s" value="0x00000008"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000008"/>
         <setup name="APBSPPPC0" privilegde="u" security="s" value="0x00000008"/>
         <setup name="APBNSPPPC0" privilegde="u" security="n" value="0x00000008"/>
       </peripheral>
       <peripheral access="rwp" info="CMSDK Dualtimer" name="DUALTIMER" size="0x1000" start_ns="0x40002000" start_s="0x50002000">
         <interrupt info="CMSDK Dualtimer" irqn="005" name="DUALTIMER"/>
-        <setup name="APBNSPPC0" security="s" value="0x00000004"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000004"/>
         <setup name="APBSPPPC0" privilegde="u" security="s" value="0x00000004"/>
         <setup name="APBNSPPPC0" privilegde="u" security="n" value="0x00000004"/>
       </peripheral>
       <peripheral access="rwp" info="CMSDK Timer 1" name="TIMER1" size="0x1000" start_ns="0x40001000" start_s="0x50001000">
         <interrupt info="CMSDK Timer 1" irqn="004" name="TIMER1"/>
-        <setup name="APBNSPPC0" security="s" value="0x00000002"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000002"/>
         <setup name="APBSPPPC0" privilegde="u" security="s" value="0x00000002"/>
         <setup name="APBNSPPPC0" privilegde="u" security="n" value="0x00000002"/>
       </peripheral>
       <peripheral access="prw" info="CMSDK Timer 0" name="TIMER0" size="0x1000" start_ns="0x40000000" start_s="0x50000000">
         <interrupt info="CMSDK Timer 0" irqn="003" name="TIMER0"/>
-        <setup name="APBNSPPC0" security="s" value="0x00000001"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000001"/>
         <setup name="APBSPPPC0" privilegde="u" security="s" value="0x00000001"/>
         <setup name="APBNSPPPC0" privilegde="u" security="n" value="0x00000001"/>
       </peripheral>
       <group name="Expansion">
-        <setup name="AHBNSPPCEXP0" security="s" value="0x00000001"/>
+        <setup name="AHBNSPPCEXP0" security="n" value="0x00000001"/>
         <setup name="AHBSPPPCEXP0" privilegde="u" security="s" value="0x00000001"/>
         <setup name="AHBNSPPPCEXP0" privilegde="u" security="n" value="0x00000001"/>
         <peripheral access="rwp" group="Expansion" info="General purpose I/O (GPIO)" name="GPIO" size="0x1000" start_ns="0x40110000" start_s="0x50110000">

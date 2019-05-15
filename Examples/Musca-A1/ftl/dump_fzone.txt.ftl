@@ -53,18 +53,26 @@ MPC entry:
 </#list>
 </#if>
 
-<#list zone as z>
-  zone : ${z.name}
-<#list z.* as c>
-         - ${c?node_name}<#rt>
-<#if ((c?node_name == "peripheral") || (c?node_name == "memory"))>
- : ${c.name}
-<#else>
+<#if system.reg_setup?has_content>
+Register Setup:
+  Register             Value       Peripheral
+<#list system.reg_setup as reg>
+  ${reg.name?right_pad(20)} ${reg.value}  ${reg.peripheral} 
+</#list>
+</#if>
 
+Zones:
+<#list zone as z>
+  ${z.name}
+<#list z.* as c>
+  - ${c?node_name?right_pad(10)}: <#rt>
+<#if ((c?node_name == "peripheral") || (c?node_name == "memory"))>
+${c.name} (${c.start} : ${c.size})
+<#elseif c?node_name == "security">
+<#if c.s=="1">secure<#else>non-secure</#if>
+<#else>
+${c}
 </#if>
 </#list>
 </#list>
 
-<#list system.group as g>
-    group - name:   ${g.name}
-</#list>
