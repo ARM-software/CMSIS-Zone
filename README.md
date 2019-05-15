@@ -1,4 +1,4 @@
-# CMSIS Version 5
+# CMSIS-Zone
 
 The branch *master* of this GitHub repository contains the first alpha version of CMSIS-Zone Utility that supports
 the multi-step approach for splitting complex multi-core systems into sub-systems.
