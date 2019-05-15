@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 
+  Copyright (c) 2019 ARM Limited. All rights reserved.
+ 
+  SPDX-License-Identifier: Apache-2.0
+ 
+  Licensed under the Apache License, Version 2.0 (the License); you may
+  not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+  www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  $Date:        14. Mayy 2019
+  $Revision:    0.2.0
+
+  $Project: Schema File for CMSIS-Zone *.azone files
+  Version History:
+  
+  0.0.1: Initial Version
+  0.1.0: Adding security attribute for memory, peripherals and assign
+  0.1.1: Adding privilege attribute for memory, peripherals and assign tags
+  0.2.0: Adding
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified" version="0.1.1">
+
+  <!-- NonNegativeInteger specifies the format in which numbers are represented in hexadecimal or decimal format -->
+  <xs:simpleType name="NonNegativeInteger">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[+]?(0x|0X)?[0-9a-fA-F]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- some strings are used to construct filenames (e.g. package name). Such names can contain only subset of characters 
+       and must not contain neither spaces nor dots.  -->
+  <xs:simpleType name="RestrictedString">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\-_A-Za-z0-9]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SchemaVersionType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]+\.[0-9]+((\.[0-9]+)|())" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- AccessType -->
+  <xs:simpleType name="AccessType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(r|w|x|p)+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- SecurityType -->
+  <xs:simpleType name="SecurityTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="" />
+      <xs:enumeration value="c"/>
+      <xs:enumeration value="s"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Privilege Type -->
+  <xs:simpleType name="PrivilegeTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value=""/>
+      <xs:enumeration value="u"/>
+      <xs:enumeration value="p"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ConfigureTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="RAM"/>
+      <xs:enumeration value="ROM"/>
+      <xs:enumeration value="Peripheral"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ModeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Project" />
+      <xs:enumeration value="MPU" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="RzoneFileRefType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="ConfigureType">
+    <xs:sequence maxOccurs="unbounded">
+      <xs:element name="type">
+        <xs:complexType>
+          <xs:attribute name="name"   type="ConfigureTypeEnum" use="required"/>
+          <xs:attribute name="hide"   type="xs:boolean"        use="optional"/>
+          <xs:attribute name="select" type="xs:boolean"        use="optional"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="mode" type="ModeEnum"/>
+  </xs:complexType>
+
+  <xs:complexType name="PartitionType">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="memory">
+        <xs:complexType>
+          <xs:attribute name="parent"    type="xs:string"           use="required"/>
+          <xs:attribute name="name"      type="xs:string"           use="required"/>
+          <xs:attribute name="size"      type="NonNegativeInteger"  use="required"/>
+          <xs:attribute name="offset"    type="xs:string"           use="required"/>
+          <xs:attribute name="access"    type="AccessType"          use="optional"/>
+          <xs:attribute name="security"  type="SecurityTypeEnum"    use="optional"/>
+          <xs:attribute name="privilege" type="PrivilegeTypeEnum"   use="optional"/>
+          <xs:attribute name="startup"   type="xs:boolean"          use="optional"/>
+          <xs:attribute name="fixed"     type="xs:boolean"          use="optional"/>
+          <xs:attribute name="uninit"    type="xs:boolean"          use="optional"/>
+          <xs:attribute name="shared"    type="xs:boolean"          use="optional"/>
+          <xs:attribute name="dma"       type="xs:boolean"          use="optional"/>
+          <xs:attribute name="Pref"      type="xs:string"           use="optional"/>
+          <xs:attribute name="info"      type="xs:string"           use="optional"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="ZonesType">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="zone">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="assign">
+              <xs:complexType>
+                <xs:attribute name="memory"     type="xs:string"         use="optional"/>
+                <xs:attribute name="group"      type="xs:string"         use="optional"/>
+                <xs:attribute name="peripheral" type="xs:string"         use="optional"/>
+                <xs:attribute name="access"     type="AccessType"        use="optional"/>
+                <xs:attribute name="Pref"       type="xs:string"         use="optional"/>
+                <xs:attribute name="security"   type="SecurityTypeEnum"  use="optional"/>
+                <xs:attribute name="privilege"  type="PrivilegeTypeEnum" use="optional"/>
+                <xs:attribute name="uninit"     type="xs:boolean"        use="optional"/>
+                <xs:attribute name="dma"        type="xs:boolean"        use="optional"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="interrupt" minOccurs="0">
+              <xs:complexType>
+                <xs:attribute name="name"      type="xs:string"          use="required"/>
+                <xs:attribute name="value"     type="NonNegativeInteger" use="required"/>
+                <xs:attribute name="info"      type="xs:string"          use="required"/>
+                <xs:attribute name="security"  type="SecurityTypeEnum"   use="required"/>
+                <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="required"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="name"       type="xs:string"         use="required"/>
+          <xs:attribute name="info"       type="xs:string"         use="optional"/>
+          <xs:attribute name="Pref"       type="xs:string"         use="optional"/>
+          <xs:attribute name="security"   type="SecurityTypeEnum"  use="optional"/>
+          <xs:attribute name="privilege"  type="PrivilegeTypeEnum" use="optional"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- description root point -->
+  <xs:element name="azone" nillable="true">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="rzone"     type="RzoneFileRefType" minOccurs="0"/>
+        <xs:element name="configure" type="ConfigureType"    minOccurs="1"/>
+        <xs:element name="partition" type="PartitionType"    minOccurs="1"/>
+        <xs:element name="zones"     type="ZonesType"        minOccurs="0"/>
+      </xs:all>
+      <xs:attribute name="schemaVersion" type="SchemaVersionType" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

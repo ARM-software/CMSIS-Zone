@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 
+  Copyright (c) 2019 ARM Limited. All rights reserved.
+ 
+  SPDX-License-Identifier: Apache-2.0
+ 
+  Licensed under the Apache License, Version 2.0 (the License); you may
+  not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+  www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  $Date:        14. May 2019
+  $Revision:    0.2.0
+
+  $Project: Schema File for CMSIS-Zone resource description file *.rzone
+  Version History:
+  
+  0.0.1: Initial Version
+  0.0.2: splitting resources and assignments into separate files
+         - resources only
+  0.1.0: adding security attribute for memory, peripheral and assign
+  0.1.1: adding privilege attribute for memory, peripheral and assign tags
+  0.2.0: adding sau_init, mpc, peripheral setup element for security and privilege control
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified" version="0.1.1">
+
+  <!-- NonNegativeInteger specifies the format in which numbers are represented in hexadecimal or decimal format -->
+  <xs:simpleType name="NonNegativeInteger">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[+]?(0x|0X)?[0-9a-fA-F]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Integer">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[+\-]?(0x|0X)?[0-9a-fA-F]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- some strings are used to construct filenames (e.g. package name). Such names can contain only subset of characters 
+       and must not contain neither spaces nor dots.  -->
+  <xs:simpleType name="RestrictedString">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\-_A-Za-z0-9]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SchemaVersionType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]+\.[0-9]+((\.[0-9]+)|())" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- semantic versioning -->
+  <xs:simpleType name="PackVersionType">
+    <xs:restriction base="xs:string">
+      <!-- major . minor . patch [[-]quality] [+build] -->
+      <xs:pattern value="[0-9]+.[0-9]+.[0-9]+((\-[0-9A-Za-z_\-\.]+)|([_A-Za-z][0-9A-Za-z_\-\.]*)|())((\+[\-\._A-Za-z0-9]+)|())" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- CoreRevisionType specifies the CPU revision format as defined by ARM (rNpM) -->
+  <xs:simpleType name="DcoreVersionType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="r[0-9]*p[0-9]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="InstancesType">
+    <xs:restriction base="xs:unsignedInt">
+      <xs:minInclusive value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Dcore enumeration type -->
+  <xs:simpleType name="DcoreType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="SC[0-9][0-9][0-9]" />
+      <xs:pattern value="Cortex\-[AMR][0-9][0-9]?[P]?" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <!-- Dfpu enumeration type -->
+  <xs:simpleType name="DfpuTypeEnum">
+    <xs:restriction base="xs:token">
+      <!-- core has FPU (type of FPU depends on Dcore) -->
+      <xs:enumeration value="FPU" />
+      <xs:enumeration value="1" />
+      <!-- core has no FPU -->
+      <xs:enumeration value="NO_FPU" />
+      <xs:enumeration value="0" />
+      <!-- single precision FPU -->
+      <xs:enumeration value="SP_FPU" />
+      <!-- double precision FPU -->
+      <xs:enumeration value="DP_FPU" />
+      <!-- any -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Dmpu enumeration type -->
+  <xs:simpleType name="DmpuTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="MPU" />
+      <xs:enumeration value="NO_MPU" />
+      <xs:enumeration value="0" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="*" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Dtz TrustZone enumeration type -->
+  <xs:simpleType name="DtzTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="TZ" />
+      <xs:enumeration value="NO_TZ" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="0" />
+      <xs:enumeration value="*" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Dsecure enumeration type -->
+  <xs:simpleType name="DsecureTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Secure" />
+      <xs:enumeration value="Non-secure" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="*" /> 
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Ddsp DSP extensions enumeration type -->
+  <xs:simpleType name="DdspTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="DSP" />
+      <xs:enumeration value="NO_DSP" />
+      <xs:enumeration value="1" />
+      <xs:enumeration value="0" />
+      <xs:enumeration value="*" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Dendian enumeration type -->
+  <xs:simpleType name="DendianTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="Little-endian" />
+      <xs:enumeration value="Big-endian" />
+      <xs:enumeration value="Configurable" />
+      <xs:enumeration value="*" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- AccessType -->
+  <xs:simpleType name="AccessType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[rwxp]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Security Type Enumeration -->
+  <xs:simpleType name="SecurityTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="" />
+      <xs:enumeration value="c"/>
+      <xs:enumeration value="s"/>
+      <xs:enumeration value="n"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Privilege Type Enumeration -->
+  <xs:simpleType name="PrivilegeTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value=""/>
+      <xs:enumeration value="u"/>
+      <xs:enumeration value="p"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PhysicalTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="RAM"/>
+      <xs:enumeration value="ROM"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MpcTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="s"/>
+      <xs:enumeration value="p"/>
+      <xs:enumeration value="sp"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="DeviceType">
+    <xs:choice maxOccurs="3">
+      <xs:element name="package" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:attribute name="vendor" type="xs:string"       use="required" />
+          <xs:attribute name="name"   type="xs:string"       use="required" />
+          <xs:attribute name="info"    type="xs:string"       use="optional" />
+          <xs:attribute name="url"     type="xs:anyURI"       use="optional" />
+          <xs:attribute name="version" type="PackVersionType" use="optional" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processor" maxOccurs="unbounded">
+        <xs:complexType>
+          <!-- Pname defines an identifier for a specific processor in a multi-processor devices -->
+          <xs:attribute name="Pname"          type="RestrictedString"   use="optional"/>
+          <!-- Punits specifies the number of processing units in a symmetric multi-processor core -->
+          <xs:attribute name="Punits"         type="InstancesType"      use="optional" />
+          <!-- Dcore specifies the processor from a list of supported processors -->
+          <xs:attribute name="Dcore"          type="DcoreType"          use="required"/>
+          <!-- Dfpu specifies the hardware floating point unit -->
+          <xs:attribute name="Dfpu"           type="DfpuTypeEnum"       use="required"/>
+          <!-- Dmpu specifies the memory protection unit -->
+          <xs:attribute name="Dmpu"           type="DmpuTypeEnum"       use="required"/>
+          <!-- Dtz specifies the processor TrustZone support -->
+          <xs:attribute name="Dtz"            type="DtzTypeEnum"        use="optional"/>
+          <!-- Tdsp specifies the processor support for DSP instructions -->
+          <xs:attribute name="Ddsp"           type="DdspTypeEnum"       use="required"/>
+          <!-- Dendian specifies the endianess supported by the processor -->
+          <xs:attribute name="Dendian"        type="DendianTypeEnum"    use="required"/>
+          <!-- Dclock specifies the maximum core clock frequency -->
+          <xs:attribute name="Dclock"         type="xs:unsignedInt"     use="required"/>
+          <!-- DcoreVersion specifies the revision of the processor -->
+          <xs:attribute name="DcoreVersion"   type="DcoreVersionType"   use="required"/>
+          <xs:attribute name="DnumInterrupts" type="NonNegativeInteger" use="optional"/>
+          <xs:attribute name="DnumSauRegions" type="NonNegativeInteger" use="optional"/>
+          <!-- info brief description -->
+          <xs:attribute name="info"           type="xs:string"          use="optional"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processor_group" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="processor">
+              <xs:complexType>
+                <!-- Pname defines an identifier for a specific processor in a multi-processor devices -->
+                <xs:attribute name="Pname" type="RestrictedString" use="optional"/>
+                <!-- Punits specifies the number of processing units in a symmetric multi-processor core -->
+                <xs:attribute name="Punit" type="InstancesType"   use="optional" />
+                <!-- Dcore specifies the processor from a list of supported processors -->
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="Pgroup" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="Dvendor" type="xs:string"        use="required"/>
+    <xs:attribute name="Dname"   type="RestrictedString" use="required"/>
+    <xs:attribute name="info"    type="xs:string"        use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="PeripheralType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="interrupt">
+        <xs:complexType>
+          <xs:attribute name="name"     type="xs:string"          use="required"/>
+          <xs:attribute name="irqn"    type="Integer" use="required"/>
+          <xs:attribute name="info"     type="xs:string"/>
+          <xs:attribute name="security" type="SecurityTypeEnum"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+    <xs:attribute name="name"      type="xs:string"          use="required"/>
+    <xs:attribute name="start"     type="NonNegativeInteger" use="optional"/>
+    <xs:attribute name="start_ns"  type="NonNegativeInteger" use="optional"/>
+    <xs:attribute name="start_s"   type="NonNegativeInteger" use="optional"/>
+    <xs:attribute name="physical"  type="NonNegativeInteger" use="optional"/>
+    <xs:attribute name="offset"    type="NonNegativeInteger" use="optional"/>
+    <xs:attribute name="size"      type="NonNegativeInteger" use="required"/>
+    <xs:attribute name="external"  type="xs:boolean"/>
+    <xs:attribute name="access"    type="AccessType"/>
+    <xs:attribute name="security"  type="SecurityTypeEnum"/>
+    <xs:attribute name="privilege" type="PrivilegeTypeEnum"/>
+    <xs:attribute name="info"      type="xs:string"/>
+    <xs:attribute name="Pref"      type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="SauInitType">
+    <xs:all>
+      <xs:element name="region">
+        <xs:complexType>
+        <xs:attribute name="Pref"     type="xs:string"          use="optional"/>
+        <xs:attribute name="start"    type="NonNegativeInteger" use="required"/>
+        <xs:attribute name="size"     type="NonNegativeInteger" use="required"/>
+        <xs:attribute name="security" type="SecurityTypeEnum"   use="optional"/>
+        <xs:attribute name="info"     type="xs:string"          use="optional"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="SetupType">
+    <xs:attribute name="name"      type="xs:string"          use="required"/>
+    <xs:attribute name="index"     type="NonNegativeInteger" use="required"/>
+    <xs:attribute name="value"     type="NonNegativeInteger" use="required"/>
+    <xs:attribute name="security"  type="SecurityTypeEnum"   use="optional"/>
+    <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="optional"/>
+    <xs:attribute name="info"      type="xs:string"          use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="ResourcesType">
+    <xs:all>
+      <xs:element name="sau_init" type="SauInitType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="memories" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="mpc" minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:attribute name="name"      type="xs:string"          use="required"/>
+                <xs:attribute name="start"     type="NonNegativeInteger" use="required"/>
+                <xs:attribute name="size"      type="NonNegativeInteger" use="required"/>
+                <xs:attribute name="blk_size"  type="NonNegativeInteger" use="required"/>
+                <xs:attribute name="type"      type="MpcTypeEnum"        use="optional"/>
+                <xs:attribute name="info"      type="xs:string"          use ="optional"/>
+              </xs:complexType>
+
+            </xs:element>
+            <xs:element name="memory"             minOccurs="0" maxOccurs="unbounded">
+              <xs:complexType>
+                <xs:attribute name="name"      type="xs:string"          use="required"/>
+                <xs:attribute name="type"      type="PhysicalTypeEnum"   use="required"/>
+                <xs:attribute name="start"     type="NonNegativeInteger" use="required"/>
+                <xs:attribute name="physical"  type="NonNegativeInteger" use="optional"/>
+                <xs:attribute name="size"      type="NonNegativeInteger" use="required"/>
+                <xs:attribute name="access"    type="AccessType"         use="optional"/>
+                <xs:attribute name="security"  type="SecurityTypeEnum"   use="optional"/>
+                <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="optional"/>
+                <xs:attribute name="startup"   type="xs:boolean"         use="optional"/>
+                <xs:attribute name="uninit"    type="xs:boolean"         use="optional"/>
+                <xs:attribute name="shared"    type="xs:boolean"         use="optional"/>
+                <xs:attribute name="dma"       type="xs:boolean"         use="optional"/>
+                <xs:attribute name="external"  type="xs:boolean"         use="optional"/>
+                <xs:attribute name="Pref"      type="xs:string"          use="optional"/>
+                <xs:attribute name="info"      type="xs:string"          use="optional"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="peripherals" minOccurs="0">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="group">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
+                  <xs:element name="setup"      type="SetupType"      minOccurs="0"/>
+                </xs:sequence>
+                <xs:attribute name="name"      type="xs:string"          use="required"/>
+                <xs:attribute name="start"     type="NonNegativeInteger" use="optional"/>
+                <xs:attribute name="start_s"   type="NonNegativeInteger" use="optional"/>
+                <xs:attribute name="start_ns"  type="NonNegativeInteger" use="optional"/>
+                <xs:attribute name="physical"  type="NonNegativeInteger" use="optional"/>
+                <xs:attribute name="size"      type="NonNegativeInteger" use="optional"/>
+                <xs:attribute name="shared"    type="xs:boolean"         use="optional"/>
+                <xs:attribute name="dma"       type="xs:boolean"         use="optional"/>
+                <xs:attribute name="external"  type="xs:boolean"         use="optional"/>
+                <xs:attribute name="Pref"      type="xs:string"/>
+                <xs:attribute name="access"    type="AccessType"/>
+                <xs:attribute name="security"  type="SecurityTypeEnum"/>
+                <xs:attribute name="privilege" type="PrivilegeTypeEnum"/>
+                <xs:attribute name="info"      type="xs:string"/>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="peripheral" type="PeripheralType" minOccurs="0"/>
+            <xs:element name="setup"      type="SetupType"      minOccurs="0"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="CreatorType">
+    <xs:attribute name="tool"       type="xs:string"        use="optional"/>
+    <xs:attribute name="rzone"      type="xs:string"        use="optional"/>
+    <xs:attribute name="azone"      type="xs:string"        use="optional"/>
+    <xs:attribute name="zone"       type="xs:string"        use="optional"/>
+    <xs:attribute name="zone_info"  type="xs:string"        use="optional"/>
+    <xs:attribute name="security"   type="SecurityTypeEnum" use="optional"/>
+  </xs:complexType>
+
+  <!-- description root point -->
+  <xs:element name="rzone" nillable="true">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="creator"      type="CreatorType"   minOccurs="0"/>
+        <xs:element name="device"       type="DeviceType"    minOccurs="1"/>
+        <xs:element name="resources"    type="ResourcesType" minOccurs="1"/>
+      </xs:all>
+      <xs:attribute name="schemaVersion" type="SchemaVersionType" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

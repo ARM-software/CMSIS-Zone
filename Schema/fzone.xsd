@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified" version="0.0.1">
+
+  <!-- NonNegativeInteger specifies the format in which numbers are represented in hexadecimal or decimal format -->
+  <xs:simpleType name="NonNegativeInteger">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[+]?(0x|0X)?[0-9a-fA-F]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Integer">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[+]?(0x|0X)?[0-9a-fA-F]+" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- semantic versioning -->
+  <xs:simpleType name="SemanticVersionType">
+    <xs:restriction base="xs:string">
+      <!-- major . minor . patch [[-]quality] [+build] -->
+      <xs:pattern value="[0-9]+.[0-9]+.[0-9]+((\-[0-9A-Za-z_\-\.]+)|([_A-Za-z][0-9A-Za-z_\-\.]*)|())((\+[\-\._A-Za-z0-9]+)|())" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- SecurityType -->
+  <xs:simpleType name="SecurityTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="" />
+      <xs:enumeration value="c"/>
+      <xs:enumeration value="s"/>
+      <xs:enumeration value="n"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Privilege Type Enumeration -->
+  <xs:simpleType name="PrivilegeTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value=""/>
+      <xs:enumeration value="u"/>
+      <xs:enumeration value="p"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="MemoryTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="RAM"/>
+      <xs:enumeration value="ROM"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MpuTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="v7M" />
+      <xs:enumeration value="v8M" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MpcTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value=""/>
+      <xs:enumeration value="s"/>
+      <xs:enumeration value="p"/>
+      <xs:enumeration value="sp"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MpcFormatEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value=""/>
+      <xs:enumeration value="sp"/>
+      <xs:enumeration value="ps"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:complexType name="AccessType">
+    <xs:sequence>
+      <xs:element name="r" type="xs:boolean"/>
+      <xs:element name="w" type="xs:boolean"/>
+      <xs:element name="x" type="xs:boolean"/>
+      <xs:element name="p" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PrivilegeType">
+    <xs:sequence>
+      <xs:element name="p" type="xs:boolean"/>
+      <xs:element name="u" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SecurityType">
+    <xs:sequence>
+      <xs:element name="c" type="xs:boolean"/>
+      <xs:element name="s" type="xs:boolean"/>
+      <xs:element name="n" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InterruptType">
+    <xs:sequence>
+      <xs:element name="name"     type="xs:string"/>
+      <xs:element name="irqn"     type="Integer"/>
+      <xs:element name="security" type="SecurityType"/>
+      <xs:element name="info"     type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IrqSetupType">
+    <xs:sequence>
+      <xs:element name="irq"       type="xs:string"/>
+      <xs:element name="name"      type="xs:string"/>
+      <xs:element name="index"     type="NonNegativeInteger"/>
+      <xs:element name="value"     type="NonNegativeInteger"/>
+      <xs:element name="security"  type="SecurityTypeEnum"/>
+      <xs:element name="privilege" type="PrivilegeTypeEnum"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MpcSetupType">
+    <xs:sequence>
+      <xs:element name="name"        type="xs:string"/>
+      <xs:element name="memory"      type="xs:string"/>
+      <xs:element name="blk_size"    type="NonNegativeInteger"/>
+      <xs:element name="S_lut"       type="NonNegativeInteger" maxOccurs="unbounded"/>
+      <xs:element name="P_lut"       type="NonNegativeInteger" maxOccurs="unbounded"/>
+      <xs:element name="lut"         type="NonNegativeInteger" maxOccurs="unbounded"/>
+      <xs:element name="lut_comment" type="xs:string"          maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MemoryType">
+    <xs:sequence>
+      <xs:element name="name"      type="xs:string"/>
+      <xs:element name="type"      type="MemoryTypeEnum"/>
+      <xs:element name="start"     type="NonNegativeInteger"/>
+      <xs:element name="size"      type="NonNegativeInteger"/>
+      <xs:element name="security"  type="SecurityType"/>
+      <xs:element name="access"    type="AccessType"/>
+      <xs:element name="privilege" type="PrivilegeType"/>
+      <xs:element name="info"      type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PeripheralType">
+    <xs:sequence>
+      <xs:element name="name"      type="xs:string"/>
+      <xs:element name="group"     type="xs:string"/>
+      <xs:element name="start"     type="NonNegativeInteger"/>
+      <xs:element name="size"      type="NonNegativeInteger"/>
+      <xs:element name="security"  type="SecurityType"/>
+      <xs:element name="access"    type="AccessType"/>
+      <xs:element name="privilege" type="PrivilegeType"/>
+      <xs:element name="info"      type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MpuSetupType">
+    <xs:sequence>
+      <xs:element name="type"        type="MpuTypeEnum"/>
+      <xs:element name="region" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="no"          type="NonNegativeInteger"/>
+            <xs:element name="BaseAddress" type="NonNegativeInteger"/>
+            <xs:element name="RASR"        type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SauSetupType">
+    <xs:sequence>
+      <xs:element name="start" type="NonNegativeInteger"/>
+      <xs:element name="end"   type="NonNegativeInteger"/>
+      <xs:element name="nsc"   type="xs:boolean"/>
+      <xs:element name="info"  type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RegSetupType">
+    <xs:sequence>
+      <xs:element name="name"       type="xs:string"/>
+      <xs:element name="index"      type="NonNegativeInteger"/>
+      <xs:element name="value"      type="NonNegativeInteger" maxOccurs="unbounded"/>
+      <xs:element name="peripheral" type="xs:string"          maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ProcessorType">
+    <xs:sequence>
+      <xs:element name="Pname"         type="xs:string"/>
+      <xs:element name="NumInterrupts" type="xs:string"/>
+      <xs:element name="sauNumRegions" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ToolType">
+    <xs:all>
+      <xs:element name="name"    type="xs:string"/>
+      <xs:element name="version" type="SemanticVersionType"/>
+    </xs:all>
+  </xs:complexType>
+
+  <!-- description root point -->
+  <xs:element name="fm" nillable="true">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- SYSTEM -->
+        <xs:element name="system">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="processor"  type="ProcessorType"  maxOccurs="unbounded"/>
+              <xs:element name="memory"     type="MemoryType"     maxOccurs="unbounded"/>
+              <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
+              <xs:element name="sau"        type="SauSetupType"   maxOccurs="unbounded"/>
+              <xs:element name="interrupt"  type="InterruptType"  maxOccurs="unbounded"/>
+              <xs:element name="mpc_setup"  type="MpcSetupType"   maxOccurs="unbounded"/>
+              <xs:element name="reg_setup"  type="RegSetupType"   maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- ZONE -->
+        <xs:element name="zone" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- zone 'name'-->
+              <xs:element name="name"       type="xs:string"/>
+              <xs:element name="memory"     type="MemoryType"     maxOccurs="unbounded"/>
+              <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
+              <xs:element name="mpu_setup"  type="MpuSetupType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- TOOL -->
+        <xs:element name="tool"  type="ToolType" minOccurs="0"/>
+        <!-- loaded rzone file -->
+        <xs:element name="rzone" type="xs:string"/>
+        <!-- loaded azone file -->
+        <xs:element name="azone" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
