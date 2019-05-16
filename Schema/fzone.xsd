@@ -76,83 +76,92 @@
 
 
   <xs:complexType name="AccessType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="p" type="xs:boolean"/>
       <xs:element name="r" type="xs:boolean"/>
       <xs:element name="w" type="xs:boolean"/>
       <xs:element name="x" type="xs:boolean"/>
-      <xs:element name="p" type="xs:boolean"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
+  
+  
 
   <xs:complexType name="PrivilegeType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="p" type="xs:boolean"/>
       <xs:element name="u" type="xs:boolean"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="SecurityType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="c" type="xs:boolean"/>
       <xs:element name="s" type="xs:boolean"/>
       <xs:element name="n" type="xs:boolean"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="InterruptType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="name"     type="xs:string"/>
       <xs:element name="irqn"     type="Integer"/>
       <xs:element name="security" type="SecurityType"/>
       <xs:element name="info"     type="xs:string"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="MpcSetupType">
     <xs:choice maxOccurs="unbounded">
       <xs:element name="name"         type="xs:string"/>
       <xs:element name="memory"       type="xs:string"/>
+      <xs:element name="start"        type="NonNegativeInteger"/>
+      <xs:element name="size"         type="NonNegativeInteger"/>
       <xs:element name="blk_size"     type="NonNegativeInteger"/>
       <xs:element name="S_bit"        type="NonNegativeInteger" maxOccurs="unbounded"/>
       <xs:element name="P_bit"        type="NonNegativeInteger" maxOccurs="unbounded"/>
-      <xs:element name="bits_comment" type="NonNegativeInteger" maxOccurs="unbounded"/>
+      <xs:element name="bit_comment"  type="xs:string"          maxOccurs="unbounded"/>
     </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="MemoryType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="name"      type="xs:string"/>
+      <xs:element name="parent"    type="xs:string"/>
       <xs:element name="type"      type="MemoryTypeEnum"/>
       <xs:element name="start"     type="NonNegativeInteger"/>
       <xs:element name="size"      type="NonNegativeInteger"/>
       <xs:element name="security"  type="SecurityType"/>
       <xs:element name="access"    type="AccessType"/>
       <xs:element name="privilege" type="PrivilegeType"/>
+      <xs:element name="external"  type="xs:boolean"/>
       <xs:element name="startup"   type="xs:boolean"/>
       <xs:element name="uninit"    type="xs:boolean"/>
       <xs:element name="shared"    type="xs:boolean"/>
       <xs:element name="dma"       type="xs:boolean"/>
       <xs:element name="info"      type="xs:string"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="PeripheralType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="name"      type="xs:string"/>
       <xs:element name="group"     type="xs:string"/>
       <xs:element name="start"     type="NonNegativeInteger"/>
+      <xs:element name="start_ns"  type="NonNegativeInteger"/>
+      <xs:element name="start_s"   type="NonNegativeInteger"/>
       <xs:element name="size"      type="NonNegativeInteger"/>
+      <xs:element name="offset"    type="NonNegativeInteger"/>
       <xs:element name="security"  type="SecurityType"/>
       <xs:element name="access"    type="AccessType"/>
       <xs:element name="privilege" type="PrivilegeType"/>
       <xs:element name="shared"    type="xs:boolean"/>
       <xs:element name="dma"       type="xs:boolean"/>
       <xs:element name="info"      type="xs:string"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="MpuSetupType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="type"        type="MpuTypeEnum"/>
       <xs:element name="region" maxOccurs="unbounded">
         <xs:complexType>
@@ -163,33 +172,33 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="SauSetupType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="start" type="NonNegativeInteger"/>
       <xs:element name="end"   type="NonNegativeInteger"/>
       <xs:element name="nsc"   type="xs:boolean"/>
       <xs:element name="info"  type="xs:string"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="RegSetupType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="name"       type="xs:string"/>
-      <xs:element name="index"      type="NonNegativeInteger"/>
+      <xs:element name="index"      type="xs:string"          minOccurs="0"/>
       <xs:element name="value"      type="NonNegativeInteger" maxOccurs="unbounded"/>
       <xs:element name="peripheral" type="xs:string"          maxOccurs="unbounded"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="ProcessorType">
-    <xs:sequence>
+    <xs:choice maxOccurs="unbounded">
       <xs:element name="Pname"          type="xs:string"/>
       <xs:element name="DnumInterrupts" type="xs:string"/>
       <xs:element name="DnumSauRegions" type="xs:string"/>
-    </xs:sequence>
+    </xs:choice>
   </xs:complexType>
   
   <xs:complexType name="ToolType">
@@ -200,13 +209,13 @@
   </xs:complexType>
 
   <!-- description root point -->
-  <xs:element name="fm" nillable="true">
+  <xs:element name="fzone" nillable="true">
     <xs:complexType>
-      <xs:sequence>
+      <xs:choice maxOccurs="unbounded">
         <!-- SYSTEM -->
         <xs:element name="system">
           <xs:complexType>
-            <xs:sequence>
+            <xs:choice maxOccurs="unbounded">
               <xs:element name="processor"  type="ProcessorType"  maxOccurs="unbounded"/>
               <xs:element name="memory"     type="MemoryType"     maxOccurs="unbounded"/>
               <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
@@ -214,19 +223,23 @@
               <xs:element name="interrupt"  type="InterruptType"  maxOccurs="unbounded"/>
               <xs:element name="mpc_setup"  type="MpcSetupType"   maxOccurs="unbounded"/>
               <xs:element name="reg_setup"  type="RegSetupType"   maxOccurs="unbounded"/>
-            </xs:sequence>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
         <!-- ZONE -->
         <xs:element name="zone" maxOccurs="unbounded">
           <xs:complexType>
-            <xs:sequence>
+            <xs:choice maxOccurs="unbounded">
               <!-- zone 'name'-->
               <xs:element name="name"       type="xs:string"/>
+              <xs:element name="Dname"      type="xs:string"/>
+              <xs:element name="Pname"      type="xs:string"/>
+              <xs:element name="security"   type="SecurityType"/>
               <xs:element name="memory"     type="MemoryType"     maxOccurs="unbounded"/>
               <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
               <xs:element name="mpu_setup"  type="MpuSetupType"/>
-            </xs:sequence>
+              <xs:element name="info"       type="xs:string"/>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
         <!-- TOOL -->
@@ -235,7 +248,7 @@
         <xs:element name="rzone" type="xs:string"/>
         <!-- loaded azone file -->
         <xs:element name="azone" type="xs:string"/>
-      </xs:sequence>
+      </xs:choice>
     </xs:complexType>
   </xs:element>
 </xs:schema>
