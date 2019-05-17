@@ -83,3 +83,6 @@ In the spirit of openness we will be tagging issues with the following:
 
 - **Important Information** - We provide essential informations regarding planned or resolved major enhancements.
 
+---
+
+_Copyright (c) 2014-2016, ARM Limited and Contributors. All rights reserved._
