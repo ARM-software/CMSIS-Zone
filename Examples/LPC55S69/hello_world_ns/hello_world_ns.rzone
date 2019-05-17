@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <device Dname="LPC55S69" Dvendor="NXP:11" info="Cortex-M33, 320kB on-chip SRAM, 640kB on-chip Flash">
+    <package info="Device Family Pack for LPC55S69" name="LPC55S69_DFP" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="11.0.0"/>
+    <processor Dclock="100000000" Dcore="Cortex-M33" DcoreVersion="r0p3" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" DnumInterrupts="60" DnumSauRegions="8" Dtz="TZ" Pname="cm33_core0"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rx" fixed="1" info="Non-secure FLASH for CODE execution" name="CODE_NS" parent="FLASH" privilege="u" security="n" size="0x72000" start="0x10000"/>
+      <memory access="rw" fixed="1" info="" name="DATA_NS" parent="SRAM" privilege="" security="n" size="0x3C000" start="0x20008000"/>
+    </memories>
+    <peripherals/>
+  </resources>
+</rzone>

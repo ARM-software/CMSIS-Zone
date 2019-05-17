@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.1.1" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="LPC55S69.rzone"/>
+  <partition>
+    <memory access="rx" fixed="1" info="Secure FLASH for CODE execution" name="CODE_S" offset="0x0" parent="FLASH_S" privilege="p" security="s" size="0xFE00"/>
+    <memory access="rx" fixed="1" info="Non-secure callable FLASH for CODE veneer table" name="Veneer" offset="0xFE00" parent="FLASH_S" privilege="p" security="c" size="0x200"/>
+    <memory access="rw" fixed="1" info="" name="DATA_NS" offset="0x8000" parent="SRAM" privilege="" security="n" size="0x3C000"/>
+    <memory access="rx" fixed="1" info="Non-secure FLASH for CODE execution" name="CODE_NS" offset="0x10000" parent="FLASH" privilege="u" security="n" size="0x72000"/>
+    <memory fixed="1" name="DATA_S" offset="0x0" parent="SRAM_S" size="0x8000"/>
+  </partition>
+  <zones>
+    <zone Dname="LPC55S69" Pname="cm33_core0" info="" name="hello_world_s" security="s">
+      <assign memory="CODE_S"/>
+      <assign memory="Veneer"/>
+      <assign memory="DATA_S"/>
+      <assign peripheral="IOCON"/>
+      <assign peripheral="SYSCON"/>
+      <assign group="FLEXCOMM" peripheral="FLEXCOMM0"/>
+    </zone>
+    <zone Dname="LPC55S69" Pname="cm33_core0" info="" name="hello_world_ns" security="n">
+      <assign memory="CODE_NS"/>
+      <assign memory="DATA_NS"/>
+    </zone>
+  </zones>
+</azone>
