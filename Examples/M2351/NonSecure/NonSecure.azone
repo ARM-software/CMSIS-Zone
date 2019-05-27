@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="NonSecure.rzone"/>
+  <zones>
+    <zone Dname="M2351KIAAE" Pname="" info="" name="AppNS" security="n">
+      <assign memory="DATA_NS"/>
+      <assign memory="CODE_NS"/>
+    </zone>
+  </zones>
+  <partition/>
+</azone>

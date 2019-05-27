@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <device Dfamily="NuMicro M23 Family" Dname="M2351KIAAE" DsubFamily="M2351" Dvendor="Nuvoton:18" info="ARM , 96 KB RAM, 512 KB ROM" url="http://www.keil.com/dd2/nuvoton/m2351kiaae">
+    <package info="Nuvoton ARM Cortex-M NuMicro Family Device Support" name="NuMicro_DFP" url="http://www.nuvoton.com/hq/enu/Documents/KEILSoftwarePack" vendor="Nuvoton" version="1.3.4"/>
+    <processor Dclock="64000000" Dcore="Cortex-M23" Dendian="Configurable" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rw" fixed="1" info="" name="DATA_NS" parent="SRAM_NS" privilege="" security="n" size="0x10000" start="0x30008000"/>
+      <memory access="rx" fixed="1" info="" name="CODE_NS" parent="FLASH_NS" size="0x40000" start="0x10040000"/>
+    </memories>
+    <peripherals>
+      <group name="UART">
+        <peripheral access="prw" group="UART" info="UART Register Map" name="UART1" security="n" size="0x4C" start="0x50071000" start_s="0x40071000">
+          <setup name="SCU-&gt;PNSSET[3]" security="n" value="0x00020000"/>
+          <interrupt info="UART1 interrupt" irqn="37" name="UART1_INT"/>
+        </peripheral>
+      </group>
+      <group name="GPIO">
+        <peripheral access="prw" group="GPIO" info="GPIO Register Map" name="GPIOC" security="n" size="0x40" start="0x50004880" start_s="0x40004880">
+          <setup name="SCU-&gt;IONSSET" security="n" value="0x00000004"/>
+          <interrupt info="External interrupt from PC[15:0] pin" irqn="18" name="GPC_INT"/>
+          <interrupt info="External interrupt from PB.3 or PC.6 pins" irqn="12" name="EINT2"/>
+        </peripheral>
+      </group>
+    </peripherals>
+  </resources>
+</rzone>
