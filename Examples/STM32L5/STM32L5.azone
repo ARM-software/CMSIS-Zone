@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="STM32L5.rzone"/>
+  <partition>
+    <memory fixed="1" name="CODE_S" offset="0x0" parent="Flash_S" size="0x3E000"/>
+    <memory fixed="1" name="Veneer" offset="0x3E000" parent="Flash_S" size="0x2000"/>
+    <memory access="rw" fixed="1" info="" name="DATA_S" offset="0x0" parent="SRAM_S" security="s" size="0x18000"/>
+    <memory fixed="1" info="" name="CODE_NS" offset="0x40000" parent="Flash_NS" size="0x40000"/>
+    <memory access="rw" fixed="1" info="" name="DATA_NS" offset="0x18000" parent="SRAM_NS" privilege="" security="n" size="0x18000"/>
+  </partition>
+  <zones>
+    <zone Dname="STM32L552ZETxQ" Pname="" info="" name="part_S" security="s">
+      <assign memory="CODE_S"/>
+      <assign memory="DATA_S"/>
+    </zone>
+    <zone Dname="STM32L552ZETxQ" Pname="" info="" name="part_NS" security="n">
+      <assign memory="DATA_NS"/>
+      <assign memory="CODE_NS"/>
+    </zone>
+  </zones>
+</azone>

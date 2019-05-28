@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <device Dfamily="STM32L5 Series" Dname="STM32L552ZETxQ" DsubFamily="STM32L5x2" Dvendor="STMicroelectronics:13" info="ARM , 384 KB RAM, 1 MB ROM" url="http://www.keil.com/dd2/st/stm32l552zetxq">
+    <package info="STMicroelectronics STM32L5 Series Device Support" name="STM32L5xx_DFP" url="http://www.keil.com/pack" vendor="Keil" version="1.0.9-dev4"/>
+    <processor Dclock="110000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rx" name="Flash_NS" security="n" size="0x00080000" start="0x08000000"/>
+      <memory access="rx" name="Flash_S" security="c" size="0x00080000" start="0x0C000000" physical="0x08000000"/>
+      <memory access="rwx" name="SRAM_NS" security="n" size="0x00040000" start="0x20000000"/>
+      <memory access="rwx" name="SRAM_S" security="c" size="0x00040000" start="0x30000000" physical="0x20000000"/>
+      <mpc name="GTZC_MPCBB1_S-&gt;VCTR" start="0x20000000" type="s" size="0x00030000" blk_size="0x100" info="SRAM1" />
+      <mpc name="GTZC_MPCBB2_S-&gt;VCTR" start="0x20030000" type="s" size="0x00010000" blk_size="0x100" info="SRAM2" />
+    </memories>
+    <peripherals>
+      <group name="ADC">
+        <peripheral access="prw" info="Analog-to-Digital Converter" name="ADC" size="0x400" start="0x42028000" start_s="0x52028000">
+          <interrupt info="ADC1_2 global interrupt" name="ADC1_2" value="037"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000800" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000800" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="COMP">
+        <peripheral access="prw" name="COMP" size="0x200" start="0x40010200" start_s="0x50010200">
+          <interrupt info="COMP1 and COMP2 interrupts" name="COMP" value="072"/>
+          <setup name="TZSC_SECCFGR1"  value="0x20000000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x20000000" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="DFSDM">
+        <peripheral access="prw" info="Digital filter for sigma delta modulators" name="DFSDM1" size="0x800" start="0x40016000" start_s="0x50016000">
+          <interrupt info="DFSDM1_FLT0 global interrupt" name="DFSDM1_FLT0" value="102"/>
+          <interrupt info="DFSDM1_FLT1 global interrupt" name="DFSDM1_FLT1" value="103"/>
+          <interrupt info="DFSDM1_FLT2 global interrupt" name="DFSDM1_FLT2" value="104"/>
+          <interrupt info="DFSDM1_FLT3 global interrupt" name="DFSDM1_FLT3" value="105"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000080" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000080" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="DMA">
+        <group name="DMA1">
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH1" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1 Channel 1 global interrupt" name="DMA1_Channel1" value="029"/>
+            <setup name="DMA1_Channel1_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel1_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH2" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1 Channel 2 global interrupt" name="DMA1_Channel2" value="030"/>
+            <setup name="DMA1_Channel2_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel2_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH3" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1 Channel 3 interrupt" name="DMA1_Channel3" value="031"/>
+            <setup name="DMA1_Channel3_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel3_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH4" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1 Channel 4 interrupt" name="DMA1_Channel4" value="032"/>
+            <setup name="DMA1_Channel4_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel4_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH5" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1 Channel 5 interrupt" name="DMA1_Channel5" value="033"/>
+            <setup name="DMA1_Channel5_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel5_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH6" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1 Channel 6 interrupt" name="DMA1_Channel6" value="034"/>
+            <setup name="DMA1_Channel6_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel6_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH7" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1 Channel 7 interrupt" name="DMA1_Channel7" value="035"/>
+            <setup name="DMA1_Channel7_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel7_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" info="Direct memory access controller" name="DMA1_CH8" size="0x400" start="0x40020000" start_s="0x50020000">
+            <interrupt info="DMA1_Channel 8" name="DMA1_Channel8" value="036"/>
+            <setup name="DMA1_Channel8_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA1_Channel8_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+        </group>
+        <group name="DMA2">
+          <peripheral access="prw" name="DMA2_CH1" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH1" name="DMA2_CH1" value="080"/>
+            <setup name="DMA2_Channel1_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel1_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" name="DMA2_CH2" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH2" name="DMA2_CH2" value="081"/>
+            <setup name="DMA2_Channel2_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel2_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" name="DMA2_CH3" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH3" name="DMA2_CH3" value="082"/>
+            <setup name="DMA2_Channel3_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel3_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" name="DMA2_CH4" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH4" name="DMA2_CH4" value="083"/>
+            <setup name="DMA2_Channel4_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel4_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" name="DMA2_CH5" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH5" name="DMA2_CH5" value="084"/>
+            <setup name="DMA2_Channel5_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel5_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" name="DMA2_CH6" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH6" name="DMA2_CH6" value="085"/>
+            <setup name="DMA2_Channel6_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel6_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" name="DMA2_CH7" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH7" name="DMA2_CH7" value="086"/>
+            <setup name="DMA2_Channel7_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel7_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+          <peripheral access="prw" name="DMA2_CH8" size="0x400" start="0x40020400" start_s="0x50020400">
+            <interrupt info="DMA2_CH8" name="DMA2_CH8" value="087"/>
+            <setup name="DMA2_Channel8_S-&gt;CCR" value="0x00020000" security="s"/>
+            <setup name="DMA2_Channel8_S-&gt;CCR" value="0x00100000" security="p"/>
+          </peripheral>
+        </group>
+      </group>
+      <group name="FDCAN">
+        <peripheral access="prw" info="FDCAN1" name="FDCAN1" size="0xC00" start="0x4000A400" start_s="0x5000A400">
+          <interrupt info="FDCAN1 Interrupt 0" name="FDCAN1_IT0" value="039"/>
+          <interrupt info="FDCAN1 Interrupt 1" name="FDCAN1_IT1" value="040"/>
+          <setup name="TZSC_SECCFGR1"  value="0x02000000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x02000000" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="GPIO">
+        <group name="GPIOA">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA0" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000001" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA1" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000002" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA2" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000004" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA3" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000008" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA4" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000010" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA5" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000020" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA6" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000040" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA7" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000080" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA8" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000100" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA9" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000200" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA10" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000400" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA11" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00000800" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA12" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00001000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA13" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00002000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA14" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00004000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOA15" size="0x400" start="0x42020000" start_s="0x52020000">
+            <setup name="GPIOA_S-&gt;SECCFGR"  value="0x00008000" security="s"/>
+          </peripheral>
+        </group>
+        <group name="GPIOB">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB0" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000001" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB1" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x0000002" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB2" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000004" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB3" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000008" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB4" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000010" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB5" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000020" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB6" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000040" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB7" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000080" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB8" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000100" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB9" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000200" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB10" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000400" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB11" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00000800" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB12" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00001000" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB13" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00002000" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB14" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00004000" security="s"/>          
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOB15" size="0x400" start="0x42020400" start_s="0x52020400">
+            <setup name="GPIOB_S-&gt;SECCFGR"  value="0x00008000" security="s"/>          
+          </peripheral>
+        </group>
+        <group name="GPIOC">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC0" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000001" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC1" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000002" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC2" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000004" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC3" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000008" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC4" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000010" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC5" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000020" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC6" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000040" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC7" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000080" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC8" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000100" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC9" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000200" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC10" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000400" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC11" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00000800" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC12" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00001000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC13" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00002000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC14" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00004000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOC15" size="0x400" start="0x42020800" start_s="0x52020800">
+            <setup name="GPIOC_S-&gt;SECCFGR"  value="0x00008000" security="s"/>
+          </peripheral>
+        </group>
+        <group name="GPIOD">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD0" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000001" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD1" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000002" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD2" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000004" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD3" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000008" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD4" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000010" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD5" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000020" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD6" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000040" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD7" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000080" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD8" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000100" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD9" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000200" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD10" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000400" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD11" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00000800" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD12" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00001000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD13" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00002000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD14" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00004000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOD15" size="0x400" start="0x42020C00" start_s="0x52020C00">
+            <setup name="GPIOD_S-&gt;SECCFGR"  value="0x00008000" security="s"/>
+          </peripheral>
+        </group>
+        <group name="GPIOE">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE0" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000001" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE1" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000002" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE2" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000004" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE3" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000008" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE4" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000010" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE5" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000020" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE6" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000040" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE7" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000080" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE8" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000100" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE9" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000200" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE10" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000400" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE11" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00000800" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE12" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00001000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE13" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00002000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE14" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00004000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOE15" size="0x400" start="0x42021000" start_s="0x52021000">
+            <setup name="GPIOE_S-&gt;SECCFGR"  value="0x00008000" security="s"/>
+          </peripheral>
+        </group>
+        <group name="GPIOF">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF0" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000001" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF1" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000002" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF2" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000004" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF3" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000008" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF4" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000010" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF5" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000020" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF6" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000040" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF7" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000080" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF8" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000100" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF9" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000200" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF10" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000400" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF11" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00000800" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF12" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00001000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF13" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00002000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF14" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00004000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOF15" size="0x400" start="0x42021400" start_s="0x52021400">
+            <setup name="GPIOF_S-&gt;SECCFGR"  value="0x00008000" security="s"/>
+          </peripheral>
+        </group>
+        <group name="GPIOG">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG0" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000001" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG1" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000002" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG2" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000004" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG3" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000008" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG4" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000010" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG5" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000020" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG6" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000040" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG7" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000080" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG8" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000100" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG9" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000200" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG10" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000400" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG11" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00000800" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG12" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00001000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG13" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00002000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG14" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00004000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOG15" size="0x400" start="0x42021800" start_s="0x52021800">
+            <setup name="GPIOG_S-&gt;SECCFGR"  value="0x00008000" security="s"/>
+          </peripheral>
+        </group>
+        <group name="GPIOH">
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH0" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000001" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH1" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000002" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH2" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000004" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH3" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000008" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH4" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000010" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH5" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000020" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH6" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000040" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH7" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000080" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH8" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000100" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH9" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000200" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH10" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000400" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH11" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00000800" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH12" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00001000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH13" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00002000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH14" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00004000" security="s"/>
+          </peripheral>
+          <peripheral access="prw" info="General-purpose I/Os" name="GPIOH15" size="0x400" start="0x42021C00" start_s="0x52021C00">
+            <setup name="GPIOH_S-&gt;SECCFGR"  value="0x00008000" security="s"/>
+          </peripheral>
+        </group>
+      </group>
+      <group name="I2C">
+        <peripheral access="prw" info="Inter-integrated circuit" name="I2C1" size="0x400" start="0x40005400" start_s="0x50005400">
+          <interrupt info="I2C1 error interrupt" name="I2C1_ER" value="056"/>
+          <interrupt info="I2C1 event interrupt" name="I2C1_EV" value="055"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00004000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00004000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="I2C2" size="0x400" start="0x40005800" start_s="0x50005800">
+          <interrupt info="I2C2 error interrupt" name="I2C2_ER" value="058"/>
+          <interrupt info="I2C2 event interrupt" name="I2C2_EV" value="057"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00008000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00008000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="I2C3" size="0x400" start="0x40005C00" start_s="0x50005C00">
+          <interrupt info="I2C3 error interrupt" name="I2C3_ER" value="089"/>
+          <interrupt info="I2C3 event interrupt" name="I2C3_EV" value="088"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00010000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00010000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="I2C4" size="0x400" start="0x40008400" start_s="0x50008400">
+          <interrupt info="I2C4 error interrupt" name="I2C4_ER" value="100"/>
+          <interrupt info="I2C4 event interrupt" name="I2C4_EV" value="101"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00400000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00400000" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="LPTIM">
+        <peripheral access="prw" info="Low power timer" name="LPTIM1" size="0x400" start="0x40007C00" start_s="0x50007C00">
+          <interrupt info="LP TIM1 interrupt" name="LPTIM1" value="067"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00100000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00100000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="LPTIM3" size="0x400" start="0x40009400" start_s="0x50009400">
+          <interrupt info="LP TIM2 interrupt" name="LPTIM2" value="068"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00800000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00800000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="LPTIM3" size="0x400" start="0x40009800" start_s="0x50009800">
+          <interrupt info="LP TIM3 interrupt" name="LPTIM3" value="098"/>
+          <setup name="TZSC_SECCFGR1"  value="0x01000000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x01000000" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="OctoSPI">
+        <peripheral access="prw" info="OctoSPI" name="OCTOSPI1" size="0x400" start="0x44021000" start_s="0x54021000">
+          <interrupt info="OCTOSPI1 global interrupt" name="OCTOSPI1" value="076"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00040000" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00040000" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="SAI">
+        <peripheral access="prw" info="Serial audio interface 1" name="SAI1" size="0x400" start="0x40015400" start_s="0x50015400">
+          <interrupt info="SAI1 global interrupt" name="SAI1" value="090"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000020" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000020" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="Serial audio interface 2" name="SAI2" size="0x400" start="0x40015800" start_s="0x50015800">
+          <interrupt info="SAI2 global interrupt" name="SAI2" value="091"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000040" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000040" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="SPI">
+        <peripheral access="prw" info="Serial peripheral interface" name="SPI1" size="0x400" start="0x40013000" start_s="0x50013000">
+          <interrupt info="SPI1 global interrupt" name="SPI1" value="059"/>
+          <setup name="TZSC_SECCFGR1"  value="0x80000000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x80000000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="SPI2" size="0x400" start="0x40003800" start_s="0x50003800">
+          <interrupt info="SPI2 global interrupt" name="SPI2" value="060"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000100" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000100" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="SPI3" size="0x400" start="0x40003C00" start_s="0x50003C00">
+          <interrupt info="SPI3" name="SPI3" value="099"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000200" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000200" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="TIM">
+        <peripheral access="prw" info="Advanced-timers" name="TIM1" size="0x400" start="0x40012C00" start_s="0x50012C00">
+          <interrupt info="TIM1 Break" name="TIM1_BRK" value="041"/>
+          <interrupt info="TIM1 Capture Compare interrupt" name="TIM1_CC" value="044"/>
+          <interrupt info="TIM1 Trigger and Commutation" name="TIM1_TRG_COM" value="043"/>
+          <interrupt info="TIM1 Update" name="TIM1_UP" value="042"/>
+          <setup name="TZSC_SECCFGR1"  value="0x40000000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x40000000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="General-purpose-timers" name="TIM2" size="0x400" start="0x40000000" start_s="0x50000000">
+          <interrupt info="TIM2 global interrupt" name="TIM2" value="045"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000001" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000001" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="General-purpose-timers" name="TIM3" size="0x400" start="0x40000400" start_s="0x50000400">
+          <interrupt info="TIM3 global interrupt" name="TIM3" value="046"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000002" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000002" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="General-purpose-timers" name="TIM4" size="0x400" start="0x40000800" start_s="0x50000800">
+          <interrupt info="TIM4 global interrupt" name="TIM4" value="047"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000004" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000004" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM5" size="0x400" start="0x40000C00" start_s="0x50000C00">
+          <interrupt info="TIM5 global interrupt" name="TIM5" value="048"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000008" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000008" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM6" size="0x400" start="0x40001000" start_s="0x50001000">
+          <interrupt info="TIM6 global interrupt" name="TIM6" value="049"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000010" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000010" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM7" size="0x400" start="0x40001400" start_s="0x50001400">
+          <interrupt info="TIM7 global interrupt" name="TIM7" value="050"/>        
+          <setup name="TZSC_SECCFGR1"  value="0x00000020" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000020" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="Advanced-timers" name="TIM8" size="0x400" start="0x40013400" start_s="0x50013400">
+          <interrupt info="TIM8 Break Interrupt" name="TIM8_BRK" value="051"/>
+          <interrupt info="TIM8 Capture Compare Interrupt" name="TIM8_CC" value="054"/>
+          <interrupt info="TIM8 Trigger and Commutation Interrupt" name="TIM8_TRG_COM" value="053"/>
+          <interrupt info="TIM8 Update Interrupt" name="TIM8_UP" value="052"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000001" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000001" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="General purpose timers" name="TIM15" size="0x400" start="0x40014000" start_s="0x50014000">
+          <interrupt info="TIM15 global interrupt" name="TIM15" value="069"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000004" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000004" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="General purpose timers" name="TIM16" size="0x400" start="0x40014400" start_s="0x50014400">
+          <interrupt info="TIM16 global interrupt" name="TIM16" value="070"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000008" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000008" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="General purpose timers" name="TIM17" size="0x400" start="0x40014800" start_s="0x50014800">
+          <interrupt info="TIM17 global interrupt" name="TIM17" value="071"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000010" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000010" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="UCPD">
+        <peripheral access="prw" info="USB Power Delivery interface" name="UCPD1" size="0x400" start="0x4000DC00" start_s="0x5000DC00">
+          <interrupt info="UCPD global interrupt" name="UCPD1" value="106"/>
+          <setup name="TZSC_SECCFGR1"  value="0x08000000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x08000000" privilege="p"/>
+        </peripheral>
+      </group>
+      <group name="USART">
+        <peripheral access="prw" info="Universal synchronous asynchronous receiver transmitter" name="LPUART1" size="0x400" start="0x40008000" start_s="0x50008000">
+          <interrupt info="LPUART1 global interrupt" name="LPUART1" value="066"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00200000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00200000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" info="Universal synchronous asynchronous receiver transmitter" name="USART1" size="0x400" start="0x40013800" start_s="0x50013800">
+          <interrupt info="USART1 global interrupt" name="USART1" value="061"/>
+          <setup name="TZSC_SECCFGR2"  value="0x00000002" security="s"/>
+          <setup name="TZSC_PRIVCFGR2" value="0x00000002" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="USART2" size="0x400" start="0x40004400" start_s="0x50004400">
+          <interrupt info="USART2 global interrupt" name="USART2" value="062"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000400" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000400" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="USART3" size="0x400" start="0x40004800" start_s="0x50004800">
+          <interrupt info="USART3 global interrupt" name="USART3" value="063"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00000800" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00000800" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="UART4" size="0x400" start="0x40004C00" start_s="0x50004C00">
+          <interrupt info="UART4 global interrupt" name="UART4" value="064"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00001000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00001000" privilege="p"/>
+        </peripheral>
+        <peripheral access="prw" name="UART5" size="0x400" start="0x40005000" start_s="0x50005000">
+          <interrupt info="UART5 global interrupt" name="UART5" value="065"/>
+          <setup name="TZSC_SECCFGR1"  value="0x00002000" security="s"/>
+          <setup name="TZSC_PRIVCFGR1" value="0x00002000" privilege="p"/>
+        </peripheral>
+      </group>
+    </peripherals>
+  </resources>
+</rzone>
