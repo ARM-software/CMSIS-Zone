@@ -20,9 +20,7 @@ The following CMSIS-Zone features are still under development and not yet availa
   - Support for multi-core targets that contain a mixture of cores (Cortex-M/Cortex-A)
   - Project wizard for creating new CMSIS-Zone projects
 
-The source code of the CMSIS-Zone Utility will be released under open source license once we have completed all the features
-described above. However we will update this page frequently to show the current progress of this project and to solve issues
-that are detected during testing.
+The source code of the CMSIS-Zone Utility is released under open source license. However we will update this page frequently to show the current progress of this project and to solve issues that are detected during testing.
 
 Use [Issues](https://github.com/ARM-software/CMSIS-Zone#issues-and-labels) to provide feedback and report problems for the
 CMSIS-Zone Utility and the CMSIS-Zone project examples.
@@ -31,6 +29,11 @@ CMSIS-Zone Utility and the CMSIS-Zone project examples.
 example projects and is constantly updated. It allows you to review the work and provide feedback or create pull requests for contributions.
 
 For further details see also the [Slides of the Embedded World CMSIS Partner Meeting](https://github.com/ARM-software/CMSIS_5/blob/develop/CMSIS_EW2019.pdf).
+
+## Tool Installation
+The [CMSIS-Zone Utility](https://arm-software.github.io/CMSIS-Zone/zoneToolUsage.html) is provided as Eclipse plug in under [release](https://github.com/ARM-software/CMSIS-Zone/releases). For Windows the file *EclipseCDT_2019_3_CMSIS_Zone.zip* provides a complete Eclipse enviornment that is ready to use.  Just unzip it to a suitable folder.
+
+For first steps refer to [CMSIS-Zone Utility - Examples](https://arm-software.github.io/CMSIS-Zone/zTExamples.html) in the documentation.
 
 ## Directory Structure
 
@@ -85,4 +88,4 @@ In the spirit of openness we will be tagging issues with the following:
 
 ---
 
-_Copyright (c) 2014-2016, ARM Limited and Contributors. All rights reserved._
+_Copyright (c) 2019, ARM Limited and Contributors. All rights reserved._
