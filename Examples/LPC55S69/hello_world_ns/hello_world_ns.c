@@ -31,23 +31,21 @@ void SystemInit (void)
  */
 int main(void)
 {
-    int result;
+	int result;
 
+	while (1)
+	{
+		PRINTF_NSE("Welcome in normal world!\r\n");
+		PRINTF_NSE("This is a text printed from normal world!\r\n");
 
-    
-    PRINTF_NSE("Welcome in normal world!\r\n");
-    PRINTF_NSE("This is a text printed from normal world!\r\n");
-
-    result = StringCompare_NSE(&strcmp, "Test1\r\n", "Test2\r\n");
-    if (result == 0)
-    {
-        PRINTF_NSE("Both strings are equal!\r\n");
-    }
-    else
-    {
-        PRINTF_NSE("Both strings are not equal!\r\n");
-    }
-    while (1)
-    {
-    }
+		result = StringCompare_NSE(&strcmp, "Test1\r\n", "Test2\r\n");
+		if (result == 0)
+		{
+			PRINTF_NSE("Both strings are equal!\r\n");
+		}
+		else
+		{
+			PRINTF_NSE("Both strings are not equal!\r\n");
+		}
+	}
 }
