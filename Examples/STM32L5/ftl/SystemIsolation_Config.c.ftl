@@ -1,6 +1,7 @@
 <#compress>
 <#include "helper.ftlinc"/>
 
+<#-- Generation bit list for Memory Protection Controller -->
 <#function mpcRegs mpc>
   <#assign regs = [] />
   <#list 0..((mpc.S_bit?size-1)/32) as i>
@@ -26,6 +27,7 @@ void SystemIsolation_Config(void)
   /* Enable GTZC peripheral clock */
   __HAL_RCC_GTZC_CLK_ENABLE();
 
+  /* Setup Memory Protection Controller (MPC) */
 <#list system.mpc_setup as mpc>
   /* ${mpc.info} */
   <#list mpcRegs(mpc) as reg>
