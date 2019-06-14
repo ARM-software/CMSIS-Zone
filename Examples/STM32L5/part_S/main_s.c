@@ -13,6 +13,13 @@
 /* Start address of non-secure application */
 #define NONSECURE_START (0x08040000U)
 
+/*----------------------------------------------------------------------------
+  System Isolation Configuration
+  This function is responsible for Memory and Peripheral isolation
+  for secure and non-secure application parts
+ *----------------------------------------------------------------------------*/
+extern void SystemIsolation_Config(void);
+
 /* typedef for NonSecure callback functions */
 typedef int32_t (*NonSecure_fpParam)(uint32_t) __attribute__((cmse_nonsecure_call));
 typedef void    (*NonSecure_fpVoid) (void)     __attribute__((cmse_nonsecure_call));
@@ -89,122 +96,6 @@ void SysTick_Handler (void) {
       }
   }
 }
-
-/*----------------------------------------------------------------------------
-  System Isolation Configuration
-  This function is responsible for Memory and Peripheral isolation
-  for secure and non-secure application parts
- *----------------------------------------------------------------------------*/
-static void SystemIsolation_Config(void)
-{
-  MPCBB_ConfigTypeDef MPCBB_desc;
-
-  /* At this stage  IDAU/SAU setup has already been done in SystemInit() */
-  /* based on partition_stm32l5xx.h */
-
-  /* Enable GTZC peripheral clock */
-  __HAL_RCC_GTZC_CLK_ENABLE();
-
-  /* -------------------------------------------------------------------------*/
-  /*                   Memory isolation configuration                         */
-  /* Initializes the memory that secure application books for non secure      */
-  /* -------------------------------------------------------------------------*/
-
-  /* -------------------------------------------------------------------------*/
-  /* Internal RAM */
-  /* The booking is done in both IDAU/SAU and GTZC MPCBB */
-
-  /* GTZC MPCBB setup */
-  /* based on non-secure RAM memory area starting from 0x20018000 */
-  /* 0x20018000 is the start address of second SRAM1 half         */
-  /* Internal SRAM is secured by default and configured by block  */
-  /* of 256bytes.                                                 */
-  /* Non-secure block-based memory starting from 0x20018000 means */
-  /* 0x18000 / (256 * 32) = 12 bytes for secure block-based memory*/
-  /* and remaining bytes set to 0 for all non-secure blocks       */
-  if (HAL_GTZC_MPCBB_GetConfigMem(SRAM1_BASE_NS, &MPCBB_desc) != HAL_OK)
-  {
-    /* Initialization Error */
-    while(1);
-  }
-
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[12] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[13] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[14] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[15] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[16] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[17] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[18] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[19] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[20] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[21] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[22] = 0x00000000U;
-  MPCBB_desc.SecConfig.MPCBB_VCTR_array[23] = 0x00000000U;
-
-  if (HAL_GTZC_MPCBB_ConfigMem(SRAM1_BASE_NS, &MPCBB_desc) != HAL_OK)
-  {
-    /* Initialization Error */
-    while(1);
-  }
-
-  /* -------------------------------------------------------------------------*/
-  /* Internal Flash */
-  /* The booking is done in both IDAU/SAU and FLASH interface */
-
-  /* Setup done based on Flash dual-bank mode described with 1 area per bank  */
-  /* Non-secure Flash memory area starting from 0x08040000 (Bank2)            */
-  /* Flash memory is secured by default and modified with Option Byte Loading */
-  /* Insure SECWM2_PSTRT > SECWM2_PEND in order to have all Bank2 non-secure  */
-
-  /* -------------------------------------------------------------------------*/
-  /* External OctoSPI memory */
-  /* The booking is done in both IDAU/SAU and GTZC MPCWM interface */
-
-  /* Default secure configuration */
-  /* Else need to use HAL_GTZC_TZSC_MPCWM_ConfigMemAttributes() */
-
-  /* -------------------------------------------------------------------------*/
-  /* External NOR/FMC memory */
-  /* The booking is done in both IDAU/SAU and GTZC MPCWM interface */
-
-  /* Default secure configuration */
-  /* Else need to use HAL_GTZC_TZSC_MPCWM_ConfigMemAttributes() */
-
-  /* -------------------------------------------------------------------------*/
-  /* External NAND/FMC memory */
-  /* The booking is done in both IDAU/SAU and GTZC MPCWM interface */
-
-  /* Default secure configuration */
-  /* Else need to use HAL_GTZC_TZSC_MPCWM_ConfigMemAttributes() */
-
-
-  /* -------------------------------------------------------------------------*/
-  /*                   Peripheral isolation configuration                     */
-  /* Initializes the peripherals and features that secure application books   */
-  /* for secure (RCC, PWR, RTC, EXTI, DMA, OTFDEC, etc..) or leave them to    */
-  /* non-secure (GPIO (secured by default))                                   */
-  /* -------------------------------------------------------------------------*/
-
-  /* Clear all illegal access pending interrupts in TZIC */
-  if (HAL_GTZC_TZIC_ClearFlag(GTZC_PERIPH_ALL) != HAL_OK)
-  {
-    /* Initialization Error */
-    while(1);
-  }
-
-  /* Enable all illegal access interrupts in TZIC */
-  if(HAL_GTZC_TZIC_EnableIT(GTZC_PERIPH_ALL) != HAL_OK)
-  {
-    /* Initialization Error */
-    while(1);
-  }
-
-  /* Enable TZIC secure interrupt */
-  HAL_NVIC_SetPriority(TZIC_S_IRQn, 0, 0); /* Highest priority level */
-  HAL_NVIC_ClearPendingIRQ(TZIC_S_IRQn);
-  HAL_NVIC_EnableIRQ(TZIC_S_IRQn);
-}
-
 
 /*----------------------------------------------------------------------------
   System Clock Configuration

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <device Dfamily="STM32L5 Series" Dname="STM32L552ZETxQ" DsubFamily="STM32L5x2" Dvendor="STMicroelectronics:13" info="ARM , 384 KB RAM, 1 MB ROM" url="http://www.keil.com/dd2/st/stm32l552zetxq">
+    <package info="STMicroelectronics STM32L5 Series Device Support" name="STM32L5xx_DFP" url="http://www.keil.com/pack" vendor="Keil" version="1.0.9-dev4"/>
+    <processor Dclock="110000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rx" info="" name="CODE_S" privilege="" security="s" size="0x3E000" start="0xC000000"/>
+      <memory access="rw" info="" name="DATA_S" security="s" size="0x18000" start="0x30000000"/>
+      <memory access="rx" name="Veneer" security="c" size="0x2000" start="0xC03E000"/>
+    </memories>
+    <peripherals>
+      <group name="ADC">
+        <peripheral access="prw" group="ADC" info="Analog-to-Digital Converter" name="ADC" security="s" size="0x400" start="0x42028000" start_s="0x52028000">
+          <interrupt info="ADC1_2 global interrupt" name="ADC1_2" value="037"/>
+          <setup name="TZSC_SECCFGR2" security="s" value="0x00000800"/>
+          <setup name="TZSC_PRIVCFGR2" privilege="p" value="0x00000800"/>
+        </peripheral>
+      </group>
+      <group name="USART">
+        <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver transmitter" name="USART1" security="s" size="0x400" start="0x40013800" start_s="0x50013800">
+          <interrupt info="USART1 global interrupt" name="USART1" value="061"/>
+          <setup name="TZSC_SECCFGR2" security="s" value="0x00000002"/>
+          <setup name="TZSC_PRIVCFGR2" privilege="p" value="0x00000002"/>
+        </peripheral>
+      </group>
+      <group name="TIM">
+        <peripheral access="prw" group="TIM" info="Advanced-timers" name="TIM1" security="s" size="0x400" start="0x40012C00" start_s="0x50012C00">
+          <interrupt info="TIM1 Break" name="TIM1_BRK" value="041"/>
+          <interrupt info="TIM1 Capture Compare interrupt" name="TIM1_CC" value="044"/>
+          <interrupt info="TIM1 Trigger and Commutation" name="TIM1_TRG_COM" value="043"/>
+          <interrupt info="TIM1 Update" name="TIM1_UP" value="042"/>
+          <setup name="TZSC_SECCFGR1" security="s" value="0x40000000"/>
+          <setup name="TZSC_PRIVCFGR1" privilege="p" value="0x40000000"/>
+        </peripheral>
+      </group>
+      <group name="GPIOA">
+        <peripheral access="prw" group="GPIOA" info="General-purpose I/Os" name="GPIOA1" privilege="" security="s" size="0x400" start="0x42020000" start_s="0x52020000">
+          <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000002"/>
+        </peripheral>
+      </group>
+      <group name="GPIOG">
+        <peripheral access="prw" group="GPIOG" info="General-purpose I/Os" name="GPIOG7" privilege="" security="s" size="0x400" start="0x42021800" start_s="0x52021800">
+          <setup name="GPIOG_S-&gt;SECCFGR" security="s" value="0x00000080"/>
+        </peripheral>
+      </group>
+      <group name="DMA1">
+        <peripheral access="prw" group="DMA1" info="Direct memory access controller" name="DMA1_CH1" security="s" size="0x400" start="0x40020000" start_s="0x50020000">
+          <interrupt info="DMA1 Channel 1 global interrupt" name="DMA1_Channel1" value="029"/>
+          <setup name="DMA1_Channel1_S-&gt;CCR" security="s" value="0x00020000"/>
+          <setup name="DMA1_Channel1_S-&gt;CCR" security="p" value="0x00100000"/>
+        </peripheral>
+        <peripheral access="prw" group="DMA1" info="Direct memory access controller" name="DMA1_CH2" privilege="u" security="s" size="0x400" start="0x40020000" start_s="0x50020000">
+          <interrupt info="DMA1 Channel 2 global interrupt" name="DMA1_Channel2" value="030"/>
+          <setup name="DMA1_Channel2_S-&gt;CCR" security="s" value="0x00020000"/>
+          <setup name="DMA1_Channel2_S-&gt;CCR" security="p" value="0x00100000"/>
+        </peripheral>
+      </group>
+    </peripherals>
+  </resources>
+</rzone>

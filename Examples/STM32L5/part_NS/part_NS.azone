@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="part_NS.rzone"/>
+  <zones>
+    <zone Dname="STM32L552ZETxQ" Pname="" info="" name="App_NS" security="n">
+      <assign memory="CODE_NS"/>
+      <assign memory="DATA_NS"/>
+    </zone>
+  </zones>
+  <partition/>
+</azone>

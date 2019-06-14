@@ -10,22 +10,22 @@
       <memory access="rx" name="Flash_S" security="c" size="0x00080000" start="0x0C000000" physical="0x08000000"/>
       <memory access="rwx" name="SRAM_NS" security="n" size="0x00040000" start="0x20000000"/>
       <memory access="rwx" name="SRAM_S" security="c" size="0x00040000" start="0x30000000" physical="0x20000000"/>
-      <mpc name="GTZC_MPCBB1_S-&gt;VCTR" start="0x20000000" type="s" size="0x00030000" blk_size="0x100" info="SRAM1" />
-      <mpc name="GTZC_MPCBB2_S-&gt;VCTR" start="0x20030000" type="s" size="0x00010000" blk_size="0x100" info="SRAM2" />
+      <mpc name="GTZC_MPCBB1_S" start="0x20000000" type="s" size="0x00030000" blk_size="0x100" info="SRAM1" />
+      <mpc name="GTZC_MPCBB2_S" start="0x20030000" type="s" size="0x00010000" blk_size="0x100" info="SRAM2" />
     </memories>
     <peripherals>
       <group name="ADC">
         <peripheral access="prw" info="Analog-to-Digital Converter" name="ADC" size="0x400" start="0x42028000" start_s="0x52028000">
           <interrupt info="ADC1_2 global interrupt" name="ADC1_2" value="037"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000800" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000800" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000800" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000800" privilege="p"/>
         </peripheral>
       </group>
       <group name="COMP">
         <peripheral access="prw" name="COMP" size="0x200" start="0x40010200" start_s="0x50010200">
           <interrupt info="COMP1 and COMP2 interrupts" name="COMP" value="072"/>
-          <setup name="TZSC_SECCFGR1"  value="0x20000000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x20000000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x20000000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x20000000" privilege="p"/>
         </peripheral>
       </group>
       <group name="DFSDM">
@@ -34,8 +34,8 @@
           <interrupt info="DFSDM1_FLT1 global interrupt" name="DFSDM1_FLT1" value="103"/>
           <interrupt info="DFSDM1_FLT2 global interrupt" name="DFSDM1_FLT2" value="104"/>
           <interrupt info="DFSDM1_FLT3 global interrupt" name="DFSDM1_FLT3" value="105"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000080" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000080" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000080" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000080" privilege="p"/>
         </peripheral>
       </group>
       <group name="DMA">
@@ -128,8 +128,8 @@
         <peripheral access="prw" info="FDCAN1" name="FDCAN1" size="0xC00" start="0x4000A400" start_s="0x5000A400">
           <interrupt info="FDCAN1 Interrupt 0" name="FDCAN1_IT0" value="039"/>
           <interrupt info="FDCAN1 Interrupt 1" name="FDCAN1_IT1" value="040"/>
-          <setup name="TZSC_SECCFGR1"  value="0x02000000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x02000000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x02000000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x02000000" privilege="p"/>
         </peripheral>
       </group>
       <group name="GPIO">
@@ -538,79 +538,79 @@
         <peripheral access="prw" info="Inter-integrated circuit" name="I2C1" size="0x400" start="0x40005400" start_s="0x50005400">
           <interrupt info="I2C1 error interrupt" name="I2C1_ER" value="056"/>
           <interrupt info="I2C1 event interrupt" name="I2C1_EV" value="055"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00004000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00004000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00004000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00004000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="I2C2" size="0x400" start="0x40005800" start_s="0x50005800">
           <interrupt info="I2C2 error interrupt" name="I2C2_ER" value="058"/>
           <interrupt info="I2C2 event interrupt" name="I2C2_EV" value="057"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00008000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00008000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00008000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00008000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="I2C3" size="0x400" start="0x40005C00" start_s="0x50005C00">
           <interrupt info="I2C3 error interrupt" name="I2C3_ER" value="089"/>
           <interrupt info="I2C3 event interrupt" name="I2C3_EV" value="088"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00010000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00010000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00010000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00010000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="I2C4" size="0x400" start="0x40008400" start_s="0x50008400">
           <interrupt info="I2C4 error interrupt" name="I2C4_ER" value="100"/>
           <interrupt info="I2C4 event interrupt" name="I2C4_EV" value="101"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00400000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00400000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00400000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00400000" privilege="p"/>
         </peripheral>
       </group>
       <group name="LPTIM">
         <peripheral access="prw" info="Low power timer" name="LPTIM1" size="0x400" start="0x40007C00" start_s="0x50007C00">
           <interrupt info="LP TIM1 interrupt" name="LPTIM1" value="067"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00100000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00100000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00100000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00100000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="LPTIM3" size="0x400" start="0x40009400" start_s="0x50009400">
           <interrupt info="LP TIM2 interrupt" name="LPTIM2" value="068"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00800000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00800000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00800000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00800000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="LPTIM3" size="0x400" start="0x40009800" start_s="0x50009800">
           <interrupt info="LP TIM3 interrupt" name="LPTIM3" value="098"/>
-          <setup name="TZSC_SECCFGR1"  value="0x01000000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x01000000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x01000000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x01000000" privilege="p"/>
         </peripheral>
       </group>
       <group name="OctoSPI">
         <peripheral access="prw" info="OctoSPI" name="OCTOSPI1" size="0x400" start="0x44021000" start_s="0x54021000">
           <interrupt info="OCTOSPI1 global interrupt" name="OCTOSPI1" value="076"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00040000" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00040000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00040000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00040000" privilege="p"/>
         </peripheral>
       </group>
       <group name="SAI">
         <peripheral access="prw" info="Serial audio interface 1" name="SAI1" size="0x400" start="0x40015400" start_s="0x50015400">
           <interrupt info="SAI1 global interrupt" name="SAI1" value="090"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000020" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000020" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000020" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000020" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="Serial audio interface 2" name="SAI2" size="0x400" start="0x40015800" start_s="0x50015800">
           <interrupt info="SAI2 global interrupt" name="SAI2" value="091"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000040" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000040" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000040" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000040" privilege="p"/>
         </peripheral>
       </group>
       <group name="SPI">
         <peripheral access="prw" info="Serial peripheral interface" name="SPI1" size="0x400" start="0x40013000" start_s="0x50013000">
           <interrupt info="SPI1 global interrupt" name="SPI1" value="059"/>
-          <setup name="TZSC_SECCFGR1"  value="0x80000000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x80000000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x80000000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x80000000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="SPI2" size="0x400" start="0x40003800" start_s="0x50003800">
           <interrupt info="SPI2 global interrupt" name="SPI2" value="060"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000100" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000100" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000100" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000100" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="SPI3" size="0x400" start="0x40003C00" start_s="0x50003C00">
           <interrupt info="SPI3" name="SPI3" value="099"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000200" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000200" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000200" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000200" privilege="p"/>
         </peripheral>
       </group>
       <group name="TIM">
@@ -619,100 +619,100 @@
           <interrupt info="TIM1 Capture Compare interrupt" name="TIM1_CC" value="044"/>
           <interrupt info="TIM1 Trigger and Commutation" name="TIM1_TRG_COM" value="043"/>
           <interrupt info="TIM1 Update" name="TIM1_UP" value="042"/>
-          <setup name="TZSC_SECCFGR1"  value="0x40000000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x40000000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x40000000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x40000000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="General-purpose-timers" name="TIM2" size="0x400" start="0x40000000" start_s="0x50000000">
           <interrupt info="TIM2 global interrupt" name="TIM2" value="045"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000001" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000001" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000001" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000001" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="General-purpose-timers" name="TIM3" size="0x400" start="0x40000400" start_s="0x50000400">
           <interrupt info="TIM3 global interrupt" name="TIM3" value="046"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000002" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000002" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000002" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000002" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="General-purpose-timers" name="TIM4" size="0x400" start="0x40000800" start_s="0x50000800">
           <interrupt info="TIM4 global interrupt" name="TIM4" value="047"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000004" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000004" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000004" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000004" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="TIM5" size="0x400" start="0x40000C00" start_s="0x50000C00">
           <interrupt info="TIM5 global interrupt" name="TIM5" value="048"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000008" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000008" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000008" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000008" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="TIM6" size="0x400" start="0x40001000" start_s="0x50001000">
           <interrupt info="TIM6 global interrupt" name="TIM6" value="049"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000010" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000010" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000010" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000010" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="TIM7" size="0x400" start="0x40001400" start_s="0x50001400">
           <interrupt info="TIM7 global interrupt" name="TIM7" value="050"/>        
-          <setup name="TZSC_SECCFGR1"  value="0x00000020" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000020" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000020" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000020" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="Advanced-timers" name="TIM8" size="0x400" start="0x40013400" start_s="0x50013400">
           <interrupt info="TIM8 Break Interrupt" name="TIM8_BRK" value="051"/>
           <interrupt info="TIM8 Capture Compare Interrupt" name="TIM8_CC" value="054"/>
           <interrupt info="TIM8 Trigger and Commutation Interrupt" name="TIM8_TRG_COM" value="053"/>
           <interrupt info="TIM8 Update Interrupt" name="TIM8_UP" value="052"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000001" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000001" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000001" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000001" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="General purpose timers" name="TIM15" size="0x400" start="0x40014000" start_s="0x50014000">
           <interrupt info="TIM15 global interrupt" name="TIM15" value="069"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000004" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000004" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000004" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000004" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="General purpose timers" name="TIM16" size="0x400" start="0x40014400" start_s="0x50014400">
           <interrupt info="TIM16 global interrupt" name="TIM16" value="070"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000008" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000008" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000008" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000008" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="General purpose timers" name="TIM17" size="0x400" start="0x40014800" start_s="0x50014800">
           <interrupt info="TIM17 global interrupt" name="TIM17" value="071"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000010" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000010" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000010" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000010" privilege="p"/>
         </peripheral>
       </group>
       <group name="UCPD">
         <peripheral access="prw" info="USB Power Delivery interface" name="UCPD1" size="0x400" start="0x4000DC00" start_s="0x5000DC00">
           <interrupt info="UCPD global interrupt" name="UCPD1" value="106"/>
-          <setup name="TZSC_SECCFGR1"  value="0x08000000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x08000000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x08000000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x08000000" privilege="p"/>
         </peripheral>
       </group>
       <group name="USART">
         <peripheral access="prw" info="Universal synchronous asynchronous receiver transmitter" name="LPUART1" size="0x400" start="0x40008000" start_s="0x50008000">
           <interrupt info="LPUART1 global interrupt" name="LPUART1" value="066"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00200000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00200000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00200000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00200000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" info="Universal synchronous asynchronous receiver transmitter" name="USART1" size="0x400" start="0x40013800" start_s="0x50013800">
           <interrupt info="USART1 global interrupt" name="USART1" value="061"/>
-          <setup name="TZSC_SECCFGR2"  value="0x00000002" security="s"/>
-          <setup name="TZSC_PRIVCFGR2" value="0x00000002" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2"  value="0x00000002" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" value="0x00000002" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="USART2" size="0x400" start="0x40004400" start_s="0x50004400">
           <interrupt info="USART2 global interrupt" name="USART2" value="062"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000400" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000400" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000400" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000400" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="USART3" size="0x400" start="0x40004800" start_s="0x50004800">
           <interrupt info="USART3 global interrupt" name="USART3" value="063"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00000800" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00000800" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00000800" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00000800" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="UART4" size="0x400" start="0x40004C00" start_s="0x50004C00">
           <interrupt info="UART4 global interrupt" name="UART4" value="064"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00001000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00001000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00001000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00001000" privilege="p"/>
         </peripheral>
         <peripheral access="prw" name="UART5" size="0x400" start="0x40005000" start_s="0x50005000">
           <interrupt info="UART5 global interrupt" name="UART5" value="065"/>
-          <setup name="TZSC_SECCFGR1"  value="0x00002000" security="s"/>
-          <setup name="TZSC_PRIVCFGR1" value="0x00002000" privilege="p"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1"  value="0x00002000" security="s"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" value="0x00002000" privilege="p"/>
         </peripheral>
       </group>
     </peripherals>

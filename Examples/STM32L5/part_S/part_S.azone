@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="part_S.rzone"/>
+  <zones>
+    <zone Dname="STM32L552ZETxQ" Pname="" info="" name="App_S" security="s">
+      <assign memory="CODE_S"/>
+      <assign memory="Veneer"/>
+      <assign memory="DATA_S"/>
+    </zone>
+  </zones>
+  <partition>
+    <memory access="rx" info="" name="CODE_S" privilege="" security="s" size="0x3E000" start="0xC000000"/>
+  </partition>
+</azone>
