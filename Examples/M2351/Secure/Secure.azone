@@ -8,5 +8,8 @@
       <assign memory="VENEER"/>
     </zone>
   </zones>
-  <partition/>
+  <partition>
+    <memory access="rx" info="" name="CODE_S" privilege="" security="s" size="0x3F800" start="0x0" startup="1"/>
+    <memory access="rw" name="DATA_S" privilege="" security="s" size="0x8000" start="0x20000000"/>
+  </partition>
 </azone>

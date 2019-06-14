@@ -34,7 +34,8 @@ void SystemIsolation_Config(void)
   WRITE_REG(${mpc.name}->VCTR[${reg?index}], ${num2hex(reg)}U);
   </#list>
 </#list>
-
+  
+  /* Setup Peripheral Protection Controller (PPC) */
 <#list system.reg_setup as reg>
   WRITE_REG(${reg.name},
   <#list reg.value as v>

@@ -13,8 +13,8 @@
       <group name="ADC">
         <peripheral access="prw" group="ADC" info="Analog-to-Digital Converter" name="ADC" privilege="u" security="n" size="0x400" start="0x42028000" start_s="0x52028000">
           <interrupt info="ADC1_2 global interrupt" name="ADC1_2" value="037"/>
-          <setup name="TZSC_SECCFGR2" security="s" value="0x00000800"/>
-          <setup name="TZSC_PRIVCFGR2" privilege="p" value="0x00000800"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2" security="s" value="0x00000800"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" privilege="p" value="0x00000800"/>
         </peripheral>
       </group>
       <group name="GPIOA">
@@ -28,15 +28,15 @@
         </peripheral>
       </group>
       <group name="USART">
-        <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver transmitter" name="USART1" security="n" size="0x400" start="0x40013800" start_s="0x50013800">
+        <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver transmitter" name="USART1" security="s" size="0x400" start="0x40013800" start_s="0x50013800">
           <interrupt info="USART1 global interrupt" name="USART1" value="061"/>
-          <setup name="TZSC_SECCFGR2" security="s" value="0x00000002"/>
-          <setup name="TZSC_PRIVCFGR2" privilege="p" value="0x00000002"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2" security="s" value="0x00000002"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" privilege="p" value="0x00000002"/>
         </peripheral>
         <peripheral access="prw" group="USART" name="USART2" security="n" size="0x400" start="0x40004400" start_s="0x50004400">
           <interrupt info="USART2 global interrupt" name="USART2" value="062"/>
-          <setup name="TZSC_SECCFGR1" security="s" value="0x00000400"/>
-          <setup name="TZSC_PRIVCFGR1" privilege="p" value="0x00000400"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1" security="s" value="0x00000400"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" privilege="p" value="0x00000400"/>
         </peripheral>
       </group>
     </peripherals>

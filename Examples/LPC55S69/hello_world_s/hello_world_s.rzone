@@ -6,9 +6,9 @@
   </device>
   <resources>
     <memories>
-      <memory access="rx" fixed="1" info="Secure FLASH for CODE execution" name="CODE_S" parent="FLASH_S" privilege="p" security="s" size="0xFE00" start="0x10000000"/>
-      <memory access="rx" fixed="1" info="Non-secure callable FLASH for CODE veneer table" name="Veneer" parent="FLASH_S" privilege="p" security="c" size="0x200" start="0x1000FE00"/>
-      <memory access="rw" fixed="1" name="DATA_S" parent="SRAM_S" size="0x8000" start="0x30000000"/>
+      <memory access="rx" info="Secure FLASH for CODE execution" name="CODE_S" privilege="p" security="s" size="0xFE00" start="0x10000000"/>
+      <memory access="rx" info="Non-secure callable FLASH for CODE veneer table" name="Veneer" privilege="p" security="c" size="0x200" start="0x1000FE00"/>
+      <memory access="rw" name="DATA_S" size="0x8000" start="0x30000000"/>
     </memories>
     <peripherals>
       <peripheral access="prw" info="I/O Pin Configuration" name="IOCON" security="s" size="0x0100" start="0x40001000" start_s="0x50001000">

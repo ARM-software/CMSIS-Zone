@@ -12,6 +12,7 @@
 
 void TZM_Config_PPC(void)
 {
+  /* Setup Peripheral Protection Controller (PPC) */
 <#list system.reg_setup as reg>
 	<#assign value = 0 />
 	<#list reg.value as v>

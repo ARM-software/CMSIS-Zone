@@ -2,10 +2,10 @@
 <azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
   <rzone name="M2351.rzone"/>
   <partition>
-    <memory access="rw" fixed="1" name="DATA_S" offset="0x0" parent="SRAM_S" privilege="" security="s" size="0x8000"/>
     <memory fixed="1" info="" name="CODE_NS" offset="0x40000" parent="FLASH_NS" size="0x40000"/>
     <memory access="rx" fixed="1" info="" name="CODE_S" offset="0x0" parent="FLASH_S" privilege="" security="s" size="0x3F800" startup="1"/>
     <memory fixed="1" info="" name="VENEER" offset="0x3F800" parent="FLASH_S" size="0x800"/>
+    <memory access="rw" fixed="1" name="DATA_S" offset="0x0" parent="SRAM_S" privilege="" security="s" size="0x8000"/>
     <memory access="rw" fixed="1" info="" name="DATA_NS" offset="0x8000" parent="SRAM_NS" privilege="" security="n" size="0x10000"/>
   </partition>
   <zones>

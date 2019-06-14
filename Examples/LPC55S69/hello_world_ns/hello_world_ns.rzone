@@ -6,8 +6,8 @@
   </device>
   <resources>
     <memories>
-      <memory access="rx" fixed="1" info="Non-secure FLASH for CODE execution" name="CODE_NS" parent="FLASH" privilege="u" security="n" size="0x72000" start="0x10000"/>
-      <memory access="rw" fixed="1" info="" name="DATA_NS" parent="SRAM" privilege="" security="n" size="0x3C000" start="0x20008000"/>
+      <memory access="rx" info="Non-secure FLASH for CODE execution" name="CODE_NS" privilege="u" security="n" size="0x72000" start="0x10000"/>
+      <memory access="rw" info="" name="DATA_NS" privilege="" security="n" size="0x3C000" start="0x20008000"/>
     </memories>
     <peripherals/>
   </resources>

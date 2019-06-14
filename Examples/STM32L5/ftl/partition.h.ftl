@@ -3,6 +3,7 @@
 
 <#assign aDateTime = .now>
 
+<#-- Prepare SAU entries -->
 <#assign sau_entries = 0>
 <#assign sau_table = []/>
 
@@ -16,6 +17,7 @@
     <#assign sau_table += [{"start_address":"0x00000000", "end_address":"0x00000000", "nsc":0,     "init":0}]/>
   </#list>
 
+<#-- Prepare Non-Secure Interrupt Entries -->
 <#assign itns_entries = 0>
 <#assign itns_table = []/>
 <#assign maxirq = 0/>
@@ -45,27 +47,6 @@
   </#list>
   <#assign itns_table += [{"val" : num2hex(itns_val, "0x", 8), "init" : itns_init}]/>
 </#list>
-
-<#--
-sau_table:
-<#list sau_table as x>
-  ${x?index?left_pad(2)}: ${x.start_address}  ${x.end_address}  ${x.nsc}  ${x.init}
-</#list>
-
-Interrupt:                           security
-  Nr   name                  number  s n
-<#list itns as i_key, i_val>
-  ${i_key?left_pad(2)} <#rt>
-  ${i_val.name?right_pad(20)}<#rt>
-  ${i_val.irqn?right_pad(4)}  <#rt>
-  ${i_val.security.s} ${i_val.security.n}
-</#list>
-
-itns_table:
-<#list itns_table as x>
-  ${x?index?left_pad(2)}: ${x.val}  ${x.init}
-</#list>
--->
 </#compress>
 /**************************************************************************//**
  * @file     partition_stm32l5xx.h

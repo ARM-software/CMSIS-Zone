@@ -3,6 +3,7 @@
 
 <#assign aDateTime = .now>
 
+<#-- Prepare SAU entries -->
 <#assign sau_entries = 0>
 <#assign sau_table = []/>
 
@@ -16,6 +17,7 @@
     <#assign sau_table += [{"start_address":"0x00000000", "end_address":"0x00000000", "nsc":0,     "init":0}]/>
   </#list>
 
+<#-- Prepare Non-Secure Interrupt Entries -->
 <#assign itns_entries = 0>
 <#assign itns_table = []/>
 <#assign maxirq = 0/>
@@ -46,6 +48,7 @@
   <#assign itns_table += [{"val" : num2hex(itns_val, "0x", 8), "init" : itns_init}] />
 </#list>
 
+<#-- Collect all assigned memories -->
 <#function memories zones>
   <#assign mems={} />
   <#list zone as z>
@@ -58,14 +61,17 @@
   <#return mems />
 </#function>
 
+<#-- Check non-secure attribute of memory -->
 <#function isNonsecure memory>
   <#return memory.security.n == "1" />
 </#function>
 
+<#-- Check memory start address is in Flash area -->
 <#function isFlash memory>
   <#return hex2num(memory.start)<536870912 />
 </#function>
 
+<#-- Calculate non-secure base address (NSBA) -->
 <#function fcmNsba zones>
   <#assign nsflash = filter(filter(memories(zones)?values, isNonsecure), isFlash)?sort_by("start") />
   <#if nsflash?size gt 0> 
@@ -75,6 +81,7 @@
   </#if> 
 </#function>
 
+<#-- Collect all MPC register values -->
 <#function mpcRegs mpc>
   <#assign regs = [] />
   <#list 0..((mpc.S_bit?size-1)/32) as i>
@@ -371,6 +378,7 @@ __STATIC_INLINE void TZ_SAU_Setup (void)
  */
 __STATIC_INLINE void SCU_Setup(void)
 {
+  /* Setup Peripheral Protection Controller (PPC) */
   <#list system.reg_setup as reg>
     <#assign value = 0 />
     <#list reg.value as v>
@@ -379,6 +387,7 @@ __STATIC_INLINE void SCU_Setup(void)
     ${reg.name} = ${num2hex(value)}U;
   </#list>
 
+  /* Setup Memory Protection Controller (MPC) */
   <#list system.mpc_setup as mpc>
     /* ${mpc.info} */
     <#assign regs = mpcRegs(mpc)>

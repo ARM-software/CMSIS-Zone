@@ -25,6 +25,7 @@
 
 void TZM_Config_MPC(void)
 {
+  /* Setup Memory Protection Controller (MPC) */
 <#list system.mpc_setup as mpc>
 	/* ${mpc.info} */
 	<#list mpcRegs(mpc) as reg>

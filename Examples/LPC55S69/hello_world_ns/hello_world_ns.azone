@@ -2,6 +2,7 @@
 <azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
   <rzone name="hello_world_ns.rzone"/>
   <partition>
+    <memory access="rw" info="" name="DATA_NS" privilege="" security="n" size="0x3C000" start="0x20008000"/>
     <memory fixed="1" name="DATA" offset="0x0" parent="DATA_NS" size="0x32000"/>
     <memory fixed="1" name="HEAP" offset="0x32000" parent="DATA_NS" size="0x8000"/>
     <memory fixed="1" name="STACK" offset="0x3A000" parent="DATA_NS" size="0x2000"/>

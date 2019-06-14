@@ -3,20 +3,13 @@
   <rzone name="STM32L5.rzone"/>
   <partition>
     <memory fixed="1" name="CODE_NS" offset="0x40000" parent="Flash_NS" size="0x20000"/>
-    <memory access="rw" fixed="1" info="" name="DATA_NS" offset="0x18000" parent="SRAM_NS" privilege="" security="n" size="0x18000"/>
     <memory access="rw" fixed="1" info="" name="DATA_S" offset="0x0" parent="SRAM_S" security="s" size="0x18000"/>
     <memory access="rx" fixed="1" info="" name="CODE_S" offset="0x0" parent="Flash_S" privilege="" security="s" size="0x3E000"/>
     <memory access="rx" fixed="1" name="Veneer" offset="0x3E000" parent="Flash_S" security="c" size="0x2000"/>
-    <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver transmitter" name="USART1" offset="0x0" privilege="" security="s" size="0x400" start="0x40013800" start_s="0x50013800"/>
-    <peripheral access="prw" group="ADC" info="Analog-to-Digital Converter" name="ADC" offset="0x0" privilege="u" security="n" size="0x400" start="0x42028000" start_s="0x52028000"/>
-    <peripheral access="prw" group="GPIOA" info="General-purpose I/Os" name="GPIOA0" offset="0x0" privilege="" security="n" size="0x400" start="0x42020000" start_s="0x52020000"/>
-    <peripheral access="prw" group="TIM" info="Advanced-timers" name="TIM1" offset="0x0" privilege="" security="s" size="0x400" start="0x40012C00" start_s="0x50012C00"/>
-    <peripheral access="prw" group="GPIOD" info="General-purpose I/Os" name="GPIOD5" offset="0x0" privilege="" security="n" size="0x400" start="0x42020C00" start_s="0x52020C00"/>
+    <memory access="rw" fixed="1" info="" name="DATA_NS" offset="0x18000" parent="SRAM_NS" privilege="" security="n" size="0x18000"/>
     <peripheral access="prw" group="USART" info="" name="USART2" offset="0x0" privilege="" security="n" size="0x400" start="0x40004400" start_s="0x50004400"/>
-    <peripheral access="prw" group="DMA1" info="Direct memory access controller" name="DMA1_CH2" offset="0x0" privilege="u" security="s" size="0x400" start="0x40020000" start_s="0x50020000"/>
-    <peripheral access="prw" group="GPIOG" info="General-purpose I/Os" name="GPIOG7" offset="0x0" privilege="" security="s" size="0x400" start="0x42021800" start_s="0x52021800"/>
-    <peripheral access="prw" group="GPIOA" info="General-purpose I/Os" name="GPIOA1" offset="0x0" privilege="" security="s" size="0x400" start="0x42020000" start_s="0x52020000"/>
-    <peripheral access="prw" group="DMA1" info="Direct memory access controller" name="DMA1_CH1" offset="0x0" privilege="" security="s" size="0x400" start="0x40020000" start_s="0x50020000"/>
+    <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver transmitter" name="USART1" offset="0x0" privilege="" security="s" size="0x400" start="0x40013800" start_s="0x50013800"/>
+    <peripheral access="prw" group="TIM" info="Advanced-timers" name="TIM1" offset="0x0" privilege="" security="s" size="0x400" start="0x40012C00" start_s="0x50012C00"/>
   </partition>
   <zones>
     <zone Dname="STM32L552ZETxQ" Pname="" info="" name="part_S" security="s">

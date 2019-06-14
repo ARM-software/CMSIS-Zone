@@ -7,5 +7,7 @@
       <assign memory="CODE_NS"/>
     </zone>
   </zones>
-  <partition/>
+  <partition>
+    <memory access="rw" info="" name="DATA_NS" privilege="" security="n" size="0x10000" start="0x30008000"/>
+  </partition>
 </azone>

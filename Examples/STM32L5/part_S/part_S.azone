@@ -8,7 +8,5 @@
       <assign memory="DATA_S"/>
     </zone>
   </zones>
-  <partition>
-    <memory access="rx" info="" name="CODE_S" privilege="" security="s" size="0x3E000" start="0xC000000"/>
-  </partition>
+  <partition/>
 </azone>

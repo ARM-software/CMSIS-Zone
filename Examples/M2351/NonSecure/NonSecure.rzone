@@ -6,8 +6,8 @@
   </device>
   <resources>
     <memories>
-      <memory access="rw" fixed="1" info="" name="DATA_NS" parent="SRAM_NS" privilege="" security="n" size="0x10000" start="0x30008000"/>
-      <memory access="rx" fixed="1" info="" name="CODE_NS" parent="FLASH_NS" size="0x40000" start="0x10040000"/>
+      <memory access="rw" info="" name="DATA_NS" privilege="" security="n" size="0x10000" start="0x30008000"/>
+      <memory access="rx" info="" name="CODE_NS" size="0x40000" start="0x10040000"/>
     </memories>
     <peripherals>
       <group name="UART">
