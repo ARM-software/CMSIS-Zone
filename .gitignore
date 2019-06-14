@@ -1,5 +1,4 @@
 *.fzone
-**/ftl_gen/*
 **/Listings/*
 *.d
 *.o
