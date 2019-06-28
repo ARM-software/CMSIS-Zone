@@ -48,8 +48,8 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>debug\</OutputDirectory>
-          <OutputName>hello_world_s.out</OutputName>
+          <OutputDirectory>.\Output\</OutputDirectory>
+          <OutputName>hello_world_s.axf</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -72,7 +72,7 @@
           <BeforeMake>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name>C:\Users\jonant01\git\CMSIS-Zone\Examples\LPC55S69\MDK\hello_world_s\mdk\copy_gen.bat</UserProg1Name>
+            <UserProg1Name></UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -139,7 +139,7 @@
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2V8M.DLL</Flash2>
           <Flash3>"" ()</Flash3>
-          <Flash4>download.ini</Flash4>
+          <Flash4>..\download.ini</Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
           <pFcArmRoot></pFcArmRoot>
@@ -321,13 +321,13 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>4</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
-            <v6Lang>3</v6Lang>
+            <v6Lang>5</v6Lang>
             <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
@@ -335,11 +335,10 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>--target=arm-arm-none-eabi  -Wall  -fno-common  -fdata-sections  -ffreestanding  -fno-builtin  -mthumb  -fno-rtti  -fno-exceptions  -Wno-pedantic  -Wno-padded  -Wno-unused-parameter  -Wno-missing-prototypes  -Wno-covered-switch-default  -Wno-conversion  -Wno-switch-enum  -Wno-sign-compare  -Wno-sign-conversion  -Wno-cast-qual  -Wno-cast-align  -Wno-implicit-function-declaration  -Wno-strict-prototypes  -Wno-missing-variable-declarations  -Wno-self-assign  -Wno-missing-noreturn  -Wno-missing-field-initializers  -Wno-conditional-uninitialized  -Wno-tautological-constant-out-of-range-compare  -Wno-shadow  -Wno-missing-braces  -Wno-undef  -Wno-null-dereference  -Wno-bad-function-cast  -Wno-tautological-pointer-compare  -Wno-unknown-attributes  -Wno-unreachable-code  -Wno-unreachable-code-return  -Wno-ignored-attributes  -Wno-float-equal  -Wno-implicit-int  -Wno-format-nonliteral  -Wno-comma  -Wno-date-time  -Wno-unused-variable  -Wno-double-promotion  -Wno-logical-not-parentheses  -Wno-sometimes-uninitialized  -Wno-c++98-compat-pedantic  -Wno-zero-as-null-pointer-constant  -Wno-extra-semi  -Wno-old-style-cast  -Wno-weak-vtables  -Wno-implicit-exception-spec-mismatch 
-</MiscControls>
-              <Define>DEBUG, CPU_LPC55S69JBD100_cm33_core0, ARM_MATH_CM33</Define>
+              <MiscControls></MiscControls>
+              <Define>DEBUG CPU_LPC55S69JBD100_cm33_core0</Define>
               <Undefine></Undefine>
-              <IncludePath>;..</IncludePath>
+              <IncludePath>..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -355,7 +354,7 @@
             <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>CPU_LPC55S69JBD100_cm33_core0, DEBUG,__CC_ARM,KEIL, DEBUG</Define>
+              <Define>DEBUG CPU_LPC55S69JBD100_cm33_core0</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -373,9 +372,7 @@
             <ScatterFile>.\hello_world_s.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--remove 
---import-cmse-lib-out="./debug/hello_world_s_CMSE_lib.o" 
-</Misc>
+            <Misc>--remove --import-cmse-lib-out="./Output/hello_world_cmse.lib"</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings>6314</DisabledWarnings>
           </LDads>
@@ -388,12 +385,12 @@
             <File>
               <FileName>hello_world_s.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../hello_world_s.c</FilePath>
+              <FilePath>hello_world_s.c</FilePath>
             </File>
             <File>
               <FileName>hello_world_s.sct</FileName>
               <FileType>7</FileType>
-              <FilePath>.\hello_world_s.sct</FilePath>
+              <FilePath>hello_world_s.sct</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -422,42 +419,42 @@
             <File>
               <FileName>tzm_config.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../tzm_config.c</FilePath>
+              <FilePath>tzm_config.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>../tzm_config.h</FilePath>
+              <FilePath>tzm_config.h</FilePath>
             </File>
             <File>
               <FileName>veneer_table.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../veneer_table.c</FilePath>
-            </File>
-            <File>
-              <FileName>veneer_table.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../veneer_table.h</FilePath>
+              <FilePath>veneer_table.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config_mpc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\tzm_config_mpc.c</FilePath>
+              <FilePath>tzm_config_mpc.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config_ppc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\tzm_config_ppc.c</FilePath>
+              <FilePath>tzm_config_ppc.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config_sau.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\tzm_config_sau.c</FilePath>
+              <FilePath>tzm_config_sau.c</FilePath>
             </File>
             <File>
               <FileName>mem_layout.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\mem_layout.h</FilePath>
+            </File>
+            <File>
+              <FileName>veneer_table.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\veneer_table.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -524,8 +521,8 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>release\</OutputDirectory>
-          <OutputName>hello_world_s.out</OutputName>
+          <OutputDirectory>.\Output\</OutputDirectory>
+          <OutputName>hello_world_s.axf</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -797,13 +794,13 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>4</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
-            <v6Lang>3</v6Lang>
+            <v6Lang>5</v6Lang>
             <v6LangP>3</v6LangP>
             <vShortEn>1</vShortEn>
             <vShortWch>1</vShortWch>
@@ -811,11 +808,10 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls>--target=arm-arm-none-eabi  -Wall  -fno-common  -fdata-sections  -ffreestanding  -fno-builtin  -mthumb  -fno-rtti  -fno-exceptions  -Wno-pedantic  -Wno-padded  -Wno-unused-parameter  -Wno-missing-prototypes  -Wno-covered-switch-default  -Wno-conversion  -Wno-switch-enum  -Wno-sign-compare  -Wno-sign-conversion  -Wno-cast-qual  -Wno-cast-align  -Wno-implicit-function-declaration  -Wno-strict-prototypes  -Wno-missing-variable-declarations  -Wno-self-assign  -Wno-missing-noreturn  -Wno-missing-field-initializers  -Wno-conditional-uninitialized  -Wno-tautological-constant-out-of-range-compare  -Wno-shadow  -Wno-missing-braces  -Wno-undef  -Wno-null-dereference  -Wno-bad-function-cast  -Wno-tautological-pointer-compare  -Wno-unknown-attributes  -Wno-unreachable-code  -Wno-unreachable-code-return  -Wno-ignored-attributes  -Wno-float-equal  -Wno-implicit-int  -Wno-format-nonliteral  -Wno-comma  -Wno-date-time  -Wno-unused-variable  -Wno-double-promotion  -Wno-logical-not-parentheses  -Wno-sometimes-uninitialized  -Wno-c++98-compat-pedantic  -Wno-zero-as-null-pointer-constant  -Wno-extra-semi  -Wno-old-style-cast  -Wno-weak-vtables  -Wno-implicit-exception-spec-mismatch 
-</MiscControls>
-              <Define>NDEBUG, CPU_LPC55S69JBD100_cm33_core0, ARM_MATH_CM33</Define>
+              <MiscControls></MiscControls>
+              <Define>NDEBUG CPU_LPC55S69JBD100_cm33_core0</Define>
               <Undefine></Undefine>
-              <IncludePath>;..</IncludePath>
+              <IncludePath>..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -831,7 +827,7 @@
             <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>CPU_LPC55S69JBD100_cm33_core0, NDEBUG,__CC_ARM,KEIL, NDEBUG</Define>
+              <Define>CPU_LPC55S69JBD100_cm33_core0 NDEBUG</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -846,12 +842,10 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x20040000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>LPC55S69_cm33_core0_flash_s.scf</ScatterFile>
+            <ScatterFile>.\hello_world_s.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
-            <Misc>--remove 
---import-cmse-lib-out="./release/hello_world_s_CMSE_lib.o" 
-</Misc>
+            <Misc>--remove --import-cmse-lib-out="./Output/hello_world_cmse.lib"</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings>6314</DisabledWarnings>
           </LDads>
@@ -864,12 +858,31 @@
             <File>
               <FileName>hello_world_s.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../hello_world_s.c</FilePath>
+              <FilePath>hello_world_s.c</FilePath>
             </File>
             <File>
               <FileName>hello_world_s.sct</FileName>
               <FileType>7</FileType>
-              <FilePath>.\hello_world_s.sct</FilePath>
+              <FilePath>hello_world_s.sct</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>2</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds/>
+              </FileOption>
             </File>
           </Files>
         </Group>
@@ -879,42 +892,42 @@
             <File>
               <FileName>tzm_config.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../tzm_config.c</FilePath>
+              <FilePath>tzm_config.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config.h</FileName>
               <FileType>5</FileType>
-              <FilePath>../tzm_config.h</FilePath>
+              <FilePath>tzm_config.h</FilePath>
             </File>
             <File>
               <FileName>veneer_table.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../veneer_table.c</FilePath>
-            </File>
-            <File>
-              <FileName>veneer_table.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>../veneer_table.h</FilePath>
+              <FilePath>veneer_table.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config_mpc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\tzm_config_mpc.c</FilePath>
+              <FilePath>tzm_config_mpc.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config_ppc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\tzm_config_ppc.c</FilePath>
+              <FilePath>tzm_config_ppc.c</FilePath>
             </File>
             <File>
               <FileName>tzm_config_sau.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\tzm_config_sau.c</FilePath>
+              <FilePath>tzm_config_sau.c</FilePath>
             </File>
             <File>
               <FileName>mem_layout.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\mem_layout.h</FilePath>
+            </File>
+            <File>
+              <FileName>veneer_table.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\veneer_table.h</FilePath>
             </File>
           </Files>
         </Group>

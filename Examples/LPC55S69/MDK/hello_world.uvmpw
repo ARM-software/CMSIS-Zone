@@ -8,12 +8,12 @@
   <WorkspaceName>WorkSpace</WorkspaceName>
 
   <project>
-    <PathAndName>.\hello_world_s.uvprojx</PathAndName>
+    <PathAndName>.\hello_world_s\hello_world_s.uvprojx</PathAndName>
     <NodeIsActive>1</NodeIsActive>
   </project>
 
   <project>
-    <PathAndName>..\..\hello_world_ns\mdk\hello_world_ns.uvprojx</PathAndName>
+    <PathAndName>.\hello_world_ns\hello_world_ns.uvprojx</PathAndName>
   </project>
 
 </ProjectWorkspace>
