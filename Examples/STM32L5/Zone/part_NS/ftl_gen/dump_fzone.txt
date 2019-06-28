@@ -1,0 +1,38 @@
+// Model dump
+
+Memory:                                         access   security
+  name                  start       size        p r w x  s n c
+  DATA_NS               0x20018000  0x18000     0 1 1 0  0 1 0
+  CODE_NS               0x8040000   0x20000     0 1 0 1  0 0 0
+
+Peripheral:                                                             access   security
+  name                  start       start_s     start_ns    size        p r w x  s n c     group
+  ADC                   0x42028000  0x52028000  not given   0x400       1 1 1 0  0 1 0     ADC
+  GPIOA0                0x42020000  0x52020000  not given   0x400       1 1 1 0  0 1 0     GPIOA
+  GPIOD5                0x42020C00  0x52020C00  not given   0x400       1 1 1 0  0 1 0     GPIOD
+  USART1                0x40013800  0x50013800  not given   0x400       1 1 1 0  1 0 0     USART
+  USART2                0x40004400  0x50004400  not given   0x400       1 1 1 0  0 1 0     USART
+
+Interrupt:                      security
+  name                  number  s n
+  ADC1_2                037     0 1
+  USART1                061     1 0
+  USART2                062     0 1
+
+SAU entry:
+  start       end         nsc  info
+  0x20018000  0x2002FFFF  0    DATA_NS
+  0x8040000  0x805FFFF  0    CODE_NS
+
+
+
+Zones:
+  App_NS
+  - Dname     : STM32L552ZETxQ
+  - Pname     : 
+  - info      : 
+  - name      : App_NS
+  - security  : non-secure
+  - memory    : CODE_NS (0x8040000 : 0x20000)
+  - memory    : DATA_NS (0x20018000 : 0x18000)
+

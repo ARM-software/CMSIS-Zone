@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <device Dname="STM32L552ZETxQ" Dvendor="STMicroelectronics:13" info="ARM , 384 KB RAM, 1 MB ROM">
+    <package info="STMicroelectronics STM32L5 Series Device Support" name="STM32L5xx_DFP" url="http://www.keil.com/pack" vendor="Keil" version="1.0.9-dev4"/>
+    <processor Dclock="110000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rw" info="" name="DATA_NS" privilege="" security="n" size="0x18000" start="0x20018000" type="RAM"/>
+      <memory access="rx" name="CODE_NS" security="n" size="0x20000" start="0x8040000" type="ROM"/>
+    </memories>
+    <peripherals>
+      <group name="ADC">
+        <peripheral access="prw" group="ADC" info="Analog-to-Digital Converter" name="ADC" security="n" size="0x400" start="0x42028000" start_s="0x52028000">
+          <interrupt info="ADC1_2 global interrupt" irqn="037" name="ADC1_2"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR2" security="s" value="0x00000800"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR2" privilege="p" value="0x00000800"/>
+        </peripheral>
+      </group>
+      <group name="GPIO">
+        <peripheral access="prw" group="GPIO" info="Port A" name="GPIOA" security="n" size="0x400" slot_name="Pins" slot_type="s" start="0x42020000" start_s="0x52020000">
+          <slot name="Pin 0" secure="0">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000001"/>
+          </slot>
+          <slot name="Pin 1" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000002"/>
+          </slot>
+          <slot name="Pin 2" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000004"/>
+          </slot>
+          <slot name="Pin 3" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000008"/>
+          </slot>
+          <slot name="Pin 4" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000010"/>
+          </slot>
+          <slot name="Pin 5" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000020"/>
+          </slot>
+          <slot name="Pin 6" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000040"/>
+          </slot>
+          <slot name="Pin 7" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000080"/>
+          </slot>
+          <slot name="Pin 8" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000100"/>
+          </slot>
+          <slot name="Pin 9" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000200"/>
+          </slot>
+          <slot name="Pin 10" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000400"/>
+          </slot>
+          <slot name="Pin 11" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000800"/>
+          </slot>
+          <slot name="Pin 12" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00001000"/>
+          </slot>
+          <slot name="Pin 13" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00002000"/>
+          </slot>
+          <slot name="Pin 14" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00004000"/>
+          </slot>
+          <slot name="Pin 15" secure="1">
+            <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00008000"/>
+          </slot>
+        </peripheral>
+        <peripheral access="prw" group="GPIO" info="Port D" name="GPIOD" security="n" size="0x400" slot_name="Pins" slot_type="s" start="0x42020C00" start_s="0x52020C00">
+          <slot name="Pin 0" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000001"/>
+          </slot>
+          <slot name="Pin 1" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000002"/>
+          </slot>
+          <slot name="Pin 2" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000004"/>
+          </slot>
+          <slot name="Pin 3" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000008"/>
+          </slot>
+          <slot name="Pin 4" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000010"/>
+          </slot>
+          <slot name="Pin 5" secure="0">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000020"/>
+          </slot>
+          <slot name="Pin 6" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000040"/>
+          </slot>
+          <slot name="Pin 7" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000080"/>
+          </slot>
+          <slot name="Pin 8" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000100"/>
+          </slot>
+          <slot name="Pin 9" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000200"/>
+          </slot>
+          <slot name="Pin 10" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000400"/>
+          </slot>
+          <slot name="Pin 11" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000800"/>
+          </slot>
+          <slot name="Pin 12" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00001000"/>
+          </slot>
+          <slot name="Pin 13" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00002000"/>
+          </slot>
+          <slot name="Pin 14" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00004000"/>
+          </slot>
+          <slot name="Pin 15" secure="1">
+            <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00008000"/>
+          </slot>
+        </peripheral>
+      </group>
+      <group name="USART">
+        <peripheral access="prw" group="USART" name="USART2" security="n" size="0x400" start="0x40004400" start_s="0x50004400">
+          <interrupt info="USART2 global interrupt" irqn="062" name="USART2"/>
+          <setup name="GTZC_TZSC-&gt;SECCFGR1" security="s" value="0x00000400"/>
+          <setup name="GTZC_TZSC-&gt;PRIVCFGR1" privilege="p" value="0x00000400"/>
+        </peripheral>
+      </group>
+      <group name="DMA">
+        <peripheral access="prw" group="DMA" info="DMA2 Controller 1" name="DMA2" security="n" size="0x400" slot_name="Channels" slot_type="sp" start="0x40020400" start_s="0x50020400">
+          <slot name="Channel 1" privilege="1" secure="0">
+            <interrupt info="DMA2_CH1" irqn="080" name="DMA2_CH1"/>
+            <setup name="DMA2_Channel1_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel1_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+          <slot name="Channel 2" secure="0">
+            <interrupt info="DMA2_CH2" irqn="081" name="DMA2_CH2"/>
+            <setup name="DMA2_Channel2_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel2_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+          <slot name="Channel 3" secure="0">
+            <interrupt info="DMA2_CH3" irqn="082" name="DMA2_CH3"/>
+            <setup name="DMA2_Channel3_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel3_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+          <slot name="Channel 4" secure="0">
+            <interrupt info="DMA2_CH4" irqn="083" name="DMA2_CH4"/>
+            <setup name="DMA2_Channel4_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel4_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+          <slot name="Channel 5" secure="0">
+            <interrupt info="DMA2_CH5" irqn="084" name="DMA2_CH5"/>
+            <setup name="DMA2_Channel5_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel5_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+          <slot name="Channel 6" secure="0">
+            <interrupt info="DMA2_CH6" irqn="085" name="DMA2_CH6"/>
+            <setup name="DMA2_Channel6_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel6_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+          <slot name="Channel 7" secure="0">
+            <interrupt info="DMA2_CH7" irqn="086" name="DMA2_CH7"/>
+            <setup name="DMA2_Channel7_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel7_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+          <slot name="Channel 8" secure="0">
+            <interrupt info="DMA2_CH8" irqn="087" name="DMA2_CH8"/>
+            <setup name="DMA2_Channel8_S-&gt;CCR" security="s" value="0x00020000"/>
+            <setup name="DMA2_Channel8_S-&gt;CCR" privilege="p" value="0x00100000"/>
+          </slot>
+        </peripheral>
+      </group>
+    </peripherals>
+  </resources>
+</rzone>

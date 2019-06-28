@@ -1,0 +1,46 @@
+// Model dump
+
+Memory:                                         access   security
+  name                  start       size        p r w x  s n c
+  DATA_S                0x30000000  0x18000     0 1 1 0  1 0 0
+  CODE_S                0xC000000   0x3E000     0 1 0 1  1 0 0
+  Veneer                0xC03E000   0x2000      0 1 0 1  0 0 1
+
+Peripheral:                                                             access   security
+  name                  start       start_s     start_ns    size        p r w x  s n c     group
+  ADC                   0x42028000  0x52028000  not given   0x400       1 1 1 0  1 0 0     ADC
+  DMA1_CH1              0x40020000  0x50020000  not given   0x400       1 1 1 0  1 0 0     DMA1
+  DMA1_CH2              0x40020000  0x50020000  not given   0x400       1 1 1 0  1 0 0     DMA1
+  GPIOA1                0x42020000  0x52020000  not given   0x400       1 1 1 0  1 0 0     GPIOA
+  GPIOG7                0x42021800  0x52021800  not given   0x400       1 1 1 0  1 0 0     GPIOG
+  TIM1                  0x40012C00  0x50012C00  not given   0x400       1 1 1 0  1 0 0     TIM
+  USART1                0x40013800  0x50013800  not given   0x400       1 1 1 0  1 0 0     USART
+
+Interrupt:                      security
+  name                  number  s n
+  DMA1_Channel1         029     1 0
+  DMA1_Channel2         030     1 0
+  ADC1_2                037     1 0
+  TIM1_BRK              041     1 0
+  TIM1_UP               042     1 0
+  TIM1_TRG_COM          043     1 0
+  TIM1_CC               044     1 0
+  USART1                061     1 0
+
+SAU entry:
+  start       end         nsc  info
+  0xC03E000  0xC03FFFF  1    Veneer
+
+
+
+Zones:
+  App_S
+  - Dname     : STM32L552ZETxQ
+  - Pname     : 
+  - info      : 
+  - name      : App_S
+  - security  : secure
+  - memory    : CODE_S (0xC000000 : 0x3E000)
+  - memory    : Veneer (0xC03E000 : 0x2000)
+  - memory    : DATA_S (0x30000000 : 0x18000)
+
