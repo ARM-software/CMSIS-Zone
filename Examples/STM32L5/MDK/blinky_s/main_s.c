@@ -9,9 +9,10 @@
 #include "Board_LED.h"                  // ::Board Support:LED
 
 #include "stm32l5xx_hal.h"
+#include "mem_layout.h"
 
 /* Start address of non-secure application */
-#define NONSECURE_START (0x08040000U)
+#define NONSECURE_START REGION_CODE_NS_START
 
 /*----------------------------------------------------------------------------
   System Isolation Configuration

@@ -2,7 +2,7 @@
  * @file     partition_stm32l5xx.h
  * @brief    CMSIS-CORE Initial Setup for Secure / Non-Secure Zones for STM32L5xx Device
  * @version  V1.0.0      (FreeMarker generated)
- * @date     28-Jun-2019 15:05:13
+ * @date     02-Jul-2019 13:24:24
  ******************************************************************************/
 /*
  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
@@ -71,12 +71,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START0       0x20018000      /* start address of SAU region 0 */
+#define SAU_INIT_START0       0x40000000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END0       0x2002FFFF      /* end address of SAU region 0 */
+#define SAU_INIT_END0       0x4FFFFFFF      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
@@ -96,12 +96,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START1       0x8040000      /* start address of SAU region 0 */
+#define SAU_INIT_START1       0x20000000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END1       0x805FFFF      /* end address of SAU region 0 */
+#define SAU_INIT_END1       0x2001FFFF      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
@@ -121,19 +121,19 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START2       0xC03E000      /* start address of SAU region 0 */
+#define SAU_INIT_START2       0x8040000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END2       0xC03FFFF      /* end address of SAU region 0 */
+#define SAU_INIT_END2       0x807FFFF      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
 //         <0=>Non-Secure
 //         <1=>Secure, Non-Secure Callable
 */
-#define SAU_INIT_NSC2       1
+#define SAU_INIT_NSC2       0
 /*
 //   </e>
 */
@@ -141,24 +141,24 @@
 //   <e>Initialize SAU Region 3
 //   <i> Setup SAU Region  3 memory attributes
 */
-#define SAU_INIT_REGION3       0
+#define SAU_INIT_REGION3       1
 
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START3       0x00000000      /* start address of SAU region 0 */
+#define SAU_INIT_START3       0xC03E000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END3       0x00000000      /* end address of SAU region 0 */
+#define SAU_INIT_END3       0xC03FFFF      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
 //         <0=>Non-Secure
 //         <1=>Secure, Non-Secure Callable
 */
-#define SAU_INIT_NSC3       0
+#define SAU_INIT_NSC3       1
 /*
 //   </e>
 */
@@ -403,7 +403,7 @@
 /*
 //   <e>Initialize ITNS 1 (Interrupts 32..63)
 */
-#define NVIC_INIT_ITNS1    1
+#define NVIC_INIT_ITNS1    0
 
 /*
 // Interrupts 32..63
@@ -440,7 +440,7 @@
 //   <o.30>  Interrupt  62: USART2 <0=> Secure state <1=> Non-Secure state
 //   <o.31>  Interrupt  63: USART3 <0=> Secure state <1=> Non-Secure state
 */
-#define NVIC_INIT_ITNS1_VAL      0x40000020
+#define NVIC_INIT_ITNS1_VAL      0x00000000
 
 /*
 //   </e>
@@ -449,7 +449,7 @@
 /*
 //   <e>Initialize ITNS 2 (Interrupts 64..95)
 */
-#define NVIC_INIT_ITNS2    1
+#define NVIC_INIT_ITNS2    0
 
 /*
 // Interrupts 64..95
@@ -486,7 +486,7 @@
 //   <o.30>  Interrupt  94 <0=> Secure state <1=> Non-Secure state
 //   <o.31>  Interrupt  95 <0=> Secure state <1=> Non-Secure state
 */
-#define NVIC_INIT_ITNS2_VAL      0x00FF0000
+#define NVIC_INIT_ITNS2_VAL      0x00000000
 
 /*
 //   </e>

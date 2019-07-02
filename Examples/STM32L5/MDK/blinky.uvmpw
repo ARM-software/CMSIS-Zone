@@ -9,12 +9,12 @@
 
   <project>
     <PathAndName>.\blinky_s\blinky_s.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
     <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
     <PathAndName>.\blinky_ns\blinky_ns.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
     <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 

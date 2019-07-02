@@ -12,7 +12,7 @@ on an ST 'STM32L552ZE' Cortex-M33 microcontroller.
 
 The S_NS_Blinky application is available for targets:
 
-  Debug: configured for Debugging (uses ULINK2 as debugger)
+  Debug: configured for Debugging (uses ST-Link as debugger)
 
 
 --------------------------------------------
@@ -21,11 +21,11 @@ Secure Application:
  Setup core.
  Initialize LEDs.
  Configure SystemCoreClock.
- LD3:  function call from Secure to NonSecure code via registered function pointer using Secure SysTick.
+ LD5:  function call from Secure to NonSecure code via registered function pointer using Secure SysTick (1s).
 
 NonSecure Application:
- LD2:  function call from NonSecure to Secure Code via exported Secure functions  using NonSecure SysTick.
- LD1:  function call from NonSecure to Secure code via exported Secure functions  using while loop.
+ LD4:  function call from NonSecure to Secure Code via exported Secure functions using NonSecure SysTick (2.5s).
+ LD6:  function call from NonSecure to Secure code via exported Secure functions using while loop.
 
 
 --------------------------------------------

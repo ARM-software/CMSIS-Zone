@@ -63,7 +63,7 @@ int main (void)
   Secure_LED_Off_callback(NonSecure_LED_Off);
 
   SystemCoreClockUpdate();
-  SysTick_Config(SystemCoreClock / 100);  /* Generate interrupt each 10 ms */
+  SysTick_Config(SystemCoreClock / 250);  /* Generate interrupt each 25 ms */
 
 while (1) {
     Secure_LED_On (2U);
