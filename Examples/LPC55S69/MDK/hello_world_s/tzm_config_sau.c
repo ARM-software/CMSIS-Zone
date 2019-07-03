@@ -62,5 +62,9 @@ void TZM_Config_SAU(void)
     /* Flush and refill pipeline with updated permissions */
     __ISB();     
     /* Enable SAU */
-    SAU->CTRL = 1U;                    
+    SAU->CTRL = 1U;
+
+   /* Interrupt configuration */
+    NVIC->ITNS[0] = 0x2040000C; // RTC, ADC, GINT1, GINT0
+    NVIC->ITNS[1] = 0x00018000; // USB1_NEEDCLK, USB1
 }

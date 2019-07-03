@@ -1,3 +1,23 @@
+<#compress>
+<#include "helper.ftlinc"/>
+
+<#-- Prepare Non-Secure Interrupt Entries -->
+<#assign maxirq = 0/>
+<#assign it = {}/>
+<#assign itns = {}/>
+
+<#if system.interrupt?has_content>
+  <#list system.interrupt?sort_by("irqn") as irq>
+    <#assign it += { irq.irqn?number : irq } />  
+    <#if (irq.irqn?number > maxirq)>
+      <#assign maxirq = irq.irqn?number>
+    </#if>
+    <#if irq.security.n == "1">
+      <#assign itns += { irq.irqn?number : irq } />
+    </#if>
+  </#list>
+</#if>
+</#compress>
 /*
  * Copyright 2019 Arm Limited
  *
@@ -31,5 +51,20 @@ void TZM_Config_SAU(void)
     /* Flush and refill pipeline with updated permissions */
     __ISB();     
     /* Enable SAU */
-    SAU->CTRL = 1U;                    
+    SAU->CTRL = 1U;
+
+   /* Interrupt configuration */
+  <#list 0..(maxirq/32)?floor as i>
+    <#assign itns_val = 0>
+    <#assign itns_com = []>
+    <#list 0..31 as j>
+      <#if itns?keys?seq_contains((i * 32 + j)?c)>
+        <#assign itns_val += pow2(j)>
+        <#assign itns_com += [ itns[(i * 32 + j)?c].name ] >
+      </#if>
+    </#list>
+    <#if itns_val!=0>
+    NVIC->ITNS[${i}] = ${num2hex(itns_val, "0x", 8)}; // ${itns_com?reverse?join(", ")}
+    </#if>
+  </#list>   
 }
