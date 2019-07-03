@@ -5,6 +5,9 @@
     <processor Dclock="110000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ"/>
   </device>
   <resources>
+    <sau_init>
+      <region start="0x40000000" size="0x10000000" security="n" info="Non-Secure Peripherals"/>
+    </sau_init>
     <memories>
       <memory access="rx" name="Flash_NS" security="n" size="0x00080000" start="0x08000000" type="ROM"/>
       <memory access="rx" name="Flash_S" physical="0x08000000" security="c" size="0x00080000" start="0x0C000000" type="ROM"/>

@@ -4,8 +4,8 @@
 <#assign aDateTime = .now>
 
 <#-- Prepare SAU entries -->
-<#assign sau_entries = 1>
-<#assign sau_table = [{"start_address":"0x40000000", "end_address":"0x4FFFFFFF", "nsc":0, "init":1}]/>
+<#assign sau_entries = 0>
+<#assign sau_table = []/>
 
 <#if system.sau?has_content>
   <#list system.sau?sort_by("start") as s>

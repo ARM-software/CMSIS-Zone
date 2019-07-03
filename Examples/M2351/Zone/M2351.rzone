@@ -5,6 +5,9 @@
     <processor Dclock="64000000" Dcore="Cortex-M23" Dendian="Configurable" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ"/>
   </device>
   <resources>
+    <sau_init>
+      <region start="0x50000000" size="0x10000000" security="n" info="Non-Secure Peripherals"/>
+    </sau_init>
     <memories>
       <memory access="rx"  name="FLASH_S"  size="0x80000" start="0x00000000" startup="1" security="c" info="Flash (secure)"/>
       <memory access="rx"  name="FLASH_NS" size="0x80000" start="0x10000000" physical="0x00000000" security="n" info="Flash (non-secure)"/>
