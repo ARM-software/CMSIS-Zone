@@ -48,6 +48,81 @@ void SystemIsolation_Config(void)
   WRITE_REG(GTZC_MPCBB2_S->VCTR[7], 0xFFFFFFFFU);
   
   /* Setup Peripheral Protection Controller (PPC) */
+  WRITE_REG(DMA1_Channel1_S->CCR,
+    0x00020000 | /* DMA1 */
+    0x00100000   /* DMA1 */
+  );
+  WRITE_REG(DMA1_Channel2_S->CCR,
+    0x00020000   /* DMA1 */
+  );
+  WRITE_REG(DMA1_Channel3_S->CCR,
+    0x00020000   /* DMA1 */
+  );
+  WRITE_REG(DMA1_Channel4_S->CCR,
+    0x00020000   /* DMA1 */
+  );
+  WRITE_REG(DMA1_Channel5_S->CCR,
+    0x00020000   /* DMA1 */
+  );
+  WRITE_REG(DMA1_Channel6_S->CCR,
+    0x00020000   /* DMA1 */
+  );
+  WRITE_REG(DMA1_Channel7_S->CCR,
+    0x00020000   /* DMA1 */
+  );
+  WRITE_REG(DMA1_Channel8_S->CCR,
+    0x00020000   /* DMA1 */
+  );
+  WRITE_REG(GPIOA_S->SECCFGR,
+    0x00000002 | /* GPIOA */
+    0x00000004 | /* GPIOA */
+    0x00000008 | /* GPIOA */
+    0x00000010 | /* GPIOA */
+    0x00000020 | /* GPIOA */
+    0x00000040 | /* GPIOA */
+    0x00000080 | /* GPIOA */
+    0x00000100 | /* GPIOA */
+    0x00000200 | /* GPIOA */
+    0x00000400 | /* GPIOA */
+    0x00000800 | /* GPIOA */
+    0x00001000 | /* GPIOA */
+    0x00002000 | /* GPIOA */
+    0x00004000 | /* GPIOA */
+    0x00008000   /* GPIOA */
+  );
+  WRITE_REG(GPIOB_S->SECCFGR,
+    0x00000001 | /* GPIOB */
+    0x00000002 | /* GPIOB */
+    0x00000004 | /* GPIOB */
+    0x00000008 | /* GPIOB */
+    0x00000010 | /* GPIOB */
+    0x00000020 | /* GPIOB */
+    0x00000040 | /* GPIOB */
+    0x00000080 | /* GPIOB */
+    0x00000100 | /* GPIOB */
+    0x00000200 | /* GPIOB */
+    0x00000400 | /* GPIOB */
+    0x00000800 | /* GPIOB */
+    0x00001000 | /* GPIOB */
+    0x00002000 | /* GPIOB */
+    0x00004000 | /* GPIOB */
+    0x00008000   /* GPIOB */
+  );
+  WRITE_REG(GTZC_TZSC->PRIVCFGR1,
+    0x00000400 | /* USART2 */
+    0x00000004 | /* TIM4 */
+    0x40000000   /* TIM1 */
+  );
+  WRITE_REG(GTZC_TZSC->PRIVCFGR2,
+    0x00000002 | /* USART1 */
+    0x00000800   /* ADC */
+  );
+  WRITE_REG(GTZC_TZSC->SECCFGR1,
+    0x40000000   /* TIM1 */
+  );
+  WRITE_REG(GTZC_TZSC->SECCFGR2,
+    0x00000002   /* USART1 */
+  );
 
   /* Clear all illegal access pending interrupts in TZIC */
   if (HAL_GTZC_TZIC_ClearFlag(GTZC_PERIPH_ALL) != HAL_OK)

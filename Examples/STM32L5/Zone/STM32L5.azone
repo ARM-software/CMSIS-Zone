@@ -2,16 +2,16 @@
 <azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.2.0" xs:noNamespaceSchemaLocation="azone.xsd">
   <rzone name="STM32L5.rzone"/>
   <partition>
+    <memory access="rw" info="Secure RAM for DATA section" name="DATA_S" offset="0x20000" parent="SRAM_S" privilege="" security="s" size="0x20000"/>
+    <memory info="Non-secure FLASH for CODE execution" name="CODE_NS" offset="0x40000" parent="Flash_NS" size="0x40000"/>
+    <memory access="rw" info="Non-secure RAM for DATA section" name="DATA_NS" offset="0x0" parent="SRAM_NS" privilege="" security="n" size="0x20000"/>
     <memory access="rx" fixed="1" info="Secure FLASH for CODE execution" name="CODE_S" offset="0x0" parent="Flash_S" privilege="" security="s" size="0x3E000"/>
     <memory fixed="1" info="Secure FLASH for CODE Veneer table" name="Veneer" offset="0x3E000" parent="Flash_S" size="0x2000"/>
-    <memory info="Non-secure FLASH for CODE execution" name="CODE_NS" offset="0x40000" parent="Flash_NS" size="0x40000"/>
-    <memory access="rw" info="Secure RAM for DATA section" name="DATA_S" offset="0x20000" parent="SRAM_S" privilege="" security="s" size="0x20000"/>
-    <memory access="rw" info="Non-secure RAM for DATA section" name="DATA_NS" offset="0x0" parent="SRAM_NS" privilege="" security="n" size="0x20000"/>
-    <peripheral access="prw" group="GPIO" info="Port D" name="GPIOD" size="0x400" slot_name="Pins" slot_type="s" start="0x42020C00" start_s="0x52020C00">
-      <slot name="Pin 5" secure="0"/>
+    <peripheral access="prw" group="GPIO" info="Port A" name="GPIOA" size="0x400" slot_name="Pins" slot_type="s" start="0x42020000" start_s="0x52020000">
+      <slot name="Pin 0" secure="0"/>
     </peripheral>
-    <slot group="GPIO" name="Pin 5" peripheral="GPIOD" secure="0">
-      <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000020"/>
+    <slot group="GPIO" name="Pin 0" peripheral="GPIOA" secure="0">
+      <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000001"/>
     </slot>
     <peripheral access="prw" group="DMA" info="DMA1 Controller 1" name="DMA1" size="0x400" slot_name="Channels" slot_type="sp" start="0x40020000" start_s="0x50020000">
       <slot name="Channel 1" privilege="1" secure="1"/>
@@ -26,6 +26,12 @@
       <interrupt info="DMA1_Channel 8" irqn="036" name="DMA1_Channel8"/>
       <setup name="DMA1_Channel8_S-&gt;CCR" security="s" value="0x00020000"/>
       <setup name="DMA1_Channel8_S-&gt;CCR" privilege="p" value="0x00100000"/>
+    </slot>
+    <peripheral access="prw" group="GPIO" info="Port D" name="GPIOD" size="0x400" slot_name="Pins" slot_type="s" start="0x42020C00" start_s="0x52020C00">
+      <slot name="Pin 5" secure="0"/>
+    </peripheral>
+    <slot group="GPIO" name="Pin 5" peripheral="GPIOD" secure="0">
+      <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000020"/>
     </slot>
     <peripheral access="prw" group="DMA" info="DMA2 Controller 1" name="DMA2" size="0x400" slot_name="Channels" slot_type="sp" start="0x40020400" start_s="0x50020400">
       <slot name="Channel 1" privilege="1" secure="0"/>
@@ -77,12 +83,6 @@
       <setup name="DMA2_Channel8_S-&gt;CCR" security="s" value="0x00020000"/>
       <setup name="DMA2_Channel8_S-&gt;CCR" privilege="p" value="0x00100000"/>
     </slot>
-    <peripheral access="prw" group="GPIO" info="Port A" name="GPIOA" size="0x400" slot_name="Pins" slot_type="s" start="0x42020000" start_s="0x52020000">
-      <slot name="Pin 0" secure="0"/>
-    </peripheral>
-    <slot group="GPIO" name="Pin 0" peripheral="GPIOA" secure="0">
-      <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000001"/>
-    </slot>
   </partition>
   <zones>
     <zone Dname="STM32L552ZETxQ" Pname="" info="" name="blinky_s" security="s">
@@ -103,6 +103,7 @@
       <assign group="USART" peripheral="USART2"/>
     </zone>
   </zones>
+  <partition/>
   <partition/>
   <partition/>
   <partition/>

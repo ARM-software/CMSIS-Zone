@@ -393,11 +393,6 @@
               <FilePath>.\SystemIsolation_Config.c</FilePath>
             </File>
             <File>
-              <FileName>partition.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\partition.h</FilePath>
-            </File>
-            <File>
               <FileName>mem_layout.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\mem_layout.h</FilePath>
@@ -444,6 +439,11 @@
                   </Aads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>partition_gen.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\partition_gen.h</FilePath>
             </File>
           </Files>
         </Group>
