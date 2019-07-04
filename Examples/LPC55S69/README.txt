@@ -28,8 +28,21 @@ The Zone configuration can be loaded in CMSIS-Zone by perfoming the following st
    - mem_layout.h contains defines for memory region start addresses and sizes.
    - scatter_*.sct are examples how scatter files can be generated (not actually used).
    - tzm_config_*.c contains the TrustTone configurations obtained from the project settings.
-   
-   
+
+The example zone configuration shows a minimal resource partitioning needed for
+TrustZone devices, i.e. hello_world_s and hello_world_ns zones.
+
+The memory is devided into
+individual section for secure and non-secure CODE and DATA, respectively. Additionally
+a small flash region is reserved for the non-secure callable veneer table (i.e. secure
+gateways). This information is used by the mem_layout.h, the scatter_*.sct, the SAU setup
+in tzm_config_sau.c and the MPC setup in tzm_config_mpc.c templates.
+
+Some peripherals are assigned to either the secure or the non-secure zone to demonstrate
+generation of PPC setup in tzm_config_ppc.c and interrupt config in tzm_config_sau.c
+templates.
+
+
 MDK Example Project
 -------------------
 

@@ -29,7 +29,19 @@ The Zone configuration can be loaded in CMSIS-Zone by perfoming the following st
    - scatter_*.sct contains scatter file templates.
    - partition.h.ftl contains the TrustTone configurations obtained from the project settings.
    
-   
+The example zone configuration shows a minimal resource partitioning needed for
+TrustZone devices, i.e. Secure and NonSecure zones.
+
+The memory is devided into
+individual section for secure and non-secure CODE and DATA, respectively. Additionally
+a small flash region is reserved for the non-secure callable veneer table (i.e. secure
+gateways). This information is used by the mem_layout.h, the scatter_*.sct, the SAU/NSBA/MPC
+setups in partition.h templates.
+
+Some peripherals are assigned to either the secure or the non-secure zone to demonstrate
+generation of PPC setup and interrupt config in partition.h template.
+
+
 MDK Example Project
 -------------------
 
