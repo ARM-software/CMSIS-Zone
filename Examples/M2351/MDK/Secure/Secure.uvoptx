@@ -308,8 +308,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\partition.h</PathWithFileName>
-      <FilenameWithoutPath>partition.h</FilenameWithoutPath>
+      <PathWithFileName>.\partition_gen.h</PathWithFileName>
+      <FilenameWithoutPath>partition_gen.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>10</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\partition_M2351.h</PathWithFileName>
+      <FilenameWithoutPath>partition_M2351.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

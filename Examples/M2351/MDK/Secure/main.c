@@ -11,7 +11,7 @@
 #include <arm_cmse.h>
 #include <stdio.h>
 #include "NuMicro.h"                      /* Device header */
-#include "partition.h"
+#include "partition_M2351.h"
 #include "xom0_func.h"
 #include "xom1_func.h"
 

@@ -2,10 +2,10 @@
 <azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
   <rzone name="M2351.rzone"/>
   <partition>
-    <memory access="rx" fixed="1" info="Secure FLASH for CODE execution" name="CODE_S" offset="0x0" parent="FLASH_S" privilege="" security="s" size="0x3F800" startup="1"/>
-    <memory fixed="1" info="Secure FLASH for CODE Veneer table" name="VENEER" offset="0x3F800" parent="FLASH_S" size="0x800"/>
     <memory access="rw" fixed="1" info="Secure RAM for DATA section" name="DATA_S" offset="0x0" parent="SRAM_S" privilege="" security="s" size="0x8000"/>
     <memory access="rw" fixed="1" info="Non-secure RAM for DATA section" name="DATA_NS" offset="0x8000" parent="SRAM_NS" privilege="" security="n" size="0x10000"/>
+    <memory access="rx" fixed="1" info="Secure FLASH for CODE execution" name="CODE_S" offset="0x0" parent="FLASH_S" privilege="" security="s" size="0x3F800" startup="1"/>
+    <memory fixed="1" info="Secure FLASH for CODE Veneer table" name="VENEER" offset="0x3F800" parent="FLASH_S" size="0x800"/>
     <memory fixed="1" info="Non-secure FLASH for CODE execution" name="CODE_NS" offset="0x40000" parent="FLASH_NS" size="0x40000"/>
     <peripheral access="prw" group="UART" info="UART Register Map" name="UART1" offset="0x0" privilege="" security="n" size="0x4C" start="0x50071000" start_s="0x40071000"/>
     <peripheral access="prw" group="UART" info="UART Register Map" name="UART0" offset="0x0" privilege="" security="s" size="0x4C" start="0x50070000" start_s="0x40070000"/>
