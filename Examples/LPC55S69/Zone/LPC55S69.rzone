@@ -16,7 +16,7 @@
 
       <memory name="ROM"         type="ROM" start="0x03000000"                       size="0x00020000" access="rx"  security=""  info="Boot ROM" />
       <memory name="ROM_S"       type="ROM" start="0x13000000" physical="0x03000000" size="0x00020000" access="rx"  security="c" info="Boot ROM (Secure)"/>
-	  <mpc name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_ROM_MEM_RULE"     start="0x03000000" type="sp"             size="0x00020000" blk_size="0x1000"         info="Boot ROM" />
+      <mpc name="AHB_SECURE_CTRL-&gt;SEC_CTRL_FLASH_ROM[0].SEC_CTRL_ROM_MEM_RULE"     start="0x03000000" type="sp"             size="0x00020000" blk_size="0x1000"         info="Boot ROM" />
 
       <memory name="SRAMX"       type="RAM" start="0x04000000"                       size="0x00008000" access="rwx" security=""  info="SRAMX" />
       <memory name="SRAMX_S"     type="RAM" start="0x14000000" physical="0x04000000" size="0x00008000" access="rwx" security="c" info="SRAMX (Secure)"/>
