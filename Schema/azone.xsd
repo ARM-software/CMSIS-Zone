@@ -17,8 +17,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  $Date:        14. Mayy 2019
-  $Revision:    0.2.0
+  $Date:        09. July 2019
+  $Revision:    0.3.0
 
   $Project: Schema File for CMSIS-Zone *.azone files
   Version History:
@@ -27,6 +27,7 @@
   0.1.0: Adding security attribute for memory, peripherals and assign
   0.1.1: Adding privilege attribute for memory, peripherals and assign tags
   0.2.0: Adding
+  0.3.0: Adding slots and fixing hierarchy for interrupt moving into assign block, renaming Pref to Pname
 -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified" version="0.1.1">
@@ -63,6 +64,7 @@
   <xs:simpleType name="SecurityTypeEnum">
     <xs:restriction base="xs:token">
       <xs:enumeration value="" />
+      <xs:enumeration value="n"/>
       <xs:enumeration value="c"/>
       <xs:enumeration value="s"/>
     </xs:restriction>
@@ -74,6 +76,21 @@
       <xs:enumeration value=""/>
       <xs:enumeration value="u"/>
       <xs:enumeration value="p"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PhysicalTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="RAM"/>
+      <xs:enumeration value="ROM"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SlotTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="s"/>
+      <xs:enumeration value="p"/>
+      <xs:enumeration value="sp"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -113,10 +130,10 @@
     <xs:choice maxOccurs="unbounded">
       <xs:element name="memory">
         <xs:complexType>
-          <xs:attribute name="parent"    type="xs:string"           use="required"/>
+          <xs:attribute name="parent"    type="xs:string"           use="optional"/>
           <xs:attribute name="name"      type="xs:string"           use="required"/>
           <xs:attribute name="size"      type="NonNegativeInteger"  use="required"/>
-          <xs:attribute name="offset"    type="xs:string"           use="required"/>
+          <xs:attribute name="offset"    type="xs:string"           use="optional"/>
           <xs:attribute name="access"    type="AccessType"          use="optional"/>
           <xs:attribute name="security"  type="SecurityTypeEnum"    use="optional"/>
           <xs:attribute name="privilege" type="PrivilegeTypeEnum"   use="optional"/>
@@ -125,8 +142,39 @@
           <xs:attribute name="uninit"    type="xs:boolean"          use="optional"/>
           <xs:attribute name="shared"    type="xs:boolean"          use="optional"/>
           <xs:attribute name="dma"       type="xs:boolean"          use="optional"/>
-          <xs:attribute name="Pref"      type="xs:string"           use="optional"/>
+          <xs:attribute name="Pname"     type="xs:string"           use="optional"/>
           <xs:attribute name="info"      type="xs:string"           use="optional"/>
+          <xs:attribute name="start"     type="NonNegativeInteger"  use="optional"/>
+          <xs:attribute name="type"      type="PhysicalTypeEnum"    use="optional"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="peripheral">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="slot" minOccurs="0">
+              <xs:complexType>
+                <xs:attribute name="name"       type="xs:string"          use="required"/>
+                <xs:attribute name="secure"     type="xs:boolean"         use="optional"/>
+                <xs:attribute name="privilege"  type="xs:boolean"         use="optional"/>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:attribute name="name"      type="xs:string"           use="required"/>
+          <xs:attribute name="group"     type="xs:string"           use="optional"/> <!-- really optional? -->
+          <xs:attribute name="start"     type="NonNegativeInteger"  use="optional"/>
+          <xs:attribute name="start_s"   type="NonNegativeInteger"  use="optional"/>
+          <xs:attribute name="start_ns"  type="NonNegativeInteger"  use="optional"/>
+          <xs:attribute name="shared"    type="xs:boolean"          use="optional"/>
+          <xs:attribute name="dma"       type="xs:boolean"          use="optional"/>
+          <xs:attribute name="external"  type="xs:boolean"          use="optional"/>
+          <xs:attribute name="access"    type="AccessType"          use="optional"/>
+          <xs:attribute name="security"  type="SecurityTypeEnum"    use="optional"/>
+          <xs:attribute name="privilege" type="PrivilegeTypeEnum"   use="optional"/>
+          <xs:attribute name="info"      type="xs:string"           use="optional"/>
+          <xs:attribute name="offset"    type="NonNegativeInteger"  use="optional"/>
+          <xs:attribute name="size"      type="NonNegativeInteger"  use="optional"/>
+          <xs:attribute name="slot_name" type="xs:string"          use="optional"/>
+          <xs:attribute name="slot_type" type="SlotTypeEnum"       use="optional"/>
         </xs:complexType>
       </xs:element>
     </xs:choice>
@@ -139,30 +187,33 @@
           <xs:choice maxOccurs="unbounded">
             <xs:element name="assign">
               <xs:complexType>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                  <xs:element name="interrupt" minOccurs="0">
+                    <xs:complexType>
+                      <xs:attribute name="name"      type="xs:string"          use="required"/>
+                      <xs:attribute name="value"     type="NonNegativeInteger" use="required"/>
+                      <xs:attribute name="info"      type="xs:string"          use="required"/>
+                      <xs:attribute name="security"  type="SecurityTypeEnum"   use="required"/>
+                      <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="required"/>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:choice>
                 <xs:attribute name="memory"     type="xs:string"         use="optional"/>
                 <xs:attribute name="group"      type="xs:string"         use="optional"/>
                 <xs:attribute name="peripheral" type="xs:string"         use="optional"/>
                 <xs:attribute name="access"     type="AccessType"        use="optional"/>
-                <xs:attribute name="Pref"       type="xs:string"         use="optional"/>
+                <xs:attribute name="Pname"      type="xs:string"         use="optional"/>
                 <xs:attribute name="security"   type="SecurityTypeEnum"  use="optional"/>
                 <xs:attribute name="privilege"  type="PrivilegeTypeEnum" use="optional"/>
                 <xs:attribute name="uninit"     type="xs:boolean"        use="optional"/>
                 <xs:attribute name="dma"        type="xs:boolean"        use="optional"/>
               </xs:complexType>
             </xs:element>
-            <xs:element name="interrupt" minOccurs="0">
-              <xs:complexType>
-                <xs:attribute name="name"      type="xs:string"          use="required"/>
-                <xs:attribute name="value"     type="NonNegativeInteger" use="required"/>
-                <xs:attribute name="info"      type="xs:string"          use="required"/>
-                <xs:attribute name="security"  type="SecurityTypeEnum"   use="required"/>
-                <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="required"/>
-              </xs:complexType>
-            </xs:element>
           </xs:choice>
           <xs:attribute name="name"       type="xs:string"         use="required"/>
           <xs:attribute name="info"       type="xs:string"         use="optional"/>
-          <xs:attribute name="Pref"       type="xs:string"         use="optional"/>
+          <xs:attribute name="Pname"      type="xs:string"         use="optional"/>
+          <xs:attribute name="Dname"      type="xs:string"         use="optional"/>  <!-- review -->
           <xs:attribute name="security"   type="SecurityTypeEnum"  use="optional"/>
           <xs:attribute name="privilege"  type="PrivilegeTypeEnum" use="optional"/>
         </xs:complexType>
@@ -179,7 +230,7 @@
         <xs:element name="partition" type="PartitionType"    minOccurs="0"/>
         <xs:element name="zones"     type="ZonesType"        minOccurs="0"/>
       </xs:all>
-      <xs:attribute name="schemaVersion" type="SchemaVersionType" use="required" />
+      <xs:attribute name="schemaVersion" type="SchemaVersionType" use="optional"/>
     </xs:complexType>
   </xs:element>
 

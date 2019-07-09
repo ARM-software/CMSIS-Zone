@@ -17,8 +17,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  $Date:        14. May 2019
-  $Revision:    0.2.0
+  $Date:        09. July 2019
+  $Revision:    0.3.0
 
   $Project: Schema File for CMSIS-Zone resource description file *.rzone
   Version History:
@@ -29,6 +29,7 @@
   0.1.0: adding security attribute for memory, peripheral and assign
   0.1.1: adding privilege attribute for memory, peripheral and assign tags
   0.2.0: adding sau_init, mpc, peripheral setup element for security and privilege control
+  0.3.0: rename Pref to Pname, removed processor_group element, added peripheral childs interrupt, setup and slot elements
 -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified" version="0.1.1">
@@ -202,6 +203,14 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="SlotTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="s"/>
+      <xs:enumeration value="p"/>
+      <xs:enumeration value="sp"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:complexType name="DeviceType">
     <xs:choice maxOccurs="3">
       <xs:element name="package" minOccurs="0" maxOccurs="1">
@@ -241,39 +250,35 @@
           <xs:attribute name="info"           type="xs:string"          use="optional"/>
         </xs:complexType>
       </xs:element>
-      <xs:element name="processor_group" maxOccurs="unbounded">
-        <xs:complexType>
-          <xs:choice maxOccurs="unbounded">
-            <xs:element name="processor">
-              <xs:complexType>
-                <!-- Pname defines an identifier for a specific processor in a multi-processor devices -->
-                <xs:attribute name="Pname" type="RestrictedString" use="optional"/>
-                <!-- Punits specifies the number of processing units in a symmetric multi-processor core -->
-                <xs:attribute name="Punit" type="InstancesType"   use="optional" />
-                <!-- Dcore specifies the processor from a list of supported processors -->
-              </xs:complexType>
-            </xs:element>
-          </xs:choice>
-          <xs:attribute name="Pgroup" type="xs:string"/>
-        </xs:complexType>
-      </xs:element>
     </xs:choice>
     <xs:attribute name="Dvendor" type="xs:string"        use="required"/>
     <xs:attribute name="Dname"   type="RestrictedString" use="required"/>
     <xs:attribute name="info"    type="xs:string"        use="optional"/>
   </xs:complexType>
 
+  <xs:complexType name="InterruptType">
+    <xs:attribute name="name"     type="xs:string"          use="required"/>
+    <xs:attribute name="irqn"    type="Integer" use="required"/>
+    <xs:attribute name="info"     type="xs:string"/>
+    <xs:attribute name="security" type="SecurityTypeEnum"/>
+  </xs:complexType>
+
+  <xs:complexType name="SlotType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element name="slot" type="SlotType"/>
+      <xs:element name="interrupt" type="InterruptType"/>
+      <xs:element name="setup" type="SetupType"/>
+    </xs:choice>
+    <xs:attribute name="name"       type="xs:string"/>
+    <xs:attribute name="secure"     type="xs:boolean" default="false"/>
+    <xs:attribute name="privilege"  type="xs:boolean" default="false"/>
+  </xs:complexType>
+
   <xs:complexType name="PeripheralType">
     <xs:choice maxOccurs="unbounded" minOccurs="0">
-      <xs:element name="interrupt">
-        <xs:complexType>
-          <xs:attribute name="name"     type="xs:string"          use="required"/>
-          <xs:attribute name="irqn"    type="Integer" use="required"/>
-          <xs:attribute name="info"     type="xs:string"/>
-          <xs:attribute name="security" type="SecurityTypeEnum"/>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="setup"      type="SetupType"      minOccurs="0"/>
+      <xs:element name="slot"      type="SlotType"/>
+      <xs:element name="interrupt" type="InterruptType"/>
+      <xs:element name="setup"     type="SetupType"/>
     </xs:choice>
     <xs:attribute name="name"      type="xs:string"          use="required"/>
     <xs:attribute name="start"     type="NonNegativeInteger" use="optional"/>
@@ -282,19 +287,23 @@
     <xs:attribute name="physical"  type="NonNegativeInteger" use="optional"/>
     <xs:attribute name="offset"    type="NonNegativeInteger" use="optional"/>
     <xs:attribute name="size"      type="NonNegativeInteger" use="required"/>
-    <xs:attribute name="external"  type="xs:boolean"/>
-    <xs:attribute name="access"    type="AccessType"/>
-    <xs:attribute name="security"  type="SecurityTypeEnum"/>
-    <xs:attribute name="privilege" type="PrivilegeTypeEnum"/>
-    <xs:attribute name="info"      type="xs:string"/>
-    <xs:attribute name="Pref"      type="xs:string"/>
+    <xs:attribute name="shared"    type="xs:boolean"         use="optional"/>
+    <xs:attribute name="dma"       type="xs:boolean"         use="optional"/>
+    <xs:attribute name="external"  type="xs:boolean"         use="optional"/>
+    <xs:attribute name="Pname"     type="xs:string"          use="optional"/>
+    <xs:attribute name="access"    type="AccessType"         use="optional"/>
+    <xs:attribute name="security"  type="SecurityTypeEnum"   use="optional"/>
+    <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="optional"/>
+    <xs:attribute name="info"      type="xs:string"          use="optional"/>
+    <xs:attribute name="slot_name" type="xs:string"          use="optional"/>
+    <xs:attribute name="slot_type" type="SlotTypeEnum"       use="optional"/>
   </xs:complexType>
 
   <xs:complexType name="SauInitType">
     <xs:all>
       <xs:element name="region">
         <xs:complexType>
-        <xs:attribute name="Pref"     type="xs:string"          use="optional"/>
+        <xs:attribute name="Pname"    type="xs:string"          use="optional"/>
         <xs:attribute name="start"    type="NonNegativeInteger" use="required"/>
         <xs:attribute name="size"     type="NonNegativeInteger" use="required"/>
         <xs:attribute name="security" type="SecurityTypeEnum"   use="optional"/>
@@ -331,8 +340,9 @@
             </xs:element>
             <xs:element name="memory"             minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
+                <xs:attribute name="parent"    type="xs:string"          use="optional"/>
                 <xs:attribute name="name"      type="xs:string"          use="required"/>
-                <xs:attribute name="type"      type="PhysicalTypeEnum"   use="required"/>
+                <xs:attribute name="type"      type="PhysicalTypeEnum"   use="optional"/>
                 <xs:attribute name="start"     type="NonNegativeInteger" use="required"/>
                 <xs:attribute name="physical"  type="NonNegativeInteger" use="optional"/>
                 <xs:attribute name="size"      type="NonNegativeInteger" use="required"/>
@@ -344,7 +354,7 @@
                 <xs:attribute name="shared"    type="xs:boolean"         use="optional"/>
                 <xs:attribute name="dma"       type="xs:boolean"         use="optional"/>
                 <xs:attribute name="external"  type="xs:boolean"         use="optional"/>
-                <xs:attribute name="Pref"      type="xs:string"          use="optional"/>
+                <xs:attribute name="Pname"     type="xs:string"          use="optional"/>
                 <xs:attribute name="info"      type="xs:string"          use="optional"/>
               </xs:complexType>
             </xs:element>
@@ -365,15 +375,16 @@
                 <xs:attribute name="start_s"   type="NonNegativeInteger" use="optional"/>
                 <xs:attribute name="start_ns"  type="NonNegativeInteger" use="optional"/>
                 <xs:attribute name="physical"  type="NonNegativeInteger" use="optional"/>
+                <xs:attribute name="offset"    type="NonNegativeInteger" use="optional"/>
                 <xs:attribute name="size"      type="NonNegativeInteger" use="optional"/>
                 <xs:attribute name="shared"    type="xs:boolean"         use="optional"/>
                 <xs:attribute name="dma"       type="xs:boolean"         use="optional"/>
                 <xs:attribute name="external"  type="xs:boolean"         use="optional"/>
-                <xs:attribute name="Pref"      type="xs:string"/>
-                <xs:attribute name="access"    type="AccessType"/>
-                <xs:attribute name="security"  type="SecurityTypeEnum"/>
-                <xs:attribute name="privilege" type="PrivilegeTypeEnum"/>
-                <xs:attribute name="info"      type="xs:string"/>
+                <xs:attribute name="Pname"      type="xs:string"         use="optional"/>
+                <xs:attribute name="access"    type="AccessType"         use="optional"/>
+                <xs:attribute name="security"  type="SecurityTypeEnum"   use="optional"/>
+                <xs:attribute name="privilege" type="PrivilegeTypeEnum"  use="optional"/>
+                <xs:attribute name="info"      type="xs:string"          use="optional"/>
               </xs:complexType>
             </xs:element>
             <xs:element name="peripheral" type="PeripheralType" minOccurs="0"/>
@@ -401,7 +412,7 @@
         <xs:element name="device"       type="DeviceType"    minOccurs="1"/>
         <xs:element name="resources"    type="ResourcesType" minOccurs="1"/>
       </xs:all>
-      <xs:attribute name="schemaVersion" type="SchemaVersionType" use="required" />
+      <xs:attribute name="schemaVersion" type="SchemaVersionType" use="optional" />
     </xs:complexType>
   </xs:element>
 </xs:schema>
