@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="CMSIS_Logo_Final.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CMSIS-Zone (Preview)
-   &#160;<span id="projectnumber">Version 0.11.0</span>
+   &#160;<span id="projectnumber">Version 0.9.2</span>
    </div>
    <div id="projectbrief">System Resource Management</div>
   </td>
@@ -154,6 +154,15 @@ Zone Editor</h1>
 <div class="image">
 <img src="zone_map.png" alt="zone_map.png"/>
 </div>
+<p>Resources assigned to a zone are marked with colors: </p>
+<table class="doxtable">
+<tr>
+<th>Color </th><th>Meaning  </th></tr>
+<tr>
+<td>Green </td><td>Resource is assigned to one zone </td></tr>
+<tr>
+<td>Amber </td><td>Resource is assigned to multiple zones </td></tr>
+</table>
 <h2><a class="anchor" id="zTGUIButtons"></a>
 Toolbar Buttons</h2>
 <p>The <b>Zone Editor</b> window contains toolbar buttons that offer direct access to functionality of the utility:</p>
@@ -168,11 +177,11 @@ Toolbar Buttons</h2>
 <tr>
 <td>List View </td><td>Shows the resources as a simple list </td></tr>
 <tr>
-<td>Arrange memory blocks </td><td>Arranges memory blocks according to their sizes </td></tr>
+<td>Arrange memory regions </td><td>Arranges memory regions according to their sizes </td></tr>
 <tr>
-<td><a class="el" href="zTInteractiveMode.html#zTUICreate">Add new zone</a> </td><td>Adds a new zone to the zone map </td></tr>
+<td><a class="el" href="zTUIZonePart.html#zTUICreate">Add new zone</a> </td><td>Adds a new zone to the zone map </td></tr>
 <tr>
-<td><a class="el" href="zTInteractiveMode.html#zTUIGenerate">Generate</a> </td><td>Generates CMSIS-Zone output files </td></tr>
+<td><a class="el" href="zTUIGenerate.html">Generate</a> </td><td>Generates CMSIS-Zone output files </td></tr>
 </table>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
@@ -180,7 +189,7 @@ Toolbar Buttons</h2>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="zoneToolUsage.html">CMSIS-Zone Utility</a></li>
-    <li class="footer">Generated on Wed May 15 2019 09:52:55 for CMSIS-Zone (Preview) Version 0.11.0 by Arm Ltd. All rights reserved.
+    <li class="footer">Generated on Tue Jul 9 2019 13:36:30 for CMSIS-Zone (Preview) Version 0.9.2 by Arm Ltd. All rights reserved.
 	<!--
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 

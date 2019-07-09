@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="CMSIS_Logo_Final.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CMSIS-Zone (Preview)
-   &#160;<span id="projectnumber">Version 0.11.0</span>
+   &#160;<span id="projectnumber">Version 0.9.2</span>
    </div>
    <div id="projectbrief">System Resource Management</div>
   </td>
@@ -110,28 +110,28 @@ $(document).ready(function(){initNavTree('zTCLI.html','');});
 <div class="title">Command Line Mode </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>As the <a class="el" href="zoneFormat.html#rzone">.rzone</a> and <a class="el" href="zoneFormat.html#azone">.azone</a> files are XML based, it is possible to create them without the usage of the CMSIS-Zone utility. If you create these files manually or using an automated process, use the CMSIS-Zone plug-in in headless mode to generate the FTL model and process templates. The command line is:</p>
+<div class="textblock"><p>As the <a class="el" href="zoneFormat.html#rzone">.rzone</a> and <a class="el" href="zoneFormat.html#azone">.azone</a> files are XML based, it is possible to create or modify the files in external tools without using the <a class="el" href="zTInteractiveMode.html">Interactive Mode</a>. To generate output files the CMSIS-Zone Utility can be started in headless mode. The command line format is:</p>
 <p><code>eclipsec.exe -noSplash -consoleLog &ndash;launcher.suppressErrors -application com.arm.cmsis.zone.ui.headlessgen -azone FILENME.azone -ftl FTL_DIR -ftl_gen FTL_GEN_DIR</code></p>
 <p><b>Where</b> </p>
 <table class="doxtable">
 <tr>
-<th>Parameter </th><th>Description </th><th>Required  </th></tr>
+<th align="left">Parameter </th><th align="left">Description </th><th align="left">Required  </th></tr>
 <tr>
-<td><code>-noSplash</code> </td><td>Suppresses Eclipse's splash screen </td><td>[required] </td></tr>
+<td align="left"><code>-noSplash</code> </td><td align="left">Suppresses Eclipse's splash screen </td><td align="left">[required] </td></tr>
 <tr>
-<td><code>-launcher.suppressErrors</code> </td><td>Suppresses error dialog </td><td>[optional] </td></tr>
+<td align="left"><code>-launcher.suppressErrors</code> </td><td align="left">Suppresses error dialog </td><td align="left">[optional] </td></tr>
 <tr>
-<td><code>-consoleLog</code> </td><td>Suppresses diagnostic messages </td><td>[optional] </td></tr>
+<td align="left"><code>-consoleLog</code> </td><td align="left">Suppresses diagnostic messages </td><td align="left">[optional] </td></tr>
 <tr>
-<td><code>-application</code> <code>com.arm.cmsis.zone.ui.headlessgen</code> </td><td>Specifies the plug-in to be called </td><td>[required] </td></tr>
+<td align="left"><code>-application</code> <code>com.arm.cmsis.zone.ui.headlessgen</code> </td><td align="left">Specifies the plug-in to be called </td><td align="left">[required] </td></tr>
 <tr>
-<td><code>-azone</code> <code>FILNAME.azone</code> </td><td>Specifies the .azone file to be processed </td><td>[required] </td></tr>
+<td align="left"><code>-azone</code> <code>FILNAME.azone</code> </td><td align="left">Specifies the .azone file to be processed </td><td align="left">[required] </td></tr>
 <tr>
-<td><code>-ftl</code> <code>FTL_DIR</code> </td><td>Relative or absolute directory with templates to process </td><td>[optional - by default, <code>ftl</code> directory under the azone's file path is used] </td></tr>
+<td align="left"><code>-ftl</code> <code>FTL_DIR</code> </td><td align="left">Relative or absolute directory with templates to process </td><td align="left">[optional - by default, <code>ftl</code> directory under the azone's file path is used] </td></tr>
 <tr>
-<td><code>-ftl_gen</code> <code>FTL_GEN_DIR</code> </td><td>Relative or absolute output directory to write generated files </td><td>[optional - by default, <code>ftl_gen</code> directory under the azone's file path is used] </td></tr>
+<td align="left"><code>-ftl_gen</code> <code>FTL_GEN_DIR</code> </td><td align="left">Relative or absolute output directory to write generated files </td><td align="left">[optional - by default, <code>ftl_gen</code> directory under the azone's file path is used] </td></tr>
 <tr>
-<td><code>-help</code> </td><td>Shows command line parameter information </td><td>[optional] </td></tr>
+<td align="left"><code>-help</code> </td><td align="left">Shows command line parameter information </td><td align="left">[optional] </td></tr>
 </table>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
@@ -139,7 +139,7 @@ $(document).ready(function(){initNavTree('zTCLI.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="zoneToolUsage.html">CMSIS-Zone Utility</a></li>
-    <li class="footer">Generated on Wed May 15 2019 09:52:55 for CMSIS-Zone (Preview) Version 0.11.0 by Arm Ltd. All rights reserved.
+    <li class="footer">Generated on Tue Jul 9 2019 13:36:30 for CMSIS-Zone (Preview) Version 0.9.2 by Arm Ltd. All rights reserved.
 	<!--
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 

@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="CMSIS_Logo_Final.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CMSIS-Zone (Preview)
-   &#160;<span id="projectnumber">Version 0.11.0</span>
+   &#160;<span id="projectnumber">Version 0.9.2</span>
    </div>
    <div id="projectbrief">System Resource Management</div>
   </td>
@@ -110,14 +110,23 @@ $(document).ready(function(){initNavTree('zoneToolUsage.html','');});
 <div class="title">CMSIS-Zone Utility </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The following explains how to use the CMSIS-Zone stand-alone utility to create the required configuration files that can be used further in other toolchains.</p>
-<p>This documentation contains the following:</p>
+<div class="textblock"><p>The section describes the CMSIS-Zone Utility which is currently a stand-alone Eclipse implementation that allows you to:</p>
+<ul>
+<li><a class="el" href="zTUIMemPerRes.html#zTUIMemView">View the memory and peripheral resources</a> of a complete system or sub-system.</li>
+<li><a class="el" href="zTUIMemPerRes.html#zTUIMemAdd">Partition memory blocks</a> into smaller regions and define access permissions for these regions.</li>
+<li><a class="el" href="zTUIMemPerRes.html#zTUIPerProp">Define access permissions</a> for peripherals.</li>
+<li><a class="el" href="zTUIMemPerRes.html#zTUIPerSlotConf">Configure access rights of peripheral slots</a> (for example for DMA channels or I/O pins).</li>
+<li><a class="el" href="zTUIZonePart.html">Split memory and peripheral resources into zones</a> (used for sub-projects or process separation in RTOS systems).</li>
+<li><a class="el" href="zTUIGenerate.html">Generate</a> configuration files for tool and hardware setup, as well as</li>
+<li><a class="el" href="zTUIGenerate.html">Generate</a> resource files for sub-systems that allow further partitioning.</li>
+</ul>
+<p>This section describes:</p>
 <ul>
 <li><a class="el" href="zTInstall.html">Installation</a> shows how to install the utility.</li>
-<li><a class="el" href="zTUI.html">User Interface</a> introduces the utility's GUI.</li>
+<li><a class="el" href="zTUI.html">User Interface</a> introduces the GUI of the CMSIS-Zone Utility.</li>
 <li><a class="el" href="zTInteractiveMode.html">Interactive Mode</a> explains how to create projects and zones using the GUI.</li>
 <li><a class="el" href="zTCLI.html">Command Line Mode</a> demonstrates how to work with the command line interface.</li>
-<li><a class="el" href="zTExamples.html">Examples</a> contains pre-built demos for various devices.</li>
+<li><a class="el" href="zTExamples.html">Examples</a> contains ready-to-use projects for various devices.</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd></dd></dl>
 <p>It is assumed that you are familiar with Eclipse and <a href="https://arm-software.github.io/CMSIS_5/Pack/html/index.html" target="_blank">CMSIS-Packs</a>. The relevant device family pcks for your target device need to be installed on your computer. </p>
@@ -126,7 +135,7 @@ $(document).ready(function(){initNavTree('zoneToolUsage.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 15 2019 09:52:55 for CMSIS-Zone (Preview) Version 0.11.0 by Arm Ltd. All rights reserved.
+    <li class="footer">Generated on Tue Jul 9 2019 13:36:30 for CMSIS-Zone (Preview) Version 0.9.2 by Arm Ltd. All rights reserved.
 	<!--
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 
