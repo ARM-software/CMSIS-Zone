@@ -50,6 +50,14 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="SlotTypeEnum">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="s"/>
+      <xs:enumeration value="p"/>
+      <xs:enumeration value="sp"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:simpleType name="MpuTypeEnum">
     <xs:restriction base="xs:token">
       <xs:enumeration value="v7M" />
@@ -112,8 +120,10 @@
 
   <xs:complexType name="MpcSetupType">
     <xs:choice maxOccurs="unbounded">
+      <xs:element name="info"         type="xs:string"/>
       <xs:element name="name"         type="xs:string"/>
       <xs:element name="memory"       type="xs:string"/>
+      <xs:element name="type"         type="xs:string"/> <!-- todo -->
       <xs:element name="start"        type="NonNegativeInteger"/>
       <xs:element name="size"         type="NonNegativeInteger"/>
       <xs:element name="blk_size"     type="NonNegativeInteger"/>
@@ -135,7 +145,7 @@
       <xs:element name="privilege" type="PrivilegeType"/>
       <xs:element name="external"  type="xs:boolean"/>
       <xs:element name="startup"   type="xs:boolean"/>
-      <xs:element name="uninit"    type="xs:boolean"/>
+      <xs:element name="init"    type="xs:boolean"/>
       <xs:element name="shared"    type="xs:boolean"/>
       <xs:element name="dma"       type="xs:boolean"/>
       <xs:element name="info"      type="xs:string"/>
@@ -156,6 +166,11 @@
       <xs:element name="privilege" type="PrivilegeType"/>
       <xs:element name="shared"    type="xs:boolean"/>
       <xs:element name="dma"       type="xs:boolean"/>
+      <xs:element name="external"  type="xs:boolean"/>
+      <xs:element name="startup"   type="xs:boolean"/>
+      <xs:element name="slot_type" type="SlotTypeEnum"/>
+      <xs:element name="slot_name" type="xs:string"/>
+      <xs:element name="init"       type="xs:boolean"/>
       <xs:element name="info"      type="xs:string"/>
     </xs:choice>
   </xs:complexType>
