@@ -8,31 +8,15 @@
     <memory access="rx" fixed="1" info="Secure FLASH for CODE execution" name="CODE_S" offset="0x0" parent="Flash_S" privilege="" security="s" size="0x3E000"/>
     <memory fixed="1" info="Secure FLASH for CODE Veneer table" name="Veneer" offset="0x3E000" parent="Flash_S" size="0x2000"/>
     <peripheral access="prw" group="GPIO" info="Port A" name="GPIOA" size="0x400" slot_name="Pins" slot_type="s" start="0x42020000" start_s="0x52020000">
-      <slot name="Pin 0" secure="0"/>
+      <slot name="Pin 0" secure="0" privilege="0"/>
     </peripheral>
-    <slot group="GPIO" name="Pin 0" peripheral="GPIOA" secure="0">
-      <setup name="GPIOA_S-&gt;SECCFGR" security="s" value="0x00000001"/>
-    </slot>
     <peripheral access="prw" group="DMA" info="DMA1 Controller 1" name="DMA1" size="0x400" slot_name="Channels" slot_type="sp" start="0x40020000" start_s="0x50020000">
       <slot name="Channel 1" privilege="1" secure="1"/>
       <slot name="Channel 8" privilege="0" secure="1"/>
     </peripheral>
-    <slot group="DMA" name="Channel 1" peripheral="DMA1" privilege="1" secure="1">
-      <interrupt info="DMA1 Channel 1 global interrupt" irqn="029" name="DMA1_Channel1"/>
-      <setup name="DMA1_Channel1_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA1_Channel1_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 8" peripheral="DMA1" privilege="0" secure="1">
-      <interrupt info="DMA1_Channel 8" irqn="036" name="DMA1_Channel8"/>
-      <setup name="DMA1_Channel8_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA1_Channel8_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
     <peripheral access="prw" group="GPIO" info="Port D" name="GPIOD" size="0x400" slot_name="Pins" slot_type="s" start="0x42020C00" start_s="0x52020C00">
       <slot name="Pin 5" secure="0"/>
     </peripheral>
-    <slot group="GPIO" name="Pin 5" peripheral="GPIOD" secure="0">
-      <setup name="GPIOD_S-&gt;SECCFGR" security="s" value="0x00000020"/>
-    </slot>
     <peripheral access="prw" group="DMA" info="DMA2 Controller 1" name="DMA2" size="0x400" slot_name="Channels" slot_type="sp" start="0x40020400" start_s="0x50020400">
       <slot name="Channel 1" privilege="1" secure="0"/>
       <slot name="Channel 2" secure="0"/>
@@ -43,46 +27,6 @@
       <slot name="Channel 7" secure="0"/>
       <slot name="Channel 8" secure="0"/>
     </peripheral>
-    <slot group="DMA" name="Channel 1" peripheral="DMA2" privilege="1" secure="0">
-      <interrupt info="DMA2_CH1" irqn="080" name="DMA2_CH1"/>
-      <setup name="DMA2_Channel1_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel1_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 2" peripheral="DMA2" secure="0">
-      <interrupt info="DMA2_CH2" irqn="081" name="DMA2_CH2"/>
-      <setup name="DMA2_Channel2_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel2_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 3" peripheral="DMA2" secure="0">
-      <interrupt info="DMA2_CH3" irqn="082" name="DMA2_CH3"/>
-      <setup name="DMA2_Channel3_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel3_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 4" peripheral="DMA2" secure="0">
-      <interrupt info="DMA2_CH4" irqn="083" name="DMA2_CH4"/>
-      <setup name="DMA2_Channel4_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel4_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 5" peripheral="DMA2" secure="0">
-      <interrupt info="DMA2_CH5" irqn="084" name="DMA2_CH5"/>
-      <setup name="DMA2_Channel5_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel5_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 6" peripheral="DMA2" secure="0">
-      <interrupt info="DMA2_CH6" irqn="085" name="DMA2_CH6"/>
-      <setup name="DMA2_Channel6_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel6_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 7" peripheral="DMA2" secure="0">
-      <interrupt info="DMA2_CH7" irqn="086" name="DMA2_CH7"/>
-      <setup name="DMA2_Channel7_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel7_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
-    <slot group="DMA" name="Channel 8" peripheral="DMA2" secure="0">
-      <interrupt info="DMA2_CH8" irqn="087" name="DMA2_CH8"/>
-      <setup name="DMA2_Channel8_S-&gt;CCR" security="s" value="0x00020000"/>
-      <setup name="DMA2_Channel8_S-&gt;CCR" privilege="p" value="0x00100000"/>
-    </slot>
   </partition>
   <zones>
     <zone Dname="STM32L552ZETxQ" Pname="" info="" name="blinky_s" security="s">
@@ -103,14 +47,4 @@
       <assign group="USART" peripheral="USART2"/>
     </zone>
   </zones>
-  <partition/>
-  <partition/>
-  <partition/>
-  <partition/>
-  <partition/>
-  <partition/>
-  <partition/>
-  <partition/>
-  <partition/>
-  <partition/>
 </azone>
