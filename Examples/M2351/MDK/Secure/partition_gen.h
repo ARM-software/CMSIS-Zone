@@ -3,7 +3,7 @@
  * @brief    CMSIS-Core(M) Initial Setup for Secure / Non-Secure Zones for 
  *           Nuvoton M2351
  * @version  V1.0.0      (FreeMarker generated)
- * @date     05-Jul-2019 16:28:52
+ * @date     1 Aug 2019 11:55:51
  ******************************************************************************/
 /*
  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
@@ -144,7 +144,7 @@
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END3       0x0      /* end address of SAU region 0 */
+#define SAU_INIT_END3       0x5FFFFFFF      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
@@ -305,7 +305,7 @@
 //   <o.30>  Interrupt  30: EPWM1_P1_INT <0=> Secure state <1=> Non-Secure state
 //   <o.31>  Interrupt  31: EPWM1_P2_INT <0=> Secure state <1=> Non-Secure state
 */
-#define NVIC_INIT_ITNS0_VAL      0x00040000
+#define NVIC_INIT_ITNS0_VAL      0x00041000
 
 /*
 //   </e>

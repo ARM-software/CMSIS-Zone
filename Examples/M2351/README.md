@@ -55,5 +55,5 @@ following steps:
    Both projects, Secure and NonSecure needs to be compiled in order.
 5. Assure Secure is the active project.
 6. Connect the NuMaker-PFM-M2351 using a Micro-USB cable at ICEJ.
-7. Assure that ST-Link Debugger is selected and the NULink Debugger is used.
-8. Launch a debug session and watch the serial console output.
+7. Assure that NULink Debugger is selected.
+8. Launch a debug session and watch the LED's LEDG and LEDY are blinking.
