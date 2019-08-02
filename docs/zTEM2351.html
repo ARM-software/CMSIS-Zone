@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>STMicroelectronics STM32L5</title>
-<title>CMSIS-Zone (Preview): STMicroelectronics STM32L5</title>
+<title>Nuvoton NuMicro M2351</title>
+<title>CMSIS-Zone (Preview): Nuvoton NuMicro M2351</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="cmsis.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="jquery.js"></script>
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('zTESTM32L5.html','');});
+$(document).ready(function(){initNavTree('zTEM2351.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -107,33 +107,32 @@ $(document).ready(function(){initNavTree('zTESTM32L5.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">STMicroelectronics STM32L5 </div>  </div>
+<div class="title">Nuvoton NuMicro M2351 </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>This single processor demo application shows how to do the <a class="el" href="UseCases.html#UseCase_TrustZone">TrustZone Partitioning</a>. It is split into a secure and non-secure part. Using CMSIS-Zone, it generates:</p>
+<div class="textblock"><p>This single processor demo application shows how to do the <a class="el" href="UseCases.html#UseCase_TrustZone">TrustZone Partitioning</a>. It is split into a secure and non-secure part. Some peripherals are assigned to either the secure or the non-secure zone to demonstrate the generation of PPC setup and interrupt configuration in the partition.h template. Using CMSIS-Zone, it generates:</p>
 <ul>
 <li>A header file that contains #defines to control the various linker scatter files (and might be used in other parts of the application).</li>
-<li>The SystemIsolation_Config.c header file that contains memory protection controller (MPC) and peripheral protection controller (PPC) and related interrupt setup.</li>
-<li>The partition_gen.h header file that contains the secure attribution unit (SAU) setup and the NVIC configuration for secure/non-secure.</li>
+<li>Secure attribution unit (SAU) setup.</li>
 </ul>
-<p>The application itself shows how to implement calls between the secure and the non-secure part.</p>
-<h1><a class="anchor" id="zTESTM32L5_Eclipse"></a>
+<p>The application itself shows how to implement calls between the secure and the non-secure part and how to use this to blink an LED.</p>
+<h1><a class="anchor" id="zTEM2351_Eclipse"></a>
 Using the CMSIS-Zone project</h1>
 <ul>
-<li><a class="el" href="zTExamples.html#zTExImport">Import</a> the project "Examples\STM32L5\Zone" into the CMSIS-Zone utility</li>
-<li><a class="el" href="zTUI.html#zTProjEx">Open</a> the STM32L5.azone file</li>
+<li><a class="el" href="zTExamples.html#zTExImport">Import</a> the project "Examples\M2351\Zone" into the CMSIS-Zone utility</li>
+<li><a class="el" href="zTUI.html#zTProjEx">Open</a> the M2351.azone file</li>
 <li><a class="el" href="zTUIGenerate.html">Generate</a> the related output files</li>
 </ul>
-<p>The STM32L5.azone file of that project has the following configuration settings:</p>
+<p>The M2351.azone file of that project has the following configuration settings:</p>
 <ul>
-<li><a class="el" href="zTUIZonePart.html#zTUICreate">Added the zones</a> <code>blinky_s</code> and <code>blinky_ns</code> </li>
+<li><a class="el" href="zTUIZonePart.html#zTUICreate">Added the zones</a> <code>Secure</code> and <code>NonSecure</code> </li>
 <li><a class="el" href="zTUIMemPerRes.html#zTUIMemAdd">Created the memory regions</a> <code>CODE_NS</code>, <code>CODE_S</code>, <code>Veneer</code>, <code>DATA_NS</code>, and <code>DATA_S</code> </li>
 <li>Selected various memory regions and peripherals for using in the different zones: <div class="image">
-<img src="STM32L5_zones.png" alt="STM32L5_zones.png"/>
+<img src="m2351_zones.png" alt="m2351_zones.png"/>
 </div>
 </li>
 </ul>
-<p>The zones use different Flash and SRAM regions for code and data, but share Flash configuration registers. Peripherals, such as the system and IO configuration, as well as an UART are available in the secure world only. To generate the output, click on the <a class="el" href="zTUIGenerate.html">Generate</a> button in the Zone Editor tool bar. This creates the following files in the <code>ftl_gen</code> directory:</p>
+<p>The zones use different Flash and SRAM regions for code and data. To generate the output, click on the <a class="el" href="zTUIGenerate.html">Generate</a> button in the Zone Editor tool bar. This creates the following files in the <code>ftl_gen</code> directory:</p>
 <table class="doxtable">
 <tr>
 <th align="left">Template File </th><th align="left">Generated File </th><th align="left">Description  </th></tr>
@@ -146,49 +145,49 @@ Using the CMSIS-Zone project</h1>
 <tr>
 <td align="left">partition_gen.h.ftl </td><td align="left">partition_gen.h </td><td align="left">Configuration of the secure attribution unit (SAU) and the NVIC interrupt assignment. </td></tr>
 <tr>
-<td align="left">SystemIsolation_Config.c.ftl </td><td align="left">SystemIsolation_Config.c </td><td align="left">Setup of the MPC and PPC. </td></tr>
+<td align="left">scatter_ns.sct.ftl </td><td align="left">scatter_ns.sct </td><td align="left">Example scatter file for the non-secure zone. </td></tr>
 <tr>
-<td align="left">blinky_ns.sct.ftl </td><td align="left">blinky_ns.sct </td><td align="left">Scatter file for non-secure zone. </td></tr>
-<tr>
-<td align="left">blinky_s.sct.ftl </td><td align="left">blinky_s.sct </td><td align="left">Scatter file for secure zone. </td></tr>
+<td align="left">scatter_s.sct.ftl </td><td align="left">scatter_s.sct </td><td align="left">Example scatter file for the secure zone. </td></tr>
 </table>
 <p>These files can be used in any IDE to create the final application. In the following, the usage in Arm Keil MDK is described.</p>
-<h1><a class="anchor" id="zTESTM32L5_MDK"></a>
+<h1><a class="anchor" id="zTEM2351_MDK"></a>
 Using the MDK project</h1>
 <p>The example project can be loaded, built and debugged in µVision by performing the following steps:</p>
 <ol type="1">
-<li>Navigate to Examples/STM32L5/MDK</li>
-<li>Open the multi-project workspace blinky.uvmpw</li>
-<li>Optional: Update the generated files by executing the copy_gen.bat scripts in blinky_s\mdk and blinky_ns\mdk folders.</li>
-<li>Run the batch build in MDK. Both projects, blinky_s and blinky_ns need to be compiled in order.</li>
+<li>Navigate to Examples/M2351/MDK</li>
+<li>Open the multi-project workspace TrustZone.uvmpw</li>
+<li>Optional: Update the generated files by executing the copy_gen.bat scripts in Secure\mdk and NonSecure\mdk folders.</li>
+<li>Run the batch build in MDK. Both projects, Secure and NonSecure need to be compiled in order.</li>
+<li>Set <code>Secure</code> as active project.</li>
+<li>Connect the NuMaker-PFM-M2351 board using a Micro-USB cable at ICEJ.</li>
+<li>Open <b>Options for Target - Debug</b> and make sure that the NULink Debugger is selected.</li>
+<li>Launch a debug session and watch LEDG and LEDY blinking.</li>
 </ol>
-<h1><a class="anchor" id="zTESTM32L5_MDK_Setup"></a>
+<h1><a class="anchor" id="zTEM2351_MDK_Setup"></a>
 MDK project setup</h1>
-<p>The multiproject workspace contains the secure <code>blinky_s</code> project and the non-secure <code>blinky_ns</code> project:</p>
+<p>The multiproject workspace contains the <code>Secure</code> project and the <code>NonSecure</code> project:</p>
 <div class="image">
-<img src="blinky_window.png" alt="blinky_window.png"/>
+<img src="m2351_proj_window.png" alt="m2351_proj_window.png"/>
 </div>
 <p>The projects use the files generated in CMSIS-Zone as follows:</p>
 <table class="doxtable">
 <tr>
 <th align="left">File </th><th align="left">Used in </th><th align="left">Description  </th></tr>
 <tr>
-<td align="left">mem_layout.h </td><td align="left">blinky_s, blinky_ns </td><td align="left">Input for the linker scatter files. </td></tr>
+<td align="left">mem_layout.h </td><td align="left">Secure, NonSecure </td><td align="left">Input for the scatter files. </td></tr>
 <tr>
-<td align="left">partition_gen.h </td><td align="left">blinky_s </td><td align="left">Configuration of the secure attribution unit (SAU) and the NVIC interrupt assignment. This file is included in the partition_stm32l5xx.h header file. </td></tr>
+<td align="left">partition_gen.h </td><td align="left">Secure </td><td align="left">Configuration of the secure attribution unit (SAU) and the NVIC interrupt assignment. </td></tr>
 <tr>
-<td align="left">SystemIsolation_Config.c </td><td align="left">blinky_s </td><td align="left">Setup of the MPC and PPC. </td></tr>
+<td align="left">scatter_ns.sct </td><td align="left">NonSecure </td><td align="left">Scatter file for non-secure zone (initally based on generated file). </td></tr>
 <tr>
-<td align="left">blinky_ns.sct </td><td align="left">blinky_ns </td><td align="left">Scatter file for non-secure zone (initally based on generated file). </td></tr>
-<tr>
-<td align="left">blinky_s.sct </td><td align="left">blinky_s </td><td align="left">Scatter file for secure zone (initally based on generated file). </td></tr>
+<td align="left">scatter_s.sct </td><td align="left">Secure </td><td align="left">Scatter file for secure zone (initally based on generated file). </td></tr>
 </table>
+<p>The scatter files <code>scatter_s.sct</code> and <code>scatter_ns.sct</code> are using a preinclude to mem_layout.h to get the information about the different memory regions.</p>
 <dl class="section note"><dt>Note</dt><dd>If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to <a href="https://www.keil.com/appnotes/docs/apnt_291.asp" target="_blank">Application Note 291</a>.</dd></dl>
-<h2><a class="anchor" id="zTESTM32L5_hwsScatter"></a>
-blinky_s.sct</h2>
-<p>As explained previously, the #defines in <code>mem_layout.h</code> can be used to create generic scatter files that are easy to update once changes in the CMSIS-Zone project happen. Using the <b>mem_layout.h</b> file from CMSIS-Zone, the following scatter file is used in the secure <code>blinky</code> project, which is based on the generated scatterf file (scatter_s.sct):</p>
-<div class="fragment"><div class="line">; Use Arm compiler 6 to pre-process the scatter file and pull in the defines from the mem_layout.h file:</div>
-<div class="line"><span class="preprocessor">#! armclang -E --target=arm-arm-none-eabi -mcpu=cortex-m33 -I../ -xc</span></div>
+<h2><a class="anchor" id="zTEM2351_hwsScatter"></a>
+scatter_s.sct</h2>
+<p>As explained previously, the #defines in <code>mem_layout.h</code> can be used to create generic scatter files that are easy to update once changes in the CMSIS-Zone project happen. Using the <b>mem_layout.h</b> file from CMSIS-Zone, the following scatter file is used in the <code>Sections</code> project:</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#! armclang -E --target=arm-arm-none-eabi -mcpu=cortex-m23 -I../ -xc</span></div>
 <div class="line"><span class="preprocessor"></span></div>
 <div class="line"><span class="preprocessor">#include &quot;mem_layout.h&quot;</span></div>
 <div class="line"></div>
@@ -223,16 +222,12 @@ blinky_s.sct</h2>
 <div class="line">  }</div>
 <div class="line"><span class="preprocessor">#endif  </span></div>
 <div class="line"><span class="preprocessor"></span>}</div>
-<div class="line">LR_Veneer REGION_VENEER_START REGION_VENEER_SIZE {</div>
-<div class="line">  ER_Veneer REGION_VENEER_START REGION_VENEER_SIZE {</div>
+<div class="line">LR_VENEER REGION_VENEER_START REGION_VENEER_SIZE {</div>
+<div class="line">  ER_VENEER REGION_VENEER_START REGION_VENEER_SIZE {</div>
 <div class="line">         (Veneer$$CMSE)</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>The partition_gen.h header file contains Configuration Wizard annotation so that it can be viewed in a graphical window:</p>
-<div class="image">
-<img src="partition_h_l5.png" alt="partition_h_l5.png"/>
-</div>
- </div></div><!-- contents -->
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
