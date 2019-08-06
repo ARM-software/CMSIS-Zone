@@ -33,7 +33,9 @@ For further details see also the [Slides of the Embedded World CMSIS Partner Mee
 ## Tool Installation
 The [CMSIS-Zone Utility](https://arm-software.github.io/CMSIS-Zone/zoneToolUsage.html) is provided as Eclipse plug in under [release](https://github.com/ARM-software/CMSIS-Zone/releases). For Windows the file *EclipseCDT_2019_3_CMSIS_Zone.zip* provides a complete Eclipse enviornment that is ready to use.  Just unzip it to a suitable folder.
 
-For first steps refer to [CMSIS-Zone Utility - Examples](https://arm-software.github.io/CMSIS-Zone/zTExamples.html) in the documentation.
+For first steps refer to:
+  - [Configuring Armv8-M systems with CMSIS-Zone](https://community.arm.com/developer/tools-software/tools/b/tools-software-ides-blog/posts/configuring-armv8-m-systems-with-cmsis-zone) - this blog contains a video (at the end) that shows how to operate the CMSIS-Zone utility
+  - [CMSIS-Zone Utility - Examples](https://arm-software.github.io/CMSIS-Zone/zTExamples.html) - the documentation contains examples for four different hardware platforms. To get started with a new hardware platform a \*.rzone system resource file is required.
 
 ## Directory Structure
 
