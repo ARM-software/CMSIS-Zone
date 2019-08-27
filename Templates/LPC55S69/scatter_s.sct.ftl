@@ -6,11 +6,11 @@
 <#list zone as z>
   <#if z.security.s == "1">
     <#list z.memory as m>
-    	<#if m.access.w?number == 1>
+        <#if m.access.w?number == 1>
         <#if !data?keys?seq_contains(m.name)>
           <#assign data += { m.name: m }>
         </#if>
-    	<#else>
+        <#else>
         <#if !code?keys?seq_contains(m.name)>
           <#assign code += { m.name: m }>
         </#if>
@@ -29,15 +29,15 @@ LR_${m.name} ${m.start} ${m.size} {
   ER_${m.name} ${m.start} ${m.size} {
   <#-- Add reset vector and root sections to first code regiono -->
   <#if !resetRegion>
-  	<#assign resetRegion = true/>
-  	* (RESET,+FIRST)
+      <#assign resetRegion = true/>
+      * (RESET,+FIRST)
     * (InRoot$$Sections)
     .ANY (+RO, +XO)
   </#if>
   <#-- Add all secure gateways to first veneer region -->
   <#if m.security.c?number == 1 && !veneerRegion>
     <#assign veneerRegion = true/>
-  	*(Veneer$$CMSE)
+      *(Veneer$$CMSE)
   </#if>
   }
 </#if>

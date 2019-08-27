@@ -27,7 +27,7 @@
   <#list system.interrupt?sort_by("irqn") as irq>
     <#assign it += { irq.irqn?number : irq } />  
     <#if (irq.irqn?number > maxirq)>
-	  <#assign maxirq = irq.irqn?number>
+      <#assign maxirq = irq.irqn?number>
     </#if>
     <#if irq.security.n == "1">
       <#assign itns += { irq.irqn?number : irq } />
