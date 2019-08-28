@@ -27,7 +27,7 @@
 LR_${m.name} ${m.start} ${m.size} {
 <#if m.access.x?number == 1>
   ER_${m.name} ${m.start} ${m.size} {
-  <#-- Add reset vector and root sections to first code regiono -->
+  <#-- Add reset vector and root sections to first code region -->
   <#if !resetRegion>
       <#assign resetRegion = true/>
       * (RESET,+FIRST)

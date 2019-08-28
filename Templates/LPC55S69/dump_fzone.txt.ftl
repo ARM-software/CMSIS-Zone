@@ -31,7 +31,7 @@ Interrupt:                      security
   name                  number  s n
 <#list system.interrupt?sort_by("number(irqn)") as irq>
   ${irq.name?right_pad(20)}<#rt>
-  ${irq.irqn?left_pad(4)}  <#rt>
+  ${irq.irqn?number?left_pad(4)}  <#rt>
   ${irq.security.s} ${irq.security.n}
 </#list>
 </#if>
@@ -110,9 +110,16 @@ Zones:
 <#list z.* as c>
   - ${c?node_name?right_pad(10)}: <#rt>
 <#if ((c?node_name == "peripheral") || (c?node_name == "memory"))>
-${c.name?right_pad(20)} (${c.start} : ${c.size})
+${c.name?right_pad(20)} (${num2hex(hex2num(c.start))} : ${c.size})
 <#elseif c?node_name == "security">
-<#if c.s=="1">secure<#else>non-secure</#if>
+<#if c.s=="1">secure<#elseif c.n=="1">non-secure<#elseif c.c=="1">non-secure callable<#else>unknown</#if>
+<#elseif c?node_name == "privilege">
+<#if c.p=="1">privileged<#elseif c.u=="1">unprivileged<#else>unknown</#if>
+<#elseif c?node_name == "mpu_setup">
+${c.type}
+<#list c.region?sort_by("start") as mpu_region>
+${" "?right_pad(15)} ${mpu_region.info?right_pad(20)} ${num2hex(hex2num(mpu_region.start))} .. ${num2hex(hex2num(mpu_region.end))}
+</#list>
 <#else>
 ${c}
 </#if>
