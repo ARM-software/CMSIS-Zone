@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
-  <rzone name="Musca-A1.rzone"/>
+  <rzone name="Zone_Musca-A1_Git.rzone"/>
+  <configure/>
   <partition>
-    <memory access="rw" info="" name="NonsecureRAM" offset="0x0" parent="IRAM1_NS" privilege="" security="n" size="0x8000"/>
-    <memory access="rx" info="" name="NonsecureCode" offset="0x0" parent="SRAM1_NS" privilege="" security="" size="0x80000"/>
-    <memory access="rx" info="" name="SecureCode" offset="0x0" parent="SRAM0_S" security="s" size="0x78000" startup="1"/>
+    <memory access="rx" name="CODE_S" offset="0x0" parent="SRAM0_S" security="s" size="0x78000"/>
     <memory access="rx" info="" name="Veneer" offset="0x78000" parent="SRAM0_S" privilege="" security="c" size="0x8000"/>
-    <memory info="" name="SecureRAM" offset="0x0" parent="IRAM0_S" size="0x8000"/>
+    <memory info="" name="DATA_NS" offset="0x0" parent="IRAM1" size="0x8000"/>
+    <memory info="" name="DATA_S" offset="0x0" parent="IRAM0_S" size="0x8000"/>
+    <memory info="" name="Code_NS" offset="0x0" parent="SRAM1" size="0x80000"/>
   </partition>
   <zones>
-    <zone Dname="Musca" Pname="Cortex-M33-0" info="" name="SecureFW" security="s">
-      <assign memory="SecureRAM"/>
-      <assign memory="SecureCode"/>
+    <zone Pname="Cortex-M33-0" info="" name="cm33-0_s" privilege="" security="">
+      <assign memory="DATA_S"/>
+      <assign memory="CODE_S"/>
       <assign memory="Veneer"/>
-      <assign peripheral="TIMER0"/>
       <assign group="Expansion" peripheral="UART0"/>
+      <assign peripheral="TIMER0"/>
     </zone>
-    <zone Dname="Musca" Pname="Cortex-M33-0" info="" name="NonsecureFW" security="n">
-      <assign memory="NonsecureRAM"/>
-      <assign memory="NonsecureCode"/>
-      <assign peripheral="TIMER1"/>
+    <zone Pname="Cortex-M33-0" info="" name="cm33-0_ns" privilege="" security="">
+      <assign memory="DATA_NS"/>
+      <assign memory="Code_NS"/>
       <assign group="Expansion" peripheral="UART1"/>
+      <assign peripheral="TIMER1"/>
     </zone>
   </zones>
 </azone>

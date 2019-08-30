@@ -52,7 +52,7 @@ void TZ_Config_SAU(void)
   SAU->RNR  =  (${sau_entry?index}U                      & SAU_RNR_REGION_Msk);
   SAU->RBAR =  (${sau_entry.start_address}U             & SAU_RBAR_BADDR_Msk);
   SAU->RLAR =  (${sau_entry.end_address}U             & SAU_RLAR_LADDR_Msk) |
-              ((${sau_entry.nsc}U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | 1U;
+              ((${sau_entry.nsc}U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | ${sau_entry.init}U;
 
 </#list>
   /* Configure SAU Control */

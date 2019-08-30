@@ -9,6 +9,33 @@ Add the following line to a FreeMarker template file
 Copyright (c) 2019 ARM Ltd. 
 -->
  
+<#--
+Converts a hexadecimal string to a number
+
+Parameters:
+   hex  The hex string, optionally starting with 0x.
+
+Returns:
+   Hex value converted to integer number.
+   
+Example:
+   hex2num(0x0000032F) => 815
+   hex2num(0x002F)     => 47
+   hex2num(102)        => 258
+-->
+<#function hex2num hex>
+  <#local hexdigit={ "A":10, "B":11, "C":12, "D":13, "E":14, "F":15 } />
+  <#local result=0 />
+  <#local hex=hex?remove_beginning("0x") />
+  <#list hex?length-1..0 as i>
+    <#attempt>
+      <#local result += hex[i]?number*pow2(i?index*4)/>
+    <#recover>
+      <#local result += hexdigit[hex[i]]*pow2(i?index*4)/>
+    </#attempt>
+  </#list>
+  <#return result/>
+</#function>
 
 <#--
 Convert number to hexadecimal string
