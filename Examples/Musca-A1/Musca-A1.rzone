@@ -7,18 +7,18 @@
   </device>
   <resources>
     <memories>
-      <memory name="IRAM0"    start="0x20000000"                       size="0x00008000" access="rw" security=""  type="RAM" info="Internal SRAM0" />
+      <memory name="IRAM0"    start="0x20000000"                       size="0x00008000" access="rw"              type="RAM" info="Internal SRAM0" />
       <memory name="IRAM0_S"  start="0x30000000" physical="0x20000000" size="0x00008000" access="rw" security="s" type="RAM" info="Internal SRAM0 (Secure) "/>
-      <memory name="IRAM1"    start="0x20008000"                       size="0x00008000" access="rw" security=""  type="RAM" info="Internal SRAM1" />
+      <memory name="IRAM1"    start="0x20008000"                       size="0x00008000" access="rw"              type="RAM" info="Internal SRAM1" />
       <memory name="IRAM1_S"  start="0x30008000" physical="0x20008000" size="0x00008000" access="rw" security="s" type="RAM" info="Internal SRAM1 (Secure) "/>
-      <memory name="IRAM2"    start="0x20010000"                       size="0x00008000" access="rw" security=""  type="RAM" info="Internal SRAM2" />
+      <memory name="IRAM2"    start="0x20010000"                       size="0x00008000" access="rw"              type="RAM" info="Internal SRAM2" />
       <memory name="IRAM2_S"  start="0x30010000" physical="0x20010000" size="0x00008000" access="rw" security="s" type="RAM" info="Internal SRAM2 (Secure)" />
-      <memory name="IRAM3"    start="0x20018000"                       size="0x00008000" access="rw" security=""  type="RAM" info="Internal SRAM3" />
+      <memory name="IRAM3"    start="0x20018000"                       size="0x00008000" access="rw"              type="RAM" info="Internal SRAM3" />
       <memory name="IRAM3_S"  start="0x30018000" physical="0x20018000" size="0x00008000" access="rw" security="s" type="RAM" info="Internal SRAM3 (Secure)" />
-      <mpc name="MPC_SRAM0"   start="0x20000000"                       size="0x00008000" blk_size="0x100" type="s"           info="MPC Internal SRAM0" />
-      <mpc name="MPC_SRAM1"   start="0x20008000"                       size="0x00008000" blk_size="0x100" type="s"           info="MPC Internal SRAM1" />
-      <mpc name="MPC_SRAM2"   start="0x20010000"                       size="0x00008000" blk_size="0x100" type="s"           info="MPC Internal SRAM2" />
-      <mpc name="MPC_SRAM3"   start="0x20018000"                       size="0x00008000" blk_size="0x100" type="s"           info="MPC Internal SRAM3" />
+      <mpc name="MPC_SRAM0"   start="0x20000000"                       size="0x00008000" blk_size="0x2000" type="s"          info="MPC Internal SRAM0" />
+      <mpc name="MPC_SRAM1"   start="0x20008000"                       size="0x00008000" blk_size="0x2000" type="s"          info="MPC Internal SRAM1" />
+      <mpc name="MPC_SRAM2"   start="0x20010000"                       size="0x00008000" blk_size="0x2000" type="s"          info="MPC Internal SRAM2" />
+      <mpc name="MPC_SRAM3"   start="0x20018000"                       size="0x00008000" blk_size="0x2000" type="s"          info="MPC Internal SRAM3" />
 
       <memory name="SRAM0"      start="0x00000000"                        size="0x00080000" access="rwx"              type="RAM" external="1" info="Code SRAM Bank 0" />
       <memory name="SRAM0_S"    start="0x10000000" physical="0x00000000"  size="0x00080000" access="rwx" security="c" type="RAM" external="1" info="Code SRAM Bank 0 (Secure)" />
@@ -28,11 +28,11 @@
       <memory name="SRAM2_S"    start="0x10100000" physical="0x00100000"  size="0x00080000" access="rwx" security="c" type="RAM" external="1" info="Code SRAM Bank 2 (Secure)" />
       <memory name="SRAM3"      start="0x00180000"                        size="0x00080000" access="rwx"              type="RAM" external="1" info="Code SRAM Bank 3" />
       <memory name="SRAM3_S"    start="0x10180000" physical="0x00180000"  size="0x00080000" access="rwx" security="c" type="RAM" external="1" info="Code SRAM Bank 3 (Secure)" />
-      <mpc name="MPC_CODE_SRAM" start="0x00000000"                        size="0x00200000" blk_size="0x100" type="s"                        info="MPC Code SRAM" />
+      <mpc name="MPC_CODE_SRAM" start="0x00000000"                        size="0x00200000" blk_size="0x2000" type="s"                        info="MPC Code SRAM" />
 
       <memory name="QSPI_Flash"   start="0x00200000"                       size="0x00040000" access="rx"              type="ROM" external="1" info="QSPI Flash" />
       <memory name="QSPI_Flash_S" start="0x10200000" physical="0x00200000" size="0x00040000" access="rx" security="c" type="ROM" external="1" info="QSPI Flash (Secure)"/>
-      <mpc name="MPC_QSPI"        start="0x00200000"                       size="0x00040000" blk_size="0x100" type="s"                        info="MPC QSPI Flash" />
+      <mpc name="MPC_QSPI"        start="0x00200000"                       size="0x00040000" blk_size="0x2000" type="s"                       info="MPC QSPI Flash" />
     </memories>
     <peripherals>
       <peripheral name="S32K_WDOG" start="0x4002E000" start_s="0x5002E000" size="0x1000" access="rwp"              info="CMSDK Watchdog on 32KCLK"/>

@@ -1,12 +1,14 @@
 <#compress>
 <#include "helper.ftlinc"/>
 
+<#assign mpu_valid = zone.mpu_setup?has_content>
 </#compress>
 /*
  * Copyright 2019 Arm Limited
  *
  * SPDX-License-Identifier: Apache 2.0
  */
+<#if mpu_valid>
 
 #include "RTE_Components.h"
 #include CMSIS_device_header
@@ -39,7 +41,7 @@ static const uint8_t mpu_attr[8] = {
   /* (3)-(7) unused */
   0, 0, 0, 0, 0
 };
-
+</#if>
 
 <#list zone as z>
   <#if z.mpu_setup?has_content>
@@ -95,6 +97,7 @@ ARM_MPU_Region_t mpu_table_${z.name}[1][${mrt_entries}] = {
   </#if>
 </#list>
 
+<#if mpu_valid>
 /*
  * Initial MPU configuration
  * Load static MPU regions for Level 2
@@ -112,3 +115,4 @@ void TZ_Config_MPU(void)
   
   ARM_MPU_Enable(1U);
 }
+</#if>

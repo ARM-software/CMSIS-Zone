@@ -3,11 +3,31 @@
   <rzone name="Zone_Musca-A1_Git.rzone"/>
   <configure/>
   <partition>
+    <memory access="rw" info="Internal SRAM0" name="IRAM0" security="" size="0x00008000" start="0x20000000" type="RAM"/>
+    <memory info="" name="DATA_S" offset="0x0" parent="IRAM0_S" size="0x8000"/>
     <memory access="rx" name="CODE_S" offset="0x0" parent="SRAM0_S" security="s" size="0x78000"/>
     <memory access="rx" info="" name="Veneer" offset="0x78000" parent="SRAM0_S" privilege="" security="c" size="0x8000"/>
+    <memory access="rw" info="Internal SRAM1" name="IRAM1" security="" size="0x00008000" start="0x20008000" type="RAM"/>
     <memory info="" name="DATA_NS" offset="0x0" parent="IRAM1" size="0x8000"/>
-    <memory info="" name="DATA_S" offset="0x0" parent="IRAM0_S" size="0x8000"/>
+    <memory access="rw" info="Internal SRAM2" name="IRAM2" security="" size="0x00008000" start="0x20010000" type="RAM"/>
     <memory info="" name="Code_NS" offset="0x0" parent="SRAM1" size="0x80000"/>
+    <memory access="rw" info="Internal SRAM3" name="IRAM3" security="" size="0x00008000" start="0x20018000" type="RAM"/>
+    <peripheral access="prw" info="CMSDK Timer 1" name="TIMER1" privilege="u" security="n" size="0x1000" start="0x40001000" start_s="0x50001000"/>
+    <peripheral access="rwp" group="Expansion" info="Inter-IC sound" name="I2S" size="0x1000" start="0x40106000" start_s="0x50106000"/>
+    <peripheral access="rwp" group="Expansion" info="General purpose timer" name="GPTIMER" size="0x1000" start="0x4010B000" start_s="0x5010B000"/>
+    <peripheral access="rwp" group="Expansion" info="Puls width modulation0" name="PWM0" size="0x1000" start="0x40107000" start_s="0x50107000"/>
+    <peripheral access="prw" group="Expansion" info="Universal asynchronous receiver transmitter 1" name="UART1" privilege="u" security="n" size="0x1000" start="0x40102000" start_s="0x50102000"/>
+    <peripheral access="rwp" group="Expansion" info="Serial peripheral interface0" name="SPI0" size="0x1000" start="0x40103000" start_s="0x50103000"/>
+    <peripheral access="rwp" group="Expansion" info="Inter-integrated circuit 1" name="I2C1" size="0x1000" start="0x40105000" start_s="0x50105000"/>
+    <peripheral access="prw" info="CMSDK Timer 0" name="TIMER0" privilege="p" security="s" size="0x1000" start="0x40000000" start_s="0x50000000"/>
+    <peripheral access="rwp" group="Expansion" info="Serial configuration controller" name="SCC" size="0x1000" start="0x4010C000" start_s="0x5010C000"/>
+    <peripheral access="rwp" group="Expansion" info="General purpose I/O" name="GPIO" size="0x1000" start="0x40110000" start_s="0x50110000"/>
+    <peripheral access="rwp" group="Expansion" info="Real time clock" name="RTC" size="0x1000" start="0x40108000" start_s="0x50108000"/>
+    <peripheral access="rwp" group="Expansion" info="Quad serial peripheral interface" name="QSPI" size="0x1000" start="0x4010A000" start_s="0x5010A000"/>
+    <peripheral access="rwp" group="Expansion" info="Puls width modulation 1" name="PWM1" size="0x1000" start="0x4010E000" start_s="0x5010E000"/>
+    <peripheral access="rwp" group="Expansion" info="Inter-integrated circuit 0" name="I2C0" size="0x1000" start="0x40104000" start_s="0x50104000"/>
+    <peripheral access="prw" group="Expansion" info="Universal asynchronous receiver transmitter 0" name="UART0" offset="0x0" privilege="p" security="s" size="0x1000" start="0x40101000" start_s="0x50101000"/>
+    <peripheral access="rwp" group="Expansion" info="Puls width modulation 2" name="PWM2" size="0x1000" start="0x4010F000" start_s="0x5010F000"/>
   </partition>
   <zones>
     <zone Pname="Cortex-M33-0" info="" name="cm33-0_s" privilege="" security="">
