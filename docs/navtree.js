@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "CMSIS-Zone (Preview)", "index.html", [
+    [ "CMSIS-Zone introduction video", "index.html#mainIntroVideo", null ],
     [ "Revision History of CMSIS-Zone", "zone_revisionHistory.html", null ],
     [ "CMSIS-Zone Use Cases", "UseCases.html", [
       [ "MPU Protection", "UseCases.html#UseCase_MPU", null ],

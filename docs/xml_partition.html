@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="CMSIS_Logo_Final.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CMSIS-Zone (Preview)
-   &#160;<span id="projectnumber">Version 0.9.4</span>
+   &#160;<span id="projectnumber">Version 0.9.5</span>
    </div>
    <div id="projectbrief">System Resource Management</div>
   </td>
@@ -187,11 +187,11 @@ $(document).ready(function(){initNavTree('xml_partition.html','');});
 <tr>
 <td>group </td><td>The group name of the peripheral. The combination group / name must be be unique within a processor (specified by Pname). </td><td>xs:string </td><td>required  </td></tr>
 <tr>
-<td>start </td><td>The logical start address of the peripheral in both secure and non-secure mode. </td><td>xs:string </td><td>optional  </td></tr>
+<td>start </td><td>The logical start address of the peripheral in both secure and non-secure mode. </td><td>xs:string </td><td>required  </td></tr>
 <tr>
-<td>start_s </td><td>The logical start address of the peripheral in secure mode. </td><td>xs:string </td><td>optional  </td></tr>
+<td>start_s </td><td>The logical start address of the peripheral in secure mode only. </td><td>xs:string </td><td>optional  </td></tr>
 <tr>
-<td>start_ns </td><td>The logical start address of the peripheral in non-secure mode. </td><td>xs:string </td><td>optional  </td></tr>
+<td>physical </td><td>The physical start address of the peripheral group (in case that peripheral is shared in multi-processor system on different address). </td><td>xs:string </td><td>optional  </td></tr>
 <tr>
 <td>shared </td><td>"1" specifies that this peripheral group is used by multiple zones. Default value is "0". </td><td>xs:boolean </td><td>optional  </td></tr>
 <tr>
@@ -233,7 +233,7 @@ $(document).ready(function(){initNavTree('xml_partition.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="zoneFormat.html">Zone Description Format</a></li><li class="navelem"><a class="el" href="xml_azone_pg.html">/azone element</a></li>
-    <li class="footer">Generated on Thu Aug 1 2019 14:26:58 for CMSIS-Zone (Preview) Version 0.9.4 by Arm Ltd. All rights reserved.
+    <li class="footer">Generated on Tue Sep 3 2019 14:04:39 for CMSIS-Zone (Preview) Version 0.9.5 by Arm Ltd. All rights reserved.
 	<!--
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 
