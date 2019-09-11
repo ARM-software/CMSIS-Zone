@@ -1,0 +1,51 @@
+#! armclang -E --target=arm-arm-none-eabi -mcpu=cortex-m3 -xc
+
+#include "mem_layout.h"
+
+LR_CODE REGION_CODE_START REGION_CODE_SIZE {
+  ER_CODE REGION_CODE_START REGION_CODE_SIZE {
+  	*.o (RESET,+FIRST)
+    * (InRoot$$Sections)
+    .ANY (+RO, +XO)
+  }
+  RW_RAM_PRIVILEGED REGION_RAM_PRIVILEGED_START REGION_RAM_PRIVILEGED_SIZE {
+     Net_Config.o (.bss.os.*.cb)
+    .ANY (+RW +ZI)
+  }
+  RW_RAM_SHARED REGION_RAM_SHARED_START REGION_RAM_SHARED_SIZE {
+    system_stm32f4xx.o (.data.SystemCoreClock)
+;   *.o (.data.shared)
+    *.o (.bss.shared)
+  }
+  RW_RAM_EVR REGION_RAM_EVR_START UNINIT REGION_RAM_EVR_SIZE {
+    EventRecorder.o (+ZI)
+  }
+  RW_RAM_BSD REGION_RAM_BSD_START REGION_RAM_BSD_SIZE {
+    bsd.o (+RW +ZI)
+  }
+  RW_RAM_NET REGION_RAM_NET_START REGION_RAM_NET_SIZE {
+    *Net*.lib (+RW +ZI)
+    Net_Config.o (.bss*)
+    emac_stm32f4xx.o (+RW +ZI)
+    phy_ksz8081rna.o (+RW +ZI)
+    phy_st802rt1.o (+RW +ZI)
+  }
+  RW_RAM_TIMER REGION_RAM_TIMER_START REGION_RAM_TIMER_SIZE {
+    timer.o (+RW +ZI)
+    *.o (.bss.os.thread.stack.rtx.timer)
+  }
+  RW_RAM_ADC REGION_RAM_ADC_START REGION_RAM_ADC_SIZE {
+    adc.o (+RW +ZI)
+    adc_mcbstm32f400.o (+RW +ZI)
+  }
+  RW_RAM_LED REGION_RAM_LED_START REGION_RAM_LED_SIZE {
+    led.o (+RW +ZI)
+  }
+  RW_RAM_MAIN REGION_RAM_MAIN_START REGION_RAM_MAIN_SIZE {
+    app.o (+RW +ZI)
+  }
+  RW_RAM_IDLE REGION_RAM_IDLE_START REGION_RAM_IDLE_SIZE {
+    RTX_Config.o (+RW +ZI)
+    *.o (.bss.os.thread.stack.rtx.idle)
+  }
+}

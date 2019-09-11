@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <device Dfamily="STM32F4 Series" Dname="STM32F407IG" DsubFamily="STM32F407" Dvariant="STM32F407IGHx" Dvendor="STMicroelectronics:13" info="ARM , 192 KB RAM, 1 MB ROM" url="http://www.keil.com/dd2/st/stm32f407ighx">
+    <package info="STMicroelectronics STM32F4 Series Device Support, Drivers and Examples" name="STM32F4xx_DFP" url="http://www.keil.com/pack" vendor="Keil" version="2.14.0-dev7"/>
+    <processor Dclock="168000000" Dcore="Cortex-M4" DcoreVersion="r0p1" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rwx" default="1" init="0" name="IRAM1" size="0x00020000" start="0x20000000"/>
+      <memory access="rwx" init="0" name="IRAM2" size="0x00010000" start="0x10000000"/>
+      <memory access="rx" default="1" name="IROM1" size="0x00100000" start="0x08000000" startup="1"/>
+    </memories>
+    <peripherals>
+      <peripheral access="rw" info="Graphic LCD" name="GLCD" size="0x8000" start="0x6C000000"/>
+      <group name="ADC">
+        <peripheral access="prw" info="Analog-to-digital converter" name="ADC1" size="0x100" start="0x40012000">
+          <interrupt info="ADC1 global interrupt" irqn="18" name="ADC"/>
+        </peripheral>
+        <peripheral access="prw" name="ADC2" size="0x100" start="0x40012100">
+          <interrupt info="ADC2 global interrupts" irqn="18" name="ADC"/>
+        </peripheral>
+        <peripheral access="prw" name="ADC3" size="0x100" start="0x40012200">
+          <interrupt info="ADC3 global interrupts" irqn="18" name="ADC"/>
+        </peripheral>
+        <peripheral access="prw" info="Common ADC registers" name="C_ADC" size="0x100" start="0x40012300"/>
+      </group>
+      <group name="CAN">
+        <peripheral access="prw" info="Controller area network" name="CAN1" size="0x400" start="0x40006400">
+          <interrupt info="CAN1 RX0 interrupts" irqn="20" name="CAN1_RX0"/>
+          <interrupt info="CAN1 RX1 interrupts" irqn="21" name="CAN1_RX1"/>
+          <interrupt info="CAN1 SCE interrupt" irqn="22" name="CAN1_SCE"/>
+          <interrupt info="CAN1 TX interrupts" irqn="19" name="CAN1_TX"/>
+        </peripheral>
+        <peripheral access="prw" name="CAN2" size="0x400" start="0x40006800">
+          <interrupt info="CAN2 RX0 interrupts" irqn="64" name="CAN2_RX0"/>
+          <interrupt info="CAN2 RX1 interrupts" irqn="65" name="CAN2_RX1"/>
+          <interrupt info="CAN2 SCE interrupt" irqn="66" name="CAN2_SCE"/>
+          <interrupt info="CAN2 TX interrupts" irqn="63" name="CAN2_TX"/>
+        </peripheral>
+      </group>
+      <peripheral access="prw" info="Cryptographic processor" name="CRC" size="0x400" start="0x40023000"/>
+      <peripheral access="prw" info="Digital-to-analog converter" name="DAC" size="0x400" start="0x40007400">
+        <interrupt info="TIM6 global interrupt, DAC1 and DAC2 underrun&#10;        error interrupt" irqn="54" name="TIM6_DAC"/>
+      </peripheral>
+      <peripheral access="prw" info="Debug support" name="DBG" size="0x400" start="0xE0042000"/>
+      <peripheral access="prw" info="Digital camera interface" name="DCMI" size="0x400" start="0x50050000">
+        <interrupt info="DCMI global interrupt" irqn="78" name="DCMI"/>
+      </peripheral>
+      <group name="DMA">
+        <peripheral access="prw" name="DMA1" size="0x400" start="0x40026000">
+          <interrupt info="DMA1 Stream0 global interrupt" irqn="11" name="DMA1_Stream0"/>
+          <interrupt info="DMA1 Stream1 global interrupt" irqn="12" name="DMA1_Stream1"/>
+          <interrupt info="DMA1 Stream2 global interrupt" irqn="13" name="DMA1_Stream2"/>
+          <interrupt info="DMA1 Stream3 global interrupt" irqn="14" name="DMA1_Stream3"/>
+          <interrupt info="DMA1 Stream4 global interrupt" irqn="15" name="DMA1_Stream4"/>
+          <interrupt info="DMA1 Stream5 global interrupt" irqn="16" name="DMA1_Stream5"/>
+          <interrupt info="DMA1 Stream6 global interrupt" irqn="17" name="DMA1_Stream6"/>
+          <interrupt info="DMA1 Stream7 global interrupt" irqn="47" name="DMA1_Stream7"/>
+        </peripheral>
+        <peripheral access="prw" info="DMA controller" name="DMA2" size="0x400" start="0x40026400">
+          <interrupt info="DMA2 Stream0 global interrupt" irqn="56" name="DMA2_Stream0"/>
+          <interrupt info="DMA2 Stream1 global interrupt" irqn="57" name="DMA2_Stream1"/>
+          <interrupt info="DMA2 Stream2 global interrupt" irqn="58" name="DMA2_Stream2"/>
+          <interrupt info="DMA2 Stream3 global interrupt" irqn="59" name="DMA2_Stream3"/>
+          <interrupt info="DMA2 Stream4 global interrupt" irqn="60" name="DMA2_Stream4"/>
+          <interrupt info="DMA2 Stream5 global interrupt" irqn="68" name="DMA2_Stream5"/>
+          <interrupt info="DMA2 Stream6 global interrupt" irqn="69" name="DMA2_Stream6"/>
+          <interrupt info="DMA2 Stream7 global interrupt" irqn="70" name="DMA2_Stream7"/>
+        </peripheral>
+      </group>
+      <group name="Ethernet">
+        <peripheral access="prw" info="Ethernet: DMA controller operation" name="Ethernet_DMA" size="0x1000" start="0x40029000"/>
+        <peripheral access="prw" info="Ethernet: media access control&#10;      (MAC)" name="Ethernet_MAC" size="0x100" start="0x40028000">
+          <interrupt info="Ethernet global interrupt" irqn="61" name="ETH"/>
+          <interrupt info="Ethernet Wakeup through EXTI line&#10;        interrupt" irqn="62" name="ETH_WKUP"/>
+        </peripheral>
+        <peripheral access="prw" info="Ethernet: MAC management counters" name="Ethernet_MMC" size="0x600" start="0x40028100"/>
+        <peripheral access="prw" info="Ethernet: Precision time protocol" name="Ethernet_PTP" size="0x900" start="0x40028700"/>
+      </group>
+      <peripheral access="prw" info="External interrupt/event&#10;      controller" name="EXTI" size="0x400" start="0x40013C00">
+        <interrupt info="EXTI Line0 interrupt" irqn="6" name="EXTI0"/>
+        <interrupt info="EXTI Line1 interrupt" irqn="7" name="EXTI1"/>
+        <interrupt info="EXTI Line2 interrupt" irqn="8" name="EXTI2"/>
+        <interrupt info="EXTI Line3 interrupt" irqn="9" name="EXTI3"/>
+        <interrupt info="EXTI Line4 interrupt" irqn="10" name="EXTI4"/>
+        <interrupt info="EXTI Line[9:5] interrupts" irqn="23" name="EXTI9_5"/>
+        <interrupt info="EXTI Line[15:10] interrupts" irqn="40" name="EXTI15_10"/>
+        <interrupt info="Tamper and TimeStamp interrupts through the&#10;        EXTI line" irqn="2" name="TAMP_STAMP"/>
+      </peripheral>
+      <peripheral access="prw" info="FLASH" name="FLASH" size="0x400" start="0x40023C00"/>
+      <peripheral access="prw" info="Flexible static memory controller" name="FSMC" size="0x400" start="0xA0000000">
+        <interrupt info="FSMC global interrupt" irqn="48" name="FSMC"/>
+      </peripheral>
+      <group name="GPIO">
+        <peripheral access="prw" info="General-purpose I/Os" name="GPIOA" size="0x400" start="0x40020000"/>
+        <peripheral access="prw" info="General-purpose I/Os" name="GPIOB" size="0x400" start="0x40020400"/>
+        <peripheral access="prw" name="GPIOC" size="0x400" start="0x40020800"/>
+        <peripheral access="prw" name="GPIOD" size="0x400" start="0x40020C00"/>
+        <peripheral access="prw" name="GPIOE" size="0x400" start="0x40021000"/>
+        <peripheral access="prw" name="GPIOF" size="0x400" start="0x40021400"/>
+        <peripheral access="prw" name="GPIOG" size="0x400" start="0x40021800"/>
+        <peripheral access="prw" name="GPIOH" size="0x400" start="0x40021C00"/>
+        <peripheral access="prw" info="General-purpose I/Os" name="GPIOI" size="0x400" start="0x40022000"/>
+      </group>
+      <group name="I2C">
+        <peripheral access="prw" name="I2C1" size="0x400" start="0x40005400">
+          <interrupt info="I2C1 error interrupt" irqn="32" name="I2C1_ER"/>
+          <interrupt info="I2C1 event interrupt" irqn="31" name="I2C1_EV"/>
+        </peripheral>
+        <peripheral access="prw" name="I2C2" size="0x400" start="0x40005800">
+          <interrupt info="I2C2 error interrupt" irqn="34" name="I2C2_ER"/>
+          <interrupt info="I2C2 event interrupt" irqn="33" name="I2C2_EV"/>
+        </peripheral>
+        <peripheral access="prw" info="Inter-integrated circuit" name="I2C3" size="0x400" start="0x40005C00">
+          <interrupt info="I2C3 error interrupt" irqn="73" name="I2C3_ER"/>
+          <interrupt info="I2C3 event interrupt" irqn="72" name="I2C3_EV"/>
+        </peripheral>
+      </group>
+      <peripheral access="prw" info="Independent watchdog" name="IWDG" size="0x400" start="0x40003000"/>
+      <peripheral access="prw" info="Nested Vectored Interrupt&#10;      Controller" name="NVIC" size="0x1001" start="0xE000E000"/>
+      <peripheral access="prw" info="Power control" name="PWR" size="0x400" start="0x40007000">
+        <interrupt info="PVD through EXTI line detection&#10;        interrupt" irqn="1" name="PVD"/>
+      </peripheral>
+      <peripheral access="prw" info="Reset and clock control" name="RCC" size="0x400" start="0x40023800">
+        <interrupt info="RCC global interrupt" irqn="5" name="RCC"/>
+      </peripheral>
+      <peripheral access="prw" info="Random number generator" name="RNG" size="0x400" start="0x50060800">
+        <interrupt info="FPU interrupt" irqn="81" name="FPU"/>
+      </peripheral>
+      <peripheral access="prw" info="Real-time clock" name="RTC" size="0x400" start="0x40002800">
+        <interrupt info="RTC Alarms (A and B) through EXTI line&#10;        interrupt" irqn="41" name="RTC_Alarm"/>
+        <interrupt info="RTC Wakeup interrupt through the EXTI&#10;        line" irqn="3" name="RTC_WKUP"/>
+      </peripheral>
+      <peripheral access="prw" info="Secure digital input/output&#10;      interface" name="SDIO" size="0x400" start="0x40012C00">
+        <interrupt info="SDIO global interrupt" irqn="49" name="SDIO"/>
+      </peripheral>
+      <group name="SPI">
+        <peripheral access="prw" name="I2S2ext" size="0x400" start="0x40003400"/>
+        <peripheral access="prw" name="I2S3ext" size="0x400" start="0x40004000"/>
+        <peripheral access="prw" info="Serial peripheral interface" name="SPI1" size="0x400" start="0x40013000">
+          <interrupt info="SPI1 global interrupt" irqn="35" name="SPI1"/>
+        </peripheral>
+        <peripheral access="prw" name="SPI2" size="0x400" start="0x40003800">
+          <interrupt info="SPI2 global interrupt" irqn="36" name="SPI2"/>
+        </peripheral>
+        <peripheral access="prw" name="SPI3" size="0x400" start="0x40003C00">
+          <interrupt info="SPI3 global interrupt" irqn="51" name="SPI3"/>
+        </peripheral>
+      </group>
+      <peripheral access="prw" info="System configuration controller" name="SYSCFG" size="0x400" start="0x40013800"/>
+      <group name="TIM">
+        <peripheral access="prw" info="Advanced-timers" name="TIM1" size="0x400" start="0x40010000">
+          <interrupt info="TIM1 Break interrupt and TIM9 global&#10;        interrupt" irqn="24" name="TIM1_BRK_TIM9"/>
+          <interrupt info="TIM1 Capture Compare interrupt" irqn="27" name="TIM1_CC"/>
+          <interrupt info="TIM1 Trigger and Commutation interrupts and&#10;        TIM11 global interrupt" irqn="26" name="TIM1_TRG_COM_TIM11"/>
+          <interrupt info="TIM1 Update interrupt and TIM10 global&#10;        interrupt" irqn="25" name="TIM1_UP_TIM10"/>
+        </peripheral>
+        <peripheral access="prw" info="General purpose timers" name="TIM2" size="0x400" start="0x40000000">
+          <interrupt info="TIM2 global interrupt" irqn="28" name="TIM2"/>
+        </peripheral>
+        <peripheral access="prw" info="General purpose timers" name="TIM3" size="0x400" start="0x40000400">
+          <interrupt info="TIM3 global interrupt" irqn="29" name="TIM3"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM4" size="0x400" start="0x40000800">
+          <interrupt info="TIM4 global interrupt" irqn="30" name="TIM4"/>
+        </peripheral>
+        <peripheral access="prw" info="General-purpose-timers" name="TIM5" size="0x400" start="0x40000C00">
+          <interrupt info="TIM5 global interrupt" irqn="50" name="TIM5"/>
+        </peripheral>
+        <peripheral access="prw" info="Basic timers" name="TIM6" size="0x400" start="0x40001000">
+          <interrupt info="TIM6 global interrupt, DAC1 and DAC2 underrun&#10;        error interrupt" irqn="54" name="TIM6_DAC"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM7" size="0x400" start="0x40001400">
+          <interrupt info="TIM7 global interrupt" irqn="55" name="TIM7"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM8" size="0x400" start="0x40010400">
+          <interrupt info="TIM8 Break interrupt and TIM12 global interrupt" irqn="43" name="TIM8_BRK_TIM12"/>
+          <interrupt info="TIM8 Capture Compare interrupt" irqn="46" name="TIM8_CC"/>
+          <interrupt info="TIM8 Trigger and Commutation interrupts and TIM14 global interrupt" irqn="45" name="TIM8_TRG_COM_TIM14"/>
+          <interrupt info="TIM8 Update interrupt and TIM13 global interrupt" irqn="44" name="TIM8_UP_TIM13"/>
+        </peripheral>
+        <peripheral access="prw" info="General purpose timers" name="TIM9" size="0x400" start="0x40014000">
+          <interrupt info="TIM1 Break interrupt and TIM9 global&#10;        interrupt" irqn="24" name="TIM1_BRK_TIM9"/>
+        </peripheral>
+        <peripheral access="prw" info="General-purpose-timers" name="TIM10" size="0x400" start="0x40014400">
+          <interrupt info="TIM1 Update interrupt and TIM10 global&#10;        interrupt" irqn="25" name="TIM1_UP_TIM10"/>
+        </peripheral>
+        <peripheral access="prw" info="General-purpose-timers" name="TIM11" size="0x400" start="0x40014800">
+          <interrupt info="TIM1 Trigger and Commutation interrupts and&#10;        TIM11 global interrupt" irqn="26" name="TIM1_TRG_COM_TIM11"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM12" size="0x400" start="0x40001800">
+          <interrupt info="TIM8 Break interrupt and TIM12 global&#10;        interrupt" irqn="43" name="TIM8_BRK_TIM12"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM13" size="0x400" start="0x40001C00">
+          <interrupt info="TIM8 Update interrupt and TIM13 global&#10;        interrupt" irqn="44" name="TIM8_UP_TIM13"/>
+        </peripheral>
+        <peripheral access="prw" name="TIM14" size="0x400" start="0x40002000">
+          <interrupt info="TIM8 Trigger and Commutation interrupts and&#10;        TIM14 global interrupt" irqn="45" name="TIM8_TRG_COM_TIM14"/>
+        </peripheral>
+      </group>
+      <group name="USART">
+        <peripheral access="prw" info="Universal synchronous asynchronous receiver&#10;      transmitter" name="UART4" size="0x400" start="0x40004C00">
+          <interrupt info="UART4 global interrupt" irqn="52" name="UART4"/>
+        </peripheral>
+        <peripheral access="prw" name="UART5" size="0x400" start="0x40005000">
+          <interrupt info="UART5 global interrupt" irqn="53" name="UART5"/>
+        </peripheral>
+        <peripheral access="prw" name="USART1" size="0x400" start="0x40011000">
+          <interrupt info="USART1 global interrupt" irqn="37" name="USART1"/>
+        </peripheral>
+        <peripheral access="prw" name="USART2" size="0x400" start="0x40004400">
+          <interrupt info="USART2 global interrupt" irqn="38" name="USART2"/>
+        </peripheral>
+        <peripheral access="prw" name="USART3" size="0x400" start="0x40004800">
+          <interrupt info="USART3 global interrupt" irqn="39" name="USART3"/>
+        </peripheral>
+        <peripheral access="prw" info="Universal synchronous asynchronous receiver&#10;      transmitter" name="USART6" size="0x400" start="0x40011400">
+          <interrupt info="USART6 global interrupt" irqn="71" name="USART6"/>
+        </peripheral>
+      </group>
+      <group name="USB_OTG_FS">
+        <peripheral access="prw" info="USB on the go full speed" name="OTG_FS_DEVICE" size="0x400" start="0x50000800"/>
+        <peripheral access="prw" info="USB on the go full speed" name="OTG_FS_GLOBAL" size="0x400" start="0x50000000">
+          <interrupt info="USB On The Go FS global&#10;        interrupt" irqn="67" name="OTG_FS"/>
+          <interrupt info="USB On-The-Go FS Wakeup through EXTI line&#10;        interrupt" irqn="42" name="OTG_FS_WKUP"/>
+        </peripheral>
+        <peripheral access="prw" info="USB on the go full speed" name="OTG_FS_HOST" size="0x400" start="0x50000400"/>
+        <peripheral access="prw" info="USB on the go full speed" name="OTG_FS_PWRCLK" size="0x400" start="0x50000E00"/>
+      </group>
+      <group name="USB_OTG_HS">
+        <peripheral access="prw" info="USB on the go high speed" name="OTG_HS_DEVICE" size="0x400" start="0x40040800"/>
+        <peripheral access="prw" info="USB on the go high speed" name="OTG_HS_GLOBAL" size="0xFFFC0400" start="0x40040000">
+          <interrupt info="USB On The Go HS global&#10;        interrupt" irqn="77" name="OTG_HS"/>
+          <interrupt info="USB On The Go HS End Point 1 In global&#10;        interrupt" irqn="75" name="OTG_HS_EP1_IN"/>
+          <interrupt info="USB On The Go HS End Point 1 Out global&#10;        interrupt" irqn="74" name="OTG_HS_EP1_OUT"/>
+          <interrupt info="USB On The Go HS Wakeup through EXTI&#10;        interrupt" irqn="76" name="OTG_HS_WKUP"/>
+        </peripheral>
+        <peripheral access="prw" info="USB on the go high speed" name="OTG_HS_HOST" size="0x400" start="0x40040400"/>
+        <peripheral access="prw" info="USB on the go high speed" name="OTG_HS_PWRCLK" size="0x3F200" start="0x40040E00"/>
+      </group>
+      <peripheral access="prw" info="Window watchdog" name="WWDG" size="0x400" start="0x40002C00">
+        <interrupt info="Window Watchdog interrupt" irqn="0" name="WWDG"/>
+      </peripheral>
+    </peripherals>
+  </resources>
+</rzone>

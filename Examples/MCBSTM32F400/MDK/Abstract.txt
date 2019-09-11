@@ -1,0 +1,207 @@
+Blinky_Net is an example which demonstrates isolation of processes and how to recover from failures.
+It uses a special RTX5 "MPU" variant which utilizes MPU for isolation and Fault handlers for recovery.
+
+It runs on a Keil MCBSTM32F400 evaluation board.
+
+The application blinks 4 LEDs (LED0..3) on the board. The blink rate is controlled either via on-board potentiometer
+(when in safe mode) or through an application running on the PC which is connected over wired Ethernet (normal mode). 
+
+To control the blink rate over the network:
+- Run the "MPU_Test" windows application on your PC (ignore potential anti-virus message about inconclusive information about this executable).
+- Set the IP address to match the board's IP address and make sure that it matches also with your local area network configuration.
+  Board's IPv4 settings are configured in the file Net_Config_ETH_0.h under IPv4 section (IP Address, Subnet mask and Default Gateway).
+- Leave the default TCP port 1001 which should be fine in most cases.
+  If needed select a different port number and update the SERVER_LOCAL_PORT define in BSD.c to match that number.
+- Connect to the board by pressing "Connect" button in the PC application.
+  LED7 on the board should turn on when a connection is established.
+- Control the blink rate of the 4 LEDs (LED0..3) on the board through the "Local A/D" slider in the PC application.
+- Position of the on-board potentiometer should be shown under the "Target A/D" in the PC application. 
+
+When the network connection is terminated or lost the application running on the board switches to safe mode
+and the blink rate is controlled through the on-board potentiometer.
+
+Additional 4 LEDs are used to show status of the application and 3 buttons on the board are used to trigger faults.
+
+Board LEDs and button usage:
+ - LED0..3: running LEDs with controllable blink rate
+ - LED4: startup indicator (turns on for 2 seconds at application start)
+ - LED5: watchdog reset indicator (turns on for 2 seconds at application start after watchdog reset)
+ - LED6: network software stack status (turns on when network software stack is running)
+ - LED7: network connection status (turns on when connected via network)
+ - Button USER:   triggers "Dead loop" in BSD of Net process
+ - Button TAMPER: triggers "MemManage (access fault)" in BSD of Net process
+ - Button WAKEUP: triggers "Dead loop" in ADC of Blinky process
+ 
+Additional faults can be triggered while in debug mode through the "Tamper" variable (Command Window: Tamper=<code>).
+The following Tamper codes are currently implemented:
+ - Fault in BSD of Net Process (non-critical Network process)
+ -- 0x01: "Dead loop" (also mapped to "USER" button)
+ -- 0x02: "MemManage (access fault)" (also mapped to "TAMPER" button)
+ -- 0x03: "MemManage (derived stack error)"
+ -- 0x04: "Stack overflow"
+ - Fault in ADC of Blinky process (safety critical Blinky process)
+ -- 0x11: "Dead loop" (also mapped to "WAKEUP" button)
+ -- 0x12: "MemManage (access fault)"
+ -- 0x13: "MemManage (derived stack error)"
+ -- 0x14: "Stack overflow"
+
+Fault handling:
+Safety critical Blinky process resources (variables and stacks) are isolated from non-critical Net process by using MPU.
+Data between Blinky and Net process is exchanged via RTOS Message Queues.
+Processes also send events (alive, ...) to a specific monitor process (app.c).
+
+A. Safety critical Blinky process:
+Threads ADC and LED send keep alive events to the watchdog thread. In case of faults (MemManage, UsageFault, BusFault, HardFault)
+or RTOS errors (osRtxErrorNotify) the program ends up in a dead loop and watchdog resets the system. 
+
+B. Non-critical Net process:
+Thread BSD sends keep alive and other events to the app main thread. In case of faults or RTOS stack overflow (osRtxErrorStackUnderflow)
+the Net process is blocked and BSD thread is terminated and restarted (without effecting Blinky process - no reset).
+ 
+Application is preconfigured for MCBSTM32F400 V1.2 board and ULINKplus.
+
+Note: when using MCBSTM32F400 V1.1 board the Ethernet PHY CMSIS Driver needs to be changed.
+De-select KSZ8081RNA and select ST802RT1 Ethernet PHY CMSIS Driver.
+
+Application runs from on-chip flash and is available for the following targets:
+- Debug:   Compiler optimization level 1, Debug   Network Library, Event Recorder
+- Release: Compiler optimization level 3. Release Network Library
+
+Note: after power-on the debug entry or flashing typically fails with an error "PDSC: Sequence Execution failed".
+To recover hold the RESET button on the board and try to flash the program. It will fail with the error message
+"Could not stop Cortex-M device!". However after that debug entry and flashing should work normally.
+
+HW requirements:
+- Keil MCBSTM32F400 V1.2 board (or V1.1 - see above) with power supply and connected to LAN via Ethernet
+- PC connected to the same LAN
+- Debug unit (preconfigured for ULINKplus)
+
+SW requirements:
+- MDK-Pro: tested with MDK526 pre-release (probably should work with released MDK525 too)
+- SW packs:
+-- ARM::CMSIS 5.3.1-dev4 (development version required)
+-- ARM::CMSIS-Driver 2.3.0
+-- ARM::CMSIS-Zone 0.9.0 (just used for the CMSIS-Zone project in folder CMSIS_Zone - see below)
+-- ARM::RTX5 5.4.0-test0 (adds RTX5 MPU variant with MPU handling)
+-- Keil::ARM_Compiler 1.5.0-dev0 (development version required)
+-- Keil::MDK-Middleware 7.7.0 with patched Network\Include\net_rtos2.h (copy/overwrite from example folder to installed pack)
+-- Keil::STM32F4xx_DFP 2.14.0-dev7 (development version required - fixes Ethernet driver recovery)
+- MPU Test PC application (MPU_Test.exe)
+
+Known limitations:
+RTX5 Test library is implemented only for ARMv6M (Cortex-M0/M0+) and ARMv7M (Cortex-M3/M4/M7).
+ARMv8M (Cortex-M23/M33) is currently not supported.
+
+Note: Tested only on STM32F4 (Cortex-M4F).
+
+
+SW construction:
+----------------
+
+1. CMSIS-Zone
+
+CMSIS_Zone was used initially to select the resources from the System Map and to split the application into zones
+and configure the resource to use. However the generation of files (MPU table, linker scatter file) fails.
+Manual construction of MPU table and linker scatter file was used instead (including with other tweaks explained below).
+CMSIS-Zone project files are available in the sub folder CMSIS_Zone.
+
+System Map (used resources):
+- memory:
+-- IRAM1: ramPrivileged, ramShared, ramNet, ramBSD, ramMain, ramLED, ramADC, ramTimer, ramIdle
+-- IROM1
+- peripherals (not all peripherals are actually used):
+-- ADC1, ADC2, ADC3, C_ADC
+-- Ethernet_DMA, Ethernet_MAC
+-- EXTI
+-- GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH, GPIOI
+-- IWDG
+-- RCC
+-- SYSCFG
+
+Execution Zone defines 5 processes:
+- Main: Application main thread (app_main) and Watchdog thread (app_wdog)
+ [access: ramMain, IWDG]
+ [modules: app.c]
+-- setup watchdog
+-- create message queues for message exchange with Net process
+-- create watchdog thread (app_wdog):
+--- handles Blinky keep alive events and watchdog reload
+-- create working threads (ADC_Thread, LED_Thread, BSD_Thread)
+-- create timer callback (Buttons handling)
+-- handle BSD (and Network) keep alive events and recovery
+- Net: Network process (non-critical) with top level BSD (BSD_Thread) and Network software stack below
+ [access: ramNet, ramBSD, Ethernet_DMA, Ethernet_MAC, GPIOA, GPIOC, GPIOG, RCC, SYSCFG, EXTI}
+ [modules: BSD.c, Network library]
+- Blinky: Safety critical process with LED (LED_Thread) and ADC (ADC_Thread)
+ [access: ramLED, ramADC, ADC1, GPIOG, GPIOH, GPIOI]
+ [modules: LED.c, ADC.c]
+- Timer: RTX Timer callback
+ [access: ramTimer, ramNet, GPIOA, GPIOC, GPIOG]
+ [modules: Timer.c]
+- Idle: RTX Idle thread
+ [access: ramIdle]
+ [modules: RTX_Config.c]
+
+1a. MPU Table (mputable.c/.h)
+MPU table files were manually constructed due to problems with CMSIS-Zone (not able to generate the files),
+lack of some functionality (uninitialized sections for Event Recorder) and some other minor improvements.
+Manually constructed files should be similar to what CMSIS-Zone would generate with a few differences
+(two tables, tweaked ramShared region to include Event Recorder).
+
+1b. Linker scatter file (scatter.sct)
+Linker scatter file was manually constructed since it uses a slightly different approach. Sections are not used
+in general except for the shared memory (".bss.shared"). Also the scatter.h file is not used.
+For each IRAM1 region (ramPrivileged, ramShared, ramNet, ramBSD, ramMain, ramLED, ramADC, ramTimer, ramIdle)
+an execute region RW_ramXxx is created which contains assignments on module level (ex: app.o(+RW +ZI)) and/or
+on section level (ex: Net_Config.o (.bss.os.*.cb)).
+
+2. Selecting RTX5 MPU test version
+Select CMSIS::RTOS2:Keil RTX5 MPU variant (uses RTX5 MPU test version from RTX5 test pack)
+
+3. Process ID assignments
+Process IDs are assigned to threads within the thread attributes (osThreadAttr_t). Currently the reserved field is used.
+The following process IDs are assigned:
+- app.c/app_main, app.c/app_wdog: EXECUTION_ZONE_MAIN
+- BSD.c/BSD_Thread: EXECUTION_ZONE_NET
+- LED.c/LED_Thread: EXECUTION_ZONE_BLINKY
+- ADC.c/ADC_Thread: EXECUTION_ZONE_BLINKY
+- Net_Config.c - Network Process Identifier: 2 (EXECUTION_ZONE_NET)
+- RTX_Config.h - Timer Configuration - Timer Thread Process Identifier: 4 (EXECUTION_ZONE_TIMER)
+- RTX_Config.h - Thread Configuration - Idle Thread Process Identifier: 5 (EXECUTION_ZONE_IDLE)
+ 
+4. Shared memory assignments
+Variables that need shared access have the attribute '__attribute((section(".bss.shared")))'.
+
+5. Adding MPU load function to application and MPU setup
+- implement osRtxMpuLoad callback function (see app.c)
+- add MPU setup (see main.c/main)
+
+6. Event Recorder setup
+Event Recorder is automatically started through RTX and is using CMSIS RTOS2 as Time Stamp Source:
+ - RTX_Config.h: Event Recorder Configuration - Global Initialization - Start Recording: Enable
+ - EvnetRecorderConf.h: Time Stamp Source: CMSIS RTOS2
+
+7. Tweaking Ethernet MAC & PHY driver
+MAC driver needs privileged access (at least function PowerControl). Therefore a wrapper MAC driver is provided
+(Driver_ETH_MAC1 in module ETH.c) which calls the HW MAC driver functions directly except the PowerControl function
+which is called via SVC (current tweak to raise execution to privileged level).
+Therefore driver instance 1 is registered to the Network in NetConfig_ETH_0.h - Connect to hardware via Driver_ETH# = 1.
+This requires also that the PHY driver exports the same instance which is achieved by adding C define 'ETH_PHY_NUM=1' to PHY_Xxx.c.
+Also the SVC user table needs to be extended with ETH1_PowerControl entry (svc_user.c).
+
+8. Fault handling (faults.c)
+Currently only MemManage faults (MPU access violation) are captured. If the non-critical process Net is causing the fault
+then the process is blocked (stops scheduling all threads of that process) and the RTX scheduler is restarted.
+If any other process causes the MemManage fault or if any process causes other faults then the default handler implementation
+ends up in a dead loop which leads to a watchdog reset.
+
+9. RTX stack overflow handling
+Stack overflows that are not causing faults (memory still belongs to a process but not to the thread stack) can be detected
+by RTX (on a thread switch). In that case RTX calls osRtxErrorNotify with osRtxErrorStackUnderflow code.
+If the non-critical process Net is causing the error then the process is blocked (stops scheduling all threads of that process)
+and RTX continues with scheduling other threads. If any other process causes the error or if any process causes other RTX errors
+then a dead loop is entered which leads to a watchdog reset.
+
+10. Trick-box for generating faults (app.c: TamperBSD, TamperADC)
+Faults can be injected while in debug mode through the "Tamper" variable via the Command Window. 3 cases are linked to buttons.
+See description earlier in this document.
