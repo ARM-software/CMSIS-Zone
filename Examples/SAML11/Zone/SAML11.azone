@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
+  <rzone name="SAML11.rzone"/>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <configure/>
+  <partition>
+    <memory access="rx" fixed="1" name="APP_S" offset="0x0" parent="IROM1" privilege="" security="s" size="0x7C00" startup="1"/>
+    <memory access="rx" fixed="1" info="" name="APP_NSC" offset="0x7C00" parent="IROM1" privilege="" security="c" size="0x400"/>
+    <memory access="rx" fixed="1" info="" name="APP_NS" offset="0x8000" parent="IROM1" privilege="" security="n" size="0x8000" startup="1"/>
+    <memory access="rw" fixed="1" info="" name="RAM_S" offset="0x0" parent="IRAM1" security="s" size="0x2000"/>
+    <memory access="rw" name="RAM_NS" offset="0x2000" parent="IRAM1" security="n" size="0x2000"/>
+    <memory access="r" fixed="1" name="DATA_S" offset="0x400" parent="IROM2" privilege="" security="" size="0x400"/>
+    <memory access="r" fixed="1" name="DATA_NS" offset="0x0" parent="IROM2" privilege="" security="" size="0x400"/>
+  </partition>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <zones>
+    <zone Pname="" info="" name="sApp" privilege="" security="s">
+      <assign memory="APP_NSC"/>
+      <assign memory="APP_S"/>
+      <assign memory="RAM_S"/>
+      <assign memory="DATA_S"/>
+      <assign peripheral="CCL"/>
+    </zone>
+    <zone Pname="" info="" name="nsApp" privilege="" security="n">
+      <assign memory="APP_NS"/>
+      <assign memory="RAM_NS"/>
+      <assign memory="DATA_NS"/>
+    </zone>
+  </zones>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+</azone>

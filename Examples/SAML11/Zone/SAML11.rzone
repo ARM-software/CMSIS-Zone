@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
+  <device Dfamily="SAML11" Dname="ATSAML11E16A" Dvendor="Microchip:3" info="ARM , 16 KB RAM, 66 KB ROM" url="http://www.keil.com/dd2/atmel/atsaml11e16a">
+    <package info="Microchip SAML11 Series Device Support" name="SAML11_DFP" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.83"/>
+    <processor Dcore="Cortex-M23" Dendian="Little-endian" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rwx" default="1" name="IRAM1" size="0x4000" start="0x20000000"/>
+      <memory access="rx" default="1" name="IROM1" size="0x10000" start="0x00000000" startup="1"/>
+      <memory access="rx" name="IROM2" size="0x800" start="0x00400000"/>
+    </memories>
+    <peripherals>
+      <peripheral access="prw" info="Analog Comparators" name="AC" size="0x24" start="0x40003400">
+        <interrupt info="" irqn="39" name="AC"/>
+      </peripheral>
+      <peripheral access="prw" info="Analog Digital Converter" name="ADC" size="0x2E" start="0x42001C00">
+        <interrupt info="" irqn="37" name="ADC_OTHER"/>
+        <interrupt info="" irqn="38" name="ADC_RESRDY"/>
+      </peripheral>
+      <peripheral access="prw" info="Configurable Custom Logic" name="CCL" size="0x10" start="0x42002C00"/>
+      <peripheral access="prw" info="Digital Analog Converter" name="DAC" size="0x15" start="0x42002000">
+        <interrupt info="" irqn="41" name="DAC_EMPTY"/>
+        <interrupt info="" irqn="40" name="DAC_UNDERRUN_A"/>
+      </peripheral>
+      <peripheral access="prw" info="Direct Memory Access Controller" name="DMAC" size="0x50" start="0x41006000">
+        <interrupt info="" irqn="11" name="DMAC_0"/>
+        <interrupt info="" irqn="12" name="DMAC_1"/>
+        <interrupt info="" irqn="13" name="DMAC_2"/>
+        <interrupt info="" irqn="14" name="DMAC_3"/>
+        <interrupt info="" irqn="15" name="DMAC_OTHER"/>
+      </peripheral>
+      <peripheral access="prw" info="Device Service Unit" name="DSU" size="0x2000" start="0x41002000"/>
+      <group name="EIC">
+        <interrupt info="" irqn="3" name="EIC_0"/>
+        <interrupt info="" irqn="4" name="EIC_1"/>
+        <interrupt info="" irqn="5" name="EIC_2"/>
+        <interrupt info="" irqn="6" name="EIC_3"/>
+        <interrupt info="" irqn="7" name="EIC_OTHER"/>
+        <peripheral access="prw" name="EIC_SEC" size="0x44" start="0x40002A00"/>
+      </group>
+      <group name="EVSYS">
+        <interrupt info="" irqn="16" name="EVSYS_0"/>
+        <interrupt info="" irqn="17" name="EVSYS_1"/>
+        <interrupt info="" irqn="18" name="EVSYS_2"/>
+        <interrupt info="" irqn="19" name="EVSYS_3"/>
+        <interrupt info="" irqn="20" name="EVSYS_NSCHK"/>
+        <peripheral access="prw" name="EVSYS_SEC" size="0x1F4" start="0x42000200"/>
+      </group>
+      <peripheral access="prw" info="Frequency Meter" name="FREQM" size="0x14" start="0x40002C00">
+        <interrupt info="" irqn="8" name="FREQM"/>
+      </peripheral>
+      <peripheral access="prw" info="Generic Clock Generator" name="GCLK" size="0x104" start="0x40001C00"/>
+      <peripheral access="prw" info="Implementation Defined Attribution Unit" name="IDAU" size="0xD" start="0x41000000"/>
+      <peripheral access="prw" info="Main Clock" name="MCLK" size="0x20" start="0x40000800"/>
+      <peripheral access="prw" info="Memory Protection Unit" name="MPU" size="0x38" start="0xE000ED90"/>
+      <peripheral access="prw" info="Nested Vectored Interrupt Controller" name="NVIC" size="0x348" start="0xE000E100"/>
+      <group name="NVMCTRL">
+        <interrupt info="" irqn="9" name="NVMCTRL"/>
+        <peripheral access="prw" name="NVMCTRL_SEC" size="0x48" start="0x41005000"/>
+      </group>
+      <peripheral access="prw" info="Operational Amplifier" name="OPAMP" size="0x11" start="0x42003000"/>
+      <peripheral access="prw" info="32k Oscillators Control" name="OSC32KCTRL" size="0x20" start="0x40001400"/>
+      <peripheral access="prw" info="Oscillators Control" name="OSCCTRL" size="0x41" start="0x40001000"/>
+      <group name="PAC">
+        <interrupt info="" irqn="21" name="PAC"/>
+        <peripheral access="prw" name="PAC_SEC" size="0x80" start="0x40000200"/>
+      </group>
+      <peripheral access="prw" info="Power Manager" name="PM" size="0xA" start="0x40000400"/>
+      <group name="PORT">
+        <interrupt info="" irqn="10" name="PORT"/>
+        <peripheral access="prw" name="PORT_IOBUS" size="0x80" start="0x60000000"/>
+        <peripheral access="prw" name="PORT_IOBUS_SEC" size="0x80" start="0x60000200"/>
+        <peripheral access="prw" name="PORT_SEC" size="0x80" start="0x40003200"/>
+      </group>
+      <peripheral access="prw" info="Peripheral Touch Controller" name="PTC" size="0x1" start="0x42002400">
+        <interrupt info="" irqn="42" name="PTC"/>
+      </peripheral>
+      <peripheral access="prw" info="Reset Controller" name="RSTC" size="0x1" start="0x40000C00"/>
+      <peripheral access="prw" info="Real-Time Counter" name="RTC" size="0x70" start="0x40002400">
+        <interrupt info="" irqn="2" name="RTC"/>
+      </peripheral>
+      <group name="SERCOM">
+        <peripheral access="prw" info="Serial Communication Interface" name="SERCOM0" size="0x31" start="0x42000400">
+          <interrupt info="" irqn="22" name="SERCOM0_0"/>
+          <interrupt info="" irqn="23" name="SERCOM0_1"/>
+          <interrupt info="" irqn="24" name="SERCOM0_2"/>
+          <interrupt info="" irqn="25" name="SERCOM0_OTHER"/>
+        </peripheral>
+        <peripheral access="prw" name="SERCOM1" size="0x31" start="0x42000800">
+          <interrupt info="" irqn="26" name="SERCOM1_0"/>
+          <interrupt info="" irqn="27" name="SERCOM1_1"/>
+          <interrupt info="" irqn="28" name="SERCOM1_2"/>
+          <interrupt info="" irqn="29" name="SERCOM1_OTHER"/>
+        </peripheral>
+        <peripheral access="prw" name="SERCOM2" size="0x31" start="0x42000C00">
+          <interrupt info="" irqn="30" name="SERCOM2_0"/>
+          <interrupt info="" irqn="31" name="SERCOM2_1"/>
+          <interrupt info="" irqn="32" name="SERCOM2_2"/>
+          <interrupt info="" irqn="33" name="SERCOM2_OTHER"/>
+        </peripheral>
+      </group>
+      <peripheral access="prw" info="Supply Controller" name="SUPC" size="0x34" start="0x40001800"/>
+      <peripheral access="prw" info="System Control Registers" name="SystemControl" size="0xD34" start="0xE000E000"/>
+      <peripheral access="prw" info="System timer" name="SysTick" size="0x10" start="0xE000E010"/>
+      <group name="TC">
+        <peripheral access="prw" info="Basic Timer Counter" name="TC0" size="0x38" start="0x42001000">
+          <interrupt info="" irqn="34" name="TC0"/>
+        </peripheral>
+        <peripheral access="prw" name="TC1" size="0x38" start="0x42001400">
+          <interrupt info="" irqn="35" name="TC1"/>
+        </peripheral>
+        <peripheral access="prw" name="TC2" size="0x38" start="0x42001800">
+          <interrupt info="" irqn="36" name="TC2"/>
+        </peripheral>
+      </group>
+      <peripheral access="prw" info="TrustRAM" name="TRAM" size="0x290" start="0x42003400">
+        <interrupt info="" irqn="44" name="TRAM"/>
+      </peripheral>
+      <peripheral access="prw" info="True Random Generator" name="TRNG" size="0x24" start="0x42002800">
+        <interrupt info="" irqn="43" name="TRNG"/>
+      </peripheral>
+      <peripheral access="prw" info="Watchdog Timer" name="WDT" size="0xD" start="0x40002000">
+        <interrupt info="" irqn="1" name="WDT"/>
+      </peripheral>
+    </peripherals>
+  </resources>
+</rzone>
