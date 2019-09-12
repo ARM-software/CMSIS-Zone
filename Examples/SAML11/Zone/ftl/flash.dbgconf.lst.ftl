@@ -1,30 +1,30 @@
 <#include "helper.ftlinc"/>
 <#list zone.memory as mem>
-  <#if mem.name?contains("APP_S")> 
+  <#if mem.name=="APP_S"> 
     <#assign app_s = hex2num(mem.start)>
     <#lt>APP_S   Specified@: ${mem.start} 		Size: ${mem.size}
   </#if>
-  <#if mem.name?contains("APP_NSC")> 
+  <#if mem.name=="APP_NSC"> 
       <#assign app_nsc = hex2num(mem.start)>
       <#lt>APP_NSC Specified@: ${mem.start} 		Size: ${mem.size}
   </#if>
-  <#if mem.name?contains("APP_NS")> 
+  <#if mem.name=="APP_NS"> 
       <#assign app_ns = hex2num(mem.start)>
       <#lt>APP_NS  Specified@: ${mem.start} 		Size: ${mem.size}
   </#if>
-  <#if mem.name?contains("RAM_S")> 
+  <#if mem.name=="RAM_S"> 
       <#assign ram_s = hex2num(mem.start)>
       <#lt>RAM_S   Specified@: ${mem.start} 	Size: ${mem.size}
   </#if>
-  <#if mem.name?contains("RAM_NS")>
+  <#if mem.name=="RAM_NS">
       <#assign ram_ns = hex2num(mem.start)>
       <#lt>RAM_NS  Specified@: ${mem.start} 	Size: ${mem.size}
   </#if>
-  <#if mem.name?contains("DATA_S")> 
+  <#if mem.name=="DATA_S"> 
       <#assign data_s = hex2num(mem.start)>
       <#lt>DATA_S  Specified@: ${mem.start} 	Size: ${mem.size}
   </#if>
-  <#if mem.name?contains("DATA_NS")>
+  <#if mem.name=="DATA_NS">
       <#assign data_ns = hex2num(mem.start)>
       <#lt>DATA_NS Specified@: ${mem.start} 	Size: ${mem.size}
   </#if>
@@ -43,7 +43,7 @@
   <#lt>RS   = ${idau_rs}
 </#if>
 <#if data_ns??>
-  <#assign idau_ds = (4196352 - data_ns) / 128>
+  <#assign idau_ds = (4196352 - data_ns) / 32>
   <#lt>DS   = ${idau_ds}
 </#if>
 <#assign urow2 = idau_as + (idau_ansc * pow2(8)) + (idau_rs * pow2(24)) + (idau_ds * pow2(16))>

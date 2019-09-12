@@ -1,41 +1,3 @@
-<#include "helper.ftlinc"/>
-<#list zone.memory as mem>
-  <#if mem.name?contains("APP_S")> 
-    <#assign app_s = hex2num(mem.start)>
-  </#if>
-  <#if mem.name?contains("APP_NSC")> 
-      <#assign app_nsc = hex2num(mem.start)>
-  </#if>
-  <#if mem.name?contains("APP_NS")> 
-      <#assign app_ns = hex2num(mem.start)>
-  </#if>
-  <#if mem.name?contains("RAM_S")> 
-      <#assign ram_s = hex2num(mem.start)>
-  </#if>
-  <#if mem.name?contains("RAM_NS")>
-      <#assign ram_ns = hex2num(mem.start)>
-  </#if>
-  <#if mem.name?contains("DATA_S")> 
-      <#assign data_s = hex2num(mem.start)>
-  </#if>
-  <#if mem.name?contains("DATA_NS")>
-      <#assign data_ns = hex2num(mem.start)>
-  </#if>
-</#list>
-<#if app_ns??>
-  <#assign idau_as = (app_ns / 256)>
-  <#if app_nsc??> 
-    <#assign idau_ansc = (app_ns - app_nsc ) / 32> 
-  </#if>
-</#if>
-<#if ram_ns??>
-  <#assign idau_rs = (536887296 - ram_ns) / 128>
-</#if>
-<#if data_ns??>
-  <#assign idau_ds = (4196352 - data_ns) / 32>
-</#if>
-<#assign urow2 = idau_as + (idau_ansc * pow2(8)) + (idau_rs * pow2(24)) + (idau_ds * pow2(16))>
-
 // File: SAML11.dbgconf
 // Version: 1.0.1
 // Debug Configuration file for SAM L11 device. It defines device-specific parameters for debugger and target device.
@@ -152,8 +114,8 @@ UROW_Program = 0x00000001;
 //       <i>DATA Flash configuration.
 //       <q1.12> Execute Never (DXN)
 //       <i>DXN parameter in UROW. Check to disable execution from DATA Flash.
-//       <o2.16..23> Secure Size (DS) (*= 0x20)
-//       <i>DS parameter in UROW. DATA Flash Secure Size = DS*0x20 Bytes.
+//       <o2.16..19> Secure Size (DS) (*= 0x100)
+//       <i>DS parameter in UROW. DATA Flash Secure Size = DS*0x100 Bytes.
 //     </h>
 //     <h> RAM
 //       <i>RAM configuration.
@@ -234,7 +196,7 @@ UROW_Program = 0x00000001;
 //   </e>
 UROW_Config0 = 0xB000433F;
 UROW_Config1 = 0x000018BB;
-UROW_Config2 = ${num2hex(urow2)};
+UROW_Config2 = 0x40082080;
 UROW_Config3 = 0x00000001;
 UROW_NONSECA = 0x00000000;
 UROW_NONSECB = 0x00000000;
@@ -332,7 +294,3 @@ BOCOR_BOOT_Keyword7 = 0xFFFFFFFF;
 // </h>
 
 // <<< end of configuration section >>>
-
-
-
-
