@@ -1,20 +1,6 @@
 <#compress>
 <#include "helper.ftlinc"/>
 
-<#-- Prepare SAU entries -->
-<#assign sau_entries = 0>
-<#assign sau_table = []/>
-
-<#if system.sau?has_content>
-  <#list system.sau?sort_by("start") as s>
-    <#assign sau_table += [{"start_address":num2hex(hex2num(s.start)), "end_address":num2hex(hex2num(s.end)), "nsc":s.nsc, "init":1}]/>
-    <#assign sau_entries += 1>
-  </#list>
-</#if>
-  <#list sau_entries..7 as i>
-    <#assign sau_table += [{"start_address":"0x00000000",              "end_address":"0x00000000",            "nsc":0,     "init":0}]/>
-  </#list>
-
 <#-- Prepare Non-Secure Interrupt Entries -->
 <#assign itns_entries = 0>
 <#assign itns_table = []/>
@@ -46,18 +32,35 @@
 
 void TZ_Config_SAU(void)
 {
+    /* Disable SAU */
+    SAU->CTRL = 0U;
 
-<#list sau_table as sau_entry>
-  /* Initialize SAU Region ${sau_entry?index} */
-  SAU->RNR  =  (${sau_entry?index}U                      & SAU_RNR_REGION_Msk);
-  SAU->RBAR =  (${sau_entry.start_address}U             & SAU_RBAR_BADDR_Msk);
-  SAU->RLAR =  (${sau_entry.end_address}U             & SAU_RLAR_LADDR_Msk) |
-              ((${sau_entry.nsc}U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk)   | ${sau_entry.init}U;
+<#list system.sau as region>
+    /* Configure SAU region ${region?index} - ${region.info} (${region.start}..${region.end}) */
+    SAU->RNR = ${region?index}U;
+    SAU->RBAR = ${region.start}U;
+    SAU->RLAR = (${region.end}U & SAU_RLAR_LADDR_Msk) | 
+                 /* Region memory attribute index */
+                 ((${region.nsc}U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk) |
+                 /* Enable region */
+                 ((1U << SAU_RLAR_ENABLE_Pos) & SAU_RLAR_ENABLE_Msk);
 
 </#list>
-  /* Configure SAU Control */
-  SAU->CTRL = ((1U << SAU_CTRL_ENABLE_Pos) & SAU_CTRL_ENABLE_Msk) |         /* enable SAU */
-              ((0U << SAU_CTRL_ALLNS_Pos)  & SAU_CTRL_ALLNS_Msk)   ;
+<#list system.sau?size..7 as idx>
+    /* Configure SAU region ${idx} - unused */
+    SAU->RNR = ${idx}U;
+    SAU->RBAR = 0U;
+    SAU->RLAR = 0U;
+    
+</#list>
+    /* Force memory writes before continuing */
+    __DSB();
+    /* Flush and refill pipeline with updated permissions */
+    __ISB();
+      
+    /* Configure SAU Control */
+    SAU->CTRL = ((1U << SAU_CTRL_ENABLE_Pos) & SAU_CTRL_ENABLE_Msk) |         /* enable SAU */
+                ((0U << SAU_CTRL_ALLNS_Pos)  & SAU_CTRL_ALLNS_Msk)   ;
 }
 
 void TZ_Config_NVIC(void)

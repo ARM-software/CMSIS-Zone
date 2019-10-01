@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <azone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="azone.xsd">
-  <rzone name="Zone_Musca-A1_Git.rzone"/>
   <configure/>
   <partition>
     <memory access="rw" info="Internal SRAM0" name="IRAM0" security="" size="0x00008000" start="0x20000000" type="RAM"/>
