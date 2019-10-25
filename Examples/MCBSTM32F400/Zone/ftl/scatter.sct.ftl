@@ -41,7 +41,7 @@ LR_${m.name} REGION_${m.name?upper_case}_START REGION_${m.name?upper_case}_SIZE 
 <#if !dataRegions>
   <#assign dataRegions = true/>
   <#list data?values?sort_by("start") as m>
-  RW_${m.name} REGION_${m.name?upper_case}_START <#if m.init == '1'>UNINIT </#if>REGION_${m.name?upper_case}_SIZE {
+  RW_${m.name} REGION_${m.name?upper_case}_START <#if m.uninit == '1'>UNINIT </#if>REGION_${m.name?upper_case}_SIZE {
     .ANY (+RW +ZI)
   }
   </#list>
