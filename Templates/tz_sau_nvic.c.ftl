@@ -4,17 +4,15 @@
 <#-- Prepare Non-Secure Interrupt Entries -->
 <#assign itns_entries = 0>
 <#assign itns_table = []/>
-<#assign maxirq = 0/>
+<#assign maxirq = system.processor.DnumInterrupts?number - 1>
 <#assign it = {}/>
 <#assign itns = {}/>
 <#assign it_na = "---">
+<#assign maxsauregions = system.processor.DnumSauRegions?number - 1>
 
 <#if system.interrupt?has_content>
   <#list system.interrupt?sort_by("irqn") as irq>
-    <#assign it += { irq.irqn?number : irq } />  
-    <#if (irq.irqn?number > maxirq)>
-      <#assign maxirq = irq.irqn?number>
-    </#if>
+    <#assign it += { irq.irqn?number : irq } />
     <#if irq.security.n == "1">
       <#assign itns += { irq.irqn?number : irq } />
     </#if>
@@ -27,7 +25,7 @@
  * SPDX-License-Identifier: Apache 2.0
  */
 
-#include "tz_config.h" 
+#include "tz_config.h"
 
 
 void TZ_Config_SAU(void)
@@ -36,28 +34,32 @@ void TZ_Config_SAU(void)
     SAU->CTRL = 0U;
 
 <#list system.sau as region>
+  <#if region?index <= maxsauregions>
     /* Configure SAU region ${region?index} - ${region.info} (${region.start}..${region.end}) */
     SAU->RNR = ${region?index}U;
     SAU->RBAR = ${region.start}U;
-    SAU->RLAR = (${region.end}U & SAU_RLAR_LADDR_Msk) | 
+    SAU->RLAR = (${region.end}U & SAU_RLAR_LADDR_Msk) |
                  /* Region memory attribute index */
                  ((${region.nsc}U << SAU_RLAR_NSC_Pos) & SAU_RLAR_NSC_Msk) |
                  /* Enable region */
                  ((1U << SAU_RLAR_ENABLE_Pos) & SAU_RLAR_ENABLE_Msk);
 
+  </#if>
 </#list>
-<#list system.sau?size..7 as idx>
+<#if system.sau?size < maxsauregions>
+  <#list system.sau?size..maxsauregions as idx>
     /* Configure SAU region ${idx} - unused */
     SAU->RNR = ${idx}U;
     SAU->RBAR = 0U;
     SAU->RLAR = 0U;
-    
-</#list>
+
+  </#list>
+</#if>
     /* Force memory writes before continuing */
     __DSB();
     /* Flush and refill pipeline with updated permissions */
     __ISB();
-      
+
     /* Configure SAU Control */
     SAU->CTRL = ((1U << SAU_CTRL_ENABLE_Pos) & SAU_CTRL_ENABLE_Msk) |         /* enable SAU */
                 ((0U << SAU_CTRL_ALLNS_Pos)  & SAU_CTRL_ALLNS_Msk)   ;
