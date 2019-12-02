@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
+  <device Dname="Musca-S1" Dvendor="ARM:82" info="Dual Cortex-M33, 512 KB SRAM, 2 MB Code SRAM, 2MB eMRAM, 16MB Flash">
+    <processor Dclock="40000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Configurable" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ" DnumInterrupts="480" DnumSauRegions="8" Pname="Cortex-M33-0"/>
+    <processor Dclock="40000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Configurable" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ" DnumInterrupts="480" DnumSauRegions="8" Pname="Cortex-M33-1"/>
+  </device>
+  <resources>
+    <memories>
+      <memory access="rw" info="Internal SRAM (secure)" name="IRAM_S" physical="0x20000000" security="s" size="0x00080000" start="0x30000000" type="RAM"/>
+      <memory access="rw" info="Internal SRAM (non secure)" name="IRAM_NS" physical="0x20000000" security="" size="0x00080000" start="0x20000000" type="RAM"/>
+      <mpc name="MPC_IRAM0" blk_size="0x100" size="0x00020000" start="0x20000000" type="s" info="MPC Internal SRAM0"/>
+      <mpc name="MPC_IRAM1" blk_size="0x100" size="0x00020000" start="0x20020000" type="s" info="MPC Internal SRAM1"/>
+      <mpc name="MPC_IRAM2" blk_size="0x100" size="0x00020000" start="0x20040000" type="s" info="MPC Internal SRAM2"/>
+      <mpc name="MPC_IRAM3" blk_size="0x100" size="0x00020000" start="0x20060000" type="s" info="MPC Internal SRAM3"/>
+      
+      <memory access="rwx" info="Code SRAM (secure)" name="SRAM_S" physical="0x00000000" security="c" size="0x00200000" start="0x10000000" type="RAM"/>
+      <memory access="rwx" info="Code SRAM (non secure)" name="SRAM_NS" physical="0x00000000" security="" size="0x00200000" start="0x00000000" type="RAM"/>
+      <mpc name="MPC_SRAM" blk_size="0x100" size="0x00200000" start="0x00000000" type="s" info="MPC Code SRAM"/>
+
+      <memory access="rwx" info="eMRAM (secure)" name="MRAM_S" physical="0x0A000000" security="c" size="0x00200000" start="0x1A000000" type="RAM"/>
+      <memory access="rwx" info="eMRAM (non secure)" name="MRAM_NS" physical="0x0A000000" security="" size="0x00200000" start="0x0A000000" type="RAM"/>
+      <mpc name="MPC_MRAM" blk_size="0x100" size="0x00200000" start="0x0A000000" type="s" info="MPC Embedded MRAM"/>
+      
+      <memory access="rx" external="1" info="QSPI Flash (secure)" name="QSPI_Flash_S" physical="0x00200000" security="c" size="0x01000000" start="0x10200000" type="ROM"/>
+      <memory access="rx" external="1" info="QSPI Flash (non secure)" name="QSPI_Flash_NS" physical="0x00200000" security="" size="0x01000000" start="0x00200000" type="ROM"/>
+      <mpc name="MPC_QSPI" blk_size="0x100" size="0x01000000" start="0x00000000" type="s" info="MPC SQPI Flash"/>
+    </memories>
+    <peripherals>
+      <peripheral access="rwp" info="CMSDK Watchdog on 32KCLK" name="S32K_WDOG" size="0x1000" start_ns="0x4002E000" start_s="0x5002E000"/>
+      <peripheral access="rwp" info="Secure CMSDK Watchdog Timer" name="S_WDOG" security="s" size="0x1000" start_s="0x50081000"/>
+      <peripheral access="rwp" info="Non-secure CMSDK Watchdog Timer" name="NS_WDOG" security="n" size="0x1000" start_ns="0x40081000">
+        <interrupt info="non-secure CMSDK Watchdog reset" irqn="000" name="NS_WDOG_RESET"/>
+        <interrupt info="non-secure CMSDK Watchdog" irqn="001" name="NS_WDOG"/>
+      </peripheral>
+      <peripheral access="rwp" info="Secure Privilege Control Block" name="S_PCTRL" security="s" size="0x1000" start_s="0x50080000">
+        <interrupt info="PPC Combined" irqn="010" name="PPC"/>
+        <interrupt info="MSC Combined" irqn="011" name="MSC"/>
+      </peripheral>
+      <peripheral access="rwp" info="Non-secure Privilege Control Block" name="NS_PCTRL" security="n" size="0x1000" start_ns="0x40080000"/>
+      <peripheral access="rwp" info="CMSDK Timer running on S32KCLK" name="S32KTIMER" size="0x1000" start_ns="0x4002F000" start_s="0x5002F000">
+        <interrupt info="CMSDK Timer S32K" irqn="002" name="S32KTIMER"/>
+        <setup name="APBNSPPC1" security="n" value="0x00000001"/>
+        <setup name="APBSPPPC1" privilege="u" security="s" value="0x00000001"/>
+        <setup name="APBNSPPPC1" privilege="u" security="n" value="0x00000001"/>
+      </peripheral>
+      <peripheral access="rwp" info="System Information Block" name="SYSINFO" size="0x1000" start_ns="0x40020000" start_s="0x50020000"/>
+      <peripheral access="rwp" info="Message Handling Unit 1" name="MHU1" size="0x1000" start_ns="0x40004000" start_s="0x50004000">
+        <interrupt info="Message Handling Unit 1" irqn="007" name="MHU1"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000010"/>
+        <setup name="APBSPPPC0" privilege="u" security="s" value="0x00000010"/>
+        <setup name="APBNSPPPC0" privilege="u" security="n" value="0x00000010"/>
+      </peripheral>
+      <peripheral access="rwp" info="Message Handling Unit 0" name="MHU0" size="0x1000" start_ns="0x40003000" start_s="0x50003000">
+        <interrupt info="Message Handling Unit 0" irqn="006" name="MHU0"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000008"/>
+        <setup name="APBSPPPC0" privilege="u" security="s" value="0x00000008"/>
+        <setup name="APBNSPPPC0" privilege="u" security="n" value="0x00000008"/>
+      </peripheral>
+      <peripheral access="rwp" info="CMSDK Dualtimer" name="DUALTIMER" size="0x1000" start_ns="0x40002000" start_s="0x50002000">
+        <interrupt info="CMSDK Dualtimer" irqn="005" name="DUALTIMER"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000004"/>
+        <setup name="APBSPPPC0" privilege="u" security="s" value="0x00000004"/>
+        <setup name="APBNSPPPC0" privilege="u" security="n" value="0x00000004"/>
+      </peripheral>
+      <peripheral access="rwp" info="CMSDK Timer 1" name="TIMER1" size="0x1000" start_ns="0x40001000" start_s="0x50001000">
+        <interrupt info="CMSDK Timer 1" irqn="004" name="TIMER1"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000002"/>
+        <setup name="APBSPPPC0" privilege="u" security="s" value="0x00000002"/>
+        <setup name="APBNSPPPC0" privilege="u" security="n" value="0x00000002"/>
+      </peripheral>
+      <peripheral access="prw" info="CMSDK Timer 0" name="TIMER0" size="0x1000" start_ns="0x40000000" start_s="0x50000000">
+        <interrupt info="CMSDK Timer 0" irqn="003" name="TIMER0"/>
+        <setup name="APBNSPPC0" security="n" value="0x00000001"/>
+        <setup name="APBSPPPC0" privilege="u" security="s" value="0x00000001"/>
+        <setup name="APBNSPPPC0" privilege="u" security="n" value="0x00000001"/>
+      </peripheral>
+      <group name="Expansion">
+        <setup name="AHBNSPPCEXP0" security="n" value="0x00000001"/>
+        <setup name="AHBSPPPCEXP0" privilege="u" security="s" value="0x00000001"/>
+        <setup name="AHBNSPPPCEXP0" privilege="u" security="n" value="0x00000001"/>
+        <peripheral access="rwp" info="General purpose I/O (GPIO)" name="GPIO" size="0x1000" start_ns="0x40110000" start_s="0x50110000">
+          <interrupt info="GPIO 0" irqn="051" name="GPIO0"/>
+          <interrupt info="GPIO 1" irqn="052" name="GPIO1"/>
+          <interrupt info="GPIO 2" irqn="053" name="GPIO2"/>
+          <interrupt info="GPIO 3" irqn="054" name="GPIO3"/>
+          <interrupt info="GPIO 4" irqn="055" name="GPIO4"/>
+          <interrupt info="GPIO 5" irqn="056" name="GPIO5"/>
+          <interrupt info="GPIO 6" irqn="057" name="GPIO6"/>
+          <interrupt info="GPIO 7" irqn="058" name="GPIO7"/>
+          <interrupt info="GPIO 8" irqn="059" name="GPIO8"/>
+          <interrupt info="GPIO 9" irqn="060" name="GPIO9"/>
+          <interrupt info="GPIO 10" irqn="061" name="GPIO10"/>
+          <interrupt info="GPIO 11" irqn="062" name="GPIO11"/>
+          <interrupt info="GPIO 12" irqn="063" name="GPIO12"/>
+          <interrupt info="GPIO 13" irqn="064" name="GPIO13"/>
+          <interrupt info="GPIO 14" irqn="065" name="GPIO14"/>
+          <interrupt info="GPIO 15" irqn="066" name="GPIO15"/>
+          <interrupt info="GPIO combined" irqn="067" name="GPIO_COMB"/>
+        </peripheral>
+        <peripheral access="rwp" info="Puls width modulation (PWM2)" name="PWM2" size="0x1000" start_ns="0x4010F000" start_s="0x5010F000">
+          <interrupt info="PWM2 global" irqn="075" name="PWM2"/>
+        </peripheral>
+        <peripheral access="rwp" info="Puls width modulation (PWM1)" name="PWM1" size="0x1000" start_ns="0x4010E000" start_s="0x5010E000">
+          <interrupt info="PWM1 global" irqn="074" name="PWM1"/>
+        </peripheral>
+        <peripheral access="rwp" info="Serial configuration controller  (SCC)" name="SCC" size="0x1000" start_ns="0x4010C000" start_s="0x5010C000"/>
+        <peripheral access="rwp" info="General purpose timer (GPTIMER)" name="GPTIMER" size="0x1000" start_ns="0x4010B000" start_s="0x5010B000">
+          <interrupt info="GPTIMER global" irqn="033" name="GPTIMER"/>
+        </peripheral>
+        <peripheral access="rwp" info="Quad serial peripheral interface (QSPI)" name="QSPI" size="0x1000" start_ns="0x4010A000" start_s="0x5010A000">
+          <interrupt info="QSPI global" irqn="038" name="QSPI"/>
+        </peripheral>
+        <peripheral access="rwp" info="Real time clock (RTC)" name="RTC" size="0x1000" start_ns="0x40108000" start_s="0x50108000">
+          <interrupt info="RTC global" irqn="071" name="RTC"/>
+        </peripheral>
+        <peripheral access="rwp" info="Puls width modulation (PWM0)" name="PWM0" size="0x1000" start_ns="0x40107000" start_s="0x50107000">
+          <interrupt info="PWM0 global" irqn="070" name="PWM0"/>
+        </peripheral>
+        <peripheral access="rwp" info="Inter-IC sound (I2S)" name="I2S" size="0x1000" start_ns="0x40106000" start_s="0x50106000">
+          <interrupt info="I2S global" irqn="036" name="I2S"/>
+        </peripheral>
+        <peripheral access="rwp" info="Inter-integrated circuit (I2C1)" name="I2C1" size="0x1000" start_ns="0x40105000" start_s="0x50105000">
+          <interrupt info="I2C1 global" irqn="035" name="I2C1"/>
+        </peripheral>
+        <peripheral access="rwp" info="Inter-integrated circuit (I2C0)" name="I2C0" size="0x1000" start_ns="0x40104000" start_s="0x50104000">
+          <interrupt info="I2C0 global" irqn="034" name="I2C0"/>
+        </peripheral>
+        <peripheral access="rwp" info="Serial peripheral interface (SPI0)" name="SPI0" size="0x1000" start_ns="0x40103000" start_s="0x50103000">
+          <interrupt info="SPI0 global" irqn="037" name="SPI0"/>
+        </peripheral>
+        <peripheral access="rwp" info="Universal asynchronous receiver transmitter (UART1)" name="UART1" size="0x1000" start_ns="0x40102000" start_s="0x50102000">
+          <interrupt info="UART1 receive FIFO" irqn="045" name="UARTRX1"/>
+          <interrupt info="UART1 transmit FIFO" irqn="046" name="UARTTX1"/>
+          <interrupt info="UART1 receive timeout" irqn="047" name="UART1_RxTimeout"/>
+          <interrupt info="UART1 modem status" irqn="048" name="UART1_ModemStatus"/>
+          <interrupt info="UART1 error" irqn="049" name="UART1_Error"/>
+          <interrupt info="UART1 global" irqn="050" name="UART1"/>
+        </peripheral>
+        <peripheral access="prw" info="Universal asynchronous receiver transmitter (UART0)" name="UART0" offset="0x0" size="0x1000" start_ns="0x40101000" start_s="0x50101000">
+          <interrupt info="UART0 receive FIFO" irqn="039" name="UARTRX0"/>
+          <interrupt info="UART0 transmit FIFO" irqn="040" name="UARTTX0"/>
+          <interrupt info="UART0 receive timeout" irqn="041" name="UART0_RxTimeout"/>
+          <interrupt info="UART0 modem status" irqn="042" name="UART0_ModemStatus"/>
+          <interrupt info="UART0 error" irqn="043" name="UART0_Error"/>
+          <interrupt info="UART0 global" irqn="044" name="UART0"/>
+        </peripheral>
+      </group>
+    </peripherals>
+  </resources>
+</rzone>
