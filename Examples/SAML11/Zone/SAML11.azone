@@ -4,26 +4,26 @@
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <configure/>
   <partition>
-    <memory access="rw" fixed="1" info="" name="RAM_S" offset="0x0" parent="IRAM1" security="s" size="0x2000"/>
-    <memory access="rw" name="RAM_NS" offset="0x00002000" parent="IRAM1" security="n" size="0x2000"/>
     <memory access="rx" fixed="1" name="APP_S" offset="0x0" parent="IROM1" privilege="" security="s" size="0x7C00" startup="1"/>
     <memory access="rx" fixed="1" name="APP_NSC" offset="0x7C00" parent="IROM1" privilege="" security="c" size="0x400"/>
     <memory access="rx" fixed="1" info="" name="APP_NS" offset="0x8000" parent="IROM1" privilege="" security="n" size="0x8000" startup="1"/>
+    <memory access="rw" fixed="1" info="" name="RAM_S" offset="0x0" parent="IRAM1" security="s" size="0x2000"/>
+    <memory access="rw" name="RAM_NS" offset="0x00002000" parent="IRAM1" security="n" size="0x2000"/>
     <memory access="r" fixed="1" name="DATA_S" offset="0x400" parent="IROM2" privilege="" security="" size="0x400"/>
     <memory access="r" fixed="1" name="DATA_NS" offset="0x0" parent="IROM2" privilege="" security="" size="0x400"/>
-    <peripheral access="prw" group="SERCOM" name="SERCOM1" size="0x31" start="0x42000800"/>
-    <peripheral access="prw" group="PORT" name="PORT_SEC" size="0x80" start="0x40003200"/>
-    <peripheral access="prw" group="NVMCTRL" name="NVMCTRL_SEC" size="0x48" start="0x41005000"/>
-    <peripheral access="prw" group="EVSYS" name="EVSYS_SEC" size="0x1F4" start="0x42000200"/>
-    <peripheral access="prw" group="TC" name="TC2" size="0x38" start="0x42001800"/>
-    <peripheral access="prw" group="PORT" name="PORT_IOBUS_SEC" size="0x80" start="0x60000200"/>
-    <peripheral access="prw" group="TC" name="TC1" size="0x38" start="0x42001400"/>
     <peripheral access="prw" group="PAC" name="PAC_SEC" size="0x80" start="0x40000200"/>
-    <peripheral access="prw" group="SERCOM" info="Serial Communication Interface" name="SERCOM0" size="0x31" start="0x42000400"/>
     <peripheral access="prw" group="SERCOM" name="SERCOM2" size="0x31" start="0x42000C00"/>
-    <peripheral access="prw" group="EIC" name="EIC_SEC" size="0x44" start="0x40002A00"/>
-    <peripheral access="prw" group="PORT" name="PORT_IOBUS" size="0x80" start="0x60000000"/>
     <peripheral access="prw" group="TC" info="Basic Timer Counter" name="TC0" size="0x38" start="0x42001000"/>
+    <peripheral access="prw" group="TC" name="TC2" size="0x38" start="0x42001800"/>
+    <peripheral access="prw" group="PORT" name="PORT_IOBUS" size="0x80" start="0x60000000"/>
+    <peripheral access="prw" group="PORT" name="PORT_IOBUS_SEC" size="0x80" start="0x60000200"/>
+    <peripheral access="prw" group="EVSYS" name="EVSYS_SEC" size="0x1F4" start="0x42000200"/>
+    <peripheral access="prw" group="NVMCTRL" name="NVMCTRL_SEC" size="0x48" start="0x41005000"/>
+    <peripheral access="prw" group="EIC" name="EIC_SEC" size="0x44" start="0x40002A00"/>
+    <peripheral access="prw" group="TC" name="TC1" size="0x38" start="0x42001400"/>
+    <peripheral access="prw" group="PORT" name="PORT_SEC" size="0x80" start="0x40003200"/>
+    <peripheral access="prw" group="SERCOM" info="Serial Communication Interface" name="SERCOM0" size="0x31" start="0x42000400"/>
+    <peripheral access="prw" group="SERCOM" name="SERCOM1" size="0x31" start="0x42000800"/>
   </partition>
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <zones>
@@ -40,6 +40,7 @@
       <assign memory="DATA_NS"/>
     </zone>
   </zones>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>

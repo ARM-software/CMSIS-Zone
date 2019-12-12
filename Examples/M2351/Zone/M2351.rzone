@@ -2,7 +2,7 @@
 <rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd" schemaVersion="0.2.0">
   <device Dname="M2351KIAAE" Dvendor="Nuvoton:18" info="ARM , 96 KB RAM, 512 KB ROM">
     <package info="Nuvoton ARM Cortex-M NuMicro Family Device Support" name="NuMicro_DFP" url="http://www.nuvoton.com/hq/enu/Documents/KEILSoftwarePack" vendor="Nuvoton" version="1.3.4"/>
-    <processor Dclock="64000000" Dcore="Cortex-M23" DcoreVersion="r0p0" Dendian="Configurable" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ" Ddsp="DSP"/>
+    <processor Dclock="64000000" Dcore="Cortex-M23" DcoreVersion="r0p0" Dendian="Configurable" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ" Ddsp="DSP" DnumInterrupts="101"  DnumSauRegions="8"/>
   </device>
   <resources>
     <sau_init>

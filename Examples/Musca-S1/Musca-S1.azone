@@ -19,23 +19,27 @@
   <partition>
     <memory access="rx" fixed="1" info="" name="CODE_S" offset="0x00000000" parent="MRAM_S" security="s" size="0x000FF000"/>
     <memory access="rx" info="" name="Veneer" offset="0x000FF000" parent="MRAM_S" privilege="" security="c" size="0x00001000"/>
-    <memory access="rx" info="" name="CODE_NS" offset="0x00100000" parent="MRAM_NS" privilege="" security="n" size="0x00100000"/>
-    <memory access="rw" info="" name="DATA_NS" offset="0x00040000" parent="IRAM_NS" privilege="" security="n" size="0x00040000"/>
     <memory fixed="1" name="DATA_S" offset="0x00000000" parent="IRAM_S" size="0x00040000"/>
+    <memory access="rwx" info="Code SRAM (non secure)" name="SRAM_NS" physical="0x00000000" security="" size="0x00200000" start="0x00000000" type="RAM"/>
+    <memory access="rw" info="Internal SRAM (non secure)" name="IRAM_NS" physical="0x20000000" security="" size="0x00080000" start="0x20000000" type="RAM"/>
+    <memory access="rw" info="" name="DATA_NS" offset="0x00040000" parent="IRAM_NS" privilege="" security="n" size="0x00040000"/>
+    <memory access="rx" external="1" info="QSPI Flash (non secure)" name="QSPI_Flash_NS" physical="0x00200000" security="" size="0x01000000" start="0x00200000" type="ROM"/>
+    <memory access="rwx" info="eMRAM (non secure)" name="MRAM_NS" physical="0x0A000000" security="" size="0x00200000" start="0x0A000000" type="RAM"/>
+    <memory access="rx" info="" name="CODE_NS" offset="0x00100000" parent="MRAM_NS" privilege="" security="n" size="0x00100000"/>
     <peripheral access="prw" group="Expansion" info="General purpose I/O (GPIO)" name="GPIO" privilege="" security="n" size="0x1000" start_ns="0x40110000" start_s="0x50110000"/>
-    <peripheral access="prw" info="CMSDK Timer 0" name="TIMER0" privilege="" security="n" size="0x1000" start_ns="0x40000000" start_s="0x50000000"/>
-    <peripheral access="rwp" group="Expansion" info="Serial peripheral interface (SPI0)" name="SPI0" size="0x1000" start_ns="0x40103000" start_s="0x50103000"/>
-    <peripheral access="rwp" group="Expansion" info="Puls width modulation (PWM2)" name="PWM2" size="0x1000" start_ns="0x4010F000" start_s="0x5010F000"/>
-    <peripheral access="rwp" group="Expansion" info="Serial configuration controller  (SCC)" name="SCC" size="0x1000" start_ns="0x4010C000" start_s="0x5010C000"/>
-    <peripheral access="prw" group="Expansion" info="Universal asynchronous receiver transmitter (UART1)" name="UART1" privilege="" security="n" size="0x1000" start_ns="0x40102000" start_s="0x50102000"/>
-    <peripheral access="rwp" group="Expansion" info="Puls width modulation (PWM0)" name="PWM0" size="0x1000" start_ns="0x40107000" start_s="0x50107000"/>
-    <peripheral access="prw" group="Expansion" info="Universal asynchronous receiver transmitter (UART0)" name="UART0" offset="0x0" privilege="" security="s" size="0x1000" start_ns="0x40101000" start_s="0x50101000"/>
-    <peripheral access="rwp" group="Expansion" info="Inter-integrated circuit (I2C1)" name="I2C1" size="0x1000" start_ns="0x40105000" start_s="0x50105000"/>
-    <peripheral access="rwp" group="Expansion" info="General purpose timer (GPTIMER)" name="GPTIMER" size="0x1000" start_ns="0x4010B000" start_s="0x5010B000"/>
     <peripheral access="rwp" group="Expansion" info="Quad serial peripheral interface (QSPI)" name="QSPI" size="0x1000" start_ns="0x4010A000" start_s="0x5010A000"/>
-    <peripheral access="rwp" group="Expansion" info="Inter-integrated circuit (I2C0)" name="I2C0" size="0x1000" start_ns="0x40104000" start_s="0x50104000"/>
+    <peripheral access="rwp" group="Expansion" info="General purpose timer (GPTIMER)" name="GPTIMER" size="0x1000" start_ns="0x4010B000" start_s="0x5010B000"/>
+    <peripheral access="rwp" group="Expansion" info="Serial peripheral interface (SPI0)" name="SPI0" size="0x1000" start_ns="0x40103000" start_s="0x50103000"/>
     <peripheral access="rwp" group="Expansion" info="Inter-IC sound (I2S)" name="I2S" size="0x1000" start_ns="0x40106000" start_s="0x50106000"/>
     <peripheral access="rwp" group="Expansion" info="Real time clock (RTC)" name="RTC" size="0x1000" start_ns="0x40108000" start_s="0x50108000"/>
+    <peripheral access="rwp" group="Expansion" info="Inter-integrated circuit (I2C1)" name="I2C1" size="0x1000" start_ns="0x40105000" start_s="0x50105000"/>
+    <peripheral access="prw" group="Expansion" info="Universal asynchronous receiver transmitter (UART1)" name="UART1" privilege="" security="n" size="0x1000" start_ns="0x40102000" start_s="0x50102000"/>
+    <peripheral access="rwp" group="Expansion" info="Puls width modulation (PWM2)" name="PWM2" size="0x1000" start_ns="0x4010F000" start_s="0x5010F000"/>
+    <peripheral access="rwp" group="Expansion" info="Inter-integrated circuit (I2C0)" name="I2C0" size="0x1000" start_ns="0x40104000" start_s="0x50104000"/>
+    <peripheral access="prw" info="CMSDK Timer 0" name="TIMER0" privilege="" security="n" size="0x1000" start_ns="0x40000000" start_s="0x50000000"/>
+    <peripheral access="rwp" group="Expansion" info="Puls width modulation (PWM0)" name="PWM0" size="0x1000" start_ns="0x40107000" start_s="0x50107000"/>
+    <peripheral access="rwp" group="Expansion" info="Serial configuration controller  (SCC)" name="SCC" size="0x1000" start_ns="0x4010C000" start_s="0x5010C000"/>
+    <peripheral access="prw" group="Expansion" info="Universal asynchronous receiver transmitter (UART0)" name="UART0" offset="0x0" privilege="" security="s" size="0x1000" start_ns="0x40101000" start_s="0x50101000"/>
     <peripheral access="rwp" group="Expansion" info="Puls width modulation (PWM1)" name="PWM1" size="0x1000" start_ns="0x4010E000" start_s="0x5010E000"/>
   </partition>
   <configure/>

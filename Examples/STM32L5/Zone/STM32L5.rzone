@@ -2,7 +2,7 @@
 <rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.2.0" xs:noNamespaceSchemaLocation="rzone.xsd">
   <device Dname="STM32L552ZETxQ" Dvendor="STMicroelectronics:13" info="ARM , 384 KB RAM, 1 MB ROM">
     <package info="STMicroelectronics STM32L5 Series Device Support" name="STM32L5xx_DFP" url="http://www.keil.com/pack" vendor="Keil" version="1.0.9-dev4"/>
-    <processor Dclock="110000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ"/>
+    <processor Dclock="110000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Little-endian" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ" DnumInterrupts="128"  DnumSauRegions="8"/>
   </device>
   <resources>
     <sau_init>

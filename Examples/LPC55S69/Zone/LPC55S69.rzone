@@ -3,7 +3,7 @@
   <device Dvendor="NXP:11" Dname="LPC55S69" info="Cortex-M33, 320kB on-chip SRAM, 640kB on-chip Flash">
     <package name="LPC55S69_DFP" url="http://mcuxpresso.nxp.com/cmsis_pack/repo/" vendor="NXP" version="11.0.0" info="Device Family Pack for LPC55S69"/>
     <processor Pname="cm33_core0" Dcore="Cortex-M33" DcoreVersion="r0p3" Dclock="100000000" Dendian="Little-endian" Ddsp="DSP"    Dfpu="SP_FPU" Dmpu="MPU"    Dtz="TZ"    DnumInterrupts="60"  DnumSauRegions="8" />
-    <processor Pname="cm33_core1" Dcore="Cortex-M33" DcoreVersion="r0p3" Dclock="100000000" Dendian="Little-endian" Ddsp="NO_DSP" Dfpu="NO_FPU" Dmpu="NO_MPU" Dtz="NO_TZ"/>
+    <processor Pname="cm33_core1" Dcore="Cortex-M33" DcoreVersion="r0p3" Dclock="100000000" Dendian="Little-endian" Ddsp="NO_DSP" Dfpu="NO_FPU" Dmpu="NO_MPU" Dtz="NO_TZ" DnumInterrupts="60"  DnumSauRegions="8" />
   </device>
   <resources>
     <memories>

@@ -74,7 +74,6 @@
     </zone>
   </zones>
   <partition>
-    <memory info="" name="CODE" offset="0x00000000" parent="IROM1" size="0x100000"/>
     <memory access="rw" fixed="1" name="RAM_SHARED" offset="0x8000" parent="IRAM1" privilege="u" security="" size="0x2000"/>
     <memory access="rw" fixed="1" info="" name="RAM_NET" offset="0xE000" parent="IRAM1" privilege="u" size="0x8000"/>
     <memory access="rw" fixed="1" name="RAM_MAIN" offset="0x19000" parent="IRAM1" privilege="u" security="" size="0x1000"/>
@@ -85,65 +84,67 @@
     <memory access="rw" fixed="1" name="RAM_ADC" offset="0x17000" parent="IRAM1" privilege="u" security="" size="0x1000"/>
     <memory access="rw" fixed="1" name="RAM_TIMER" offset="0x16000" parent="IRAM1" privilege="u" security="" size="0x1000"/>
     <memory access="rw" fixed="1" name="RAM_IDLE" offset="0x1A000" parent="IRAM1" privilege="u" security="" size="0x1000"/>
+    <memory info="" name="CODE" offset="0x00000000" parent="IROM1" size="0x100000"/>
+    <peripheral access="prw" group="SPI" info="Serial peripheral interface" name="SPI1" size="0x400" start="0x40013000"/>
+    <peripheral access="prw" group="USART" name="USART3" size="0x400" start="0x40004800"/>
     <peripheral access="prw" group="USB_OTG_FS" info="USB on the go full speed" name="OTG_FS_DEVICE" size="0x400" start="0x50000800"/>
-    <peripheral access="prw" group="GPIO" name="GPIOE" size="0x400" start="0x40021000"/>
-    <peripheral access="prw" group="TIM" name="TIM12" size="0x400" start="0x40001800"/>
-    <peripheral access="prw" group="USART" name="USART2" size="0x400" start="0x40004400"/>
-    <peripheral access="prw" group="USB_OTG_HS" info="USB on the go high speed" name="OTG_HS_DEVICE" size="0x400" start="0x40040800"/>
-    <peripheral access="prw" group="DMA" name="DMA1" size="0x400" start="0x40026000"/>
-    <peripheral access="prw" group="GPIO" info="General-purpose I/Os" name="GPIOI" size="0x400" start="0x40022000"/>
+    <peripheral access="prw" group="I2C" info="Inter-integrated circuit" name="I2C3" size="0x400" start="0x40005C00"/>
+    <peripheral access="prw" group="USART" name="UART5" size="0x400" start="0x40005000"/>
+    <peripheral access="prw" group="ADC" info="Analog-to-digital converter" name="ADC1" size="0x100" start="0x40012000"/>
+    <peripheral access="prw" group="GPIO" name="GPIOC" size="0x400" start="0x40020800"/>
     <peripheral access="prw" group="USB_OTG_HS" info="USB on the go high speed" name="OTG_HS_HOST" size="0x400" start="0x40040400"/>
-    <peripheral access="prw" group="TIM" info="Advanced-timers" name="TIM1" size="0x400" start="0x40010000"/>
+    <peripheral access="prw" group="USB_OTG_FS" info="USB on the go full speed" name="OTG_FS_GLOBAL" size="0x400" start="0x50000000"/>
+    <peripheral access="prw" group="TIM" info="General purpose timers" name="TIM3" size="0x400" start="0x40000400"/>
+    <peripheral access="prw" group="TIM" name="TIM7" size="0x400" start="0x40001400"/>
+    <peripheral access="prw" group="USB_OTG_HS" info="USB on the go high speed" name="OTG_HS_PWRCLK" size="0x3F200" start="0x40040E00"/>
+    <peripheral access="prw" group="ADC" name="ADC2" size="0x100" start="0x40012100"/>
     <peripheral access="prw" group="Ethernet" info="Ethernet: MAC management counters" name="Ethernet_MMC" size="0x600" start="0x40028100"/>
     <peripheral access="prw" group="GPIO" name="GPIOG" size="0x400" start="0x40021800"/>
-    <peripheral access="prw" group="TIM" info="General-purpose-timers" name="TIM5" size="0x400" start="0x40000C00"/>
-    <peripheral access="prw" group="GPIO" name="GPIOC" size="0x400" start="0x40020800"/>
-    <peripheral access="prw" group="USB_OTG_HS" info="USB on the go high speed" name="OTG_HS_PWRCLK" size="0x3F200" start="0x40040E00"/>
-    <peripheral access="prw" group="USART" name="UART5" size="0x400" start="0x40005000"/>
-    <peripheral access="prw" group="CAN" name="CAN2" size="0x400" start="0x40006800"/>
-    <peripheral access="prw" group="GPIO" info="General-purpose I/Os" name="GPIOB" size="0x400" start="0x40020400"/>
-    <peripheral access="prw" group="GPIO" name="GPIOD" size="0x400" start="0x40020C00"/>
     <peripheral access="prw" group="GPIO" name="GPIOH" size="0x400" start="0x40021C00"/>
-    <peripheral access="prw" group="I2C" info="Inter-integrated circuit" name="I2C3" size="0x400" start="0x40005C00"/>
-    <peripheral access="prw" group="SPI" name="I2S2ext" size="0x400" start="0x40003400"/>
-    <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver&#10;      transmitter" name="USART6" size="0x400" start="0x40011400"/>
-    <peripheral access="prw" group="ADC" name="ADC2" size="0x100" start="0x40012100"/>
-    <peripheral access="prw" info="Graphic LCD" name="GLCD" size="0x8000" start="0x6C000000"/>
-    <peripheral access="prw" group="I2C" name="I2C1" size="0x400" start="0x40005400"/>
-    <peripheral access="prw" group="CAN" info="Controller area network" name="CAN1" size="0x400" start="0x40006400"/>
-    <peripheral access="prw" group="USB_OTG_HS" info="USB on the go high speed" name="OTG_HS_GLOBAL" size="0xFFFC0400" start="0x40040000"/>
-    <peripheral access="prw" group="GPIO" info="General-purpose I/Os" name="GPIOA" size="0x400" start="0x40020000"/>
-    <peripheral access="prw" group="USART" name="USART3" size="0x400" start="0x40004800"/>
-    <peripheral access="prw" group="ADC" info="Analog-to-digital converter" name="ADC1" size="0x100" start="0x40012000"/>
-    <peripheral access="prw" group="USB_OTG_FS" info="USB on the go full speed" name="OTG_FS_HOST" size="0x400" start="0x50000400"/>
-    <peripheral access="prw" group="TIM" name="TIM4" size="0x400" start="0x40000800"/>
-    <peripheral access="prw" group="Ethernet" info="Ethernet: DMA controller operation" name="Ethernet_DMA" size="0x1000" start="0x40029000"/>
-    <peripheral access="prw" group="Ethernet" info="Ethernet: media access control&#10;      (MAC)" name="Ethernet_MAC" size="0x100" start="0x40028000"/>
-    <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver&#10;      transmitter" name="UART4" size="0x400" start="0x40004C00"/>
-    <peripheral access="prw" group="TIM" name="TIM7" size="0x400" start="0x40001400"/>
-    <peripheral access="prw" group="SPI" name="SPI2" size="0x400" start="0x40003800"/>
-    <peripheral access="prw" group="TIM" name="TIM13" size="0x400" start="0x40001C00"/>
-    <peripheral access="prw" group="TIM" name="TIM14" size="0x400" start="0x40002000"/>
-    <peripheral access="prw" group="TIM" info="General purpose timers" name="TIM9" size="0x400" start="0x40014000"/>
-    <peripheral access="prw" group="SPI" name="I2S3ext" size="0x400" start="0x40004000"/>
     <peripheral access="prw" group="TIM" info="General-purpose-timers" name="TIM11" size="0x400" start="0x40014800"/>
-    <peripheral access="prw" group="DMA" info="DMA controller" name="DMA2" size="0x400" start="0x40026400"/>
-    <peripheral access="prw" group="TIM" info="General purpose timers" name="TIM3" size="0x400" start="0x40000400"/>
-    <peripheral access="prw" group="SPI" info="Serial peripheral interface" name="SPI1" size="0x400" start="0x40013000"/>
-    <peripheral access="prw" group="I2C" name="I2C2" size="0x400" start="0x40005800"/>
-    <peripheral access="prw" group="SPI" name="SPI3" size="0x400" start="0x40003C00"/>
-    <peripheral access="prw" group="Ethernet" info="Ethernet: Precision time protocol" name="Ethernet_PTP" size="0x900" start="0x40028700"/>
-    <peripheral access="prw" group="GPIO" name="GPIOF" size="0x400" start="0x40021400"/>
-    <peripheral access="prw" group="TIM" info="General-purpose-timers" name="TIM10" size="0x400" start="0x40014400"/>
-    <peripheral access="prw" group="TIM" name="TIM8" size="0x400" start="0x40010400"/>
-    <peripheral access="prw" group="USB_OTG_FS" info="USB on the go full speed" name="OTG_FS_GLOBAL" size="0x400" start="0x50000000"/>
-    <peripheral access="prw" group="USB_OTG_FS" info="USB on the go full speed" name="OTG_FS_PWRCLK" size="0x400" start="0x50000E00"/>
-    <peripheral access="prw" group="USART" name="USART1" size="0x400" start="0x40011000"/>
-    <peripheral access="prw" group="TIM" info="Basic timers" name="TIM6" size="0x400" start="0x40001000"/>
+    <peripheral access="prw" group="TIM" info="General-purpose-timers" name="TIM5" size="0x400" start="0x40000C00"/>
+    <peripheral access="prw" group="Ethernet" info="Ethernet: DMA controller operation" name="Ethernet_DMA" size="0x1000" start="0x40029000"/>
+    <peripheral access="prw" group="GPIO" name="GPIOE" size="0x400" start="0x40021000"/>
+    <peripheral access="prw" group="SPI" name="I2S2ext" size="0x400" start="0x40003400"/>
+    <peripheral access="prw" group="SPI" name="SPI2" size="0x400" start="0x40003800"/>
+    <peripheral access="prw" info="Graphic LCD" name="GLCD" size="0x8000" start="0x6C000000"/>
     <peripheral access="prw" group="ADC" info="Common ADC registers" name="C_ADC" size="0x100" start="0x40012300"/>
-    <peripheral access="prw" group="TIM" info="General purpose timers" name="TIM2" size="0x400" start="0x40000000"/>
+    <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver&#10;      transmitter" name="USART6" size="0x400" start="0x40011400"/>
     <peripheral access="prw" group="ADC" name="ADC3" size="0x100" start="0x40012200"/>
+    <peripheral access="prw" group="USB_OTG_HS" info="USB on the go high speed" name="OTG_HS_GLOBAL" size="0xFFFC0400" start="0x40040000"/>
+    <peripheral access="prw" group="SPI" name="I2S3ext" size="0x400" start="0x40004000"/>
+    <peripheral access="prw" group="GPIO" name="GPIOD" size="0x400" start="0x40020C00"/>
+    <peripheral access="prw" group="TIM" info="Advanced-timers" name="TIM1" size="0x400" start="0x40010000"/>
+    <peripheral access="prw" group="CAN" info="Controller area network" name="CAN1" size="0x400" start="0x40006400"/>
+    <peripheral access="prw" group="TIM" info="Basic timers" name="TIM6" size="0x400" start="0x40001000"/>
+    <peripheral access="prw" group="TIM" info="General-purpose-timers" name="TIM10" size="0x400" start="0x40014400"/>
+    <peripheral access="prw" group="TIM" name="TIM13" size="0x400" start="0x40001C00"/>
+    <peripheral access="prw" group="TIM" name="TIM12" size="0x400" start="0x40001800"/>
+    <peripheral access="prw" group="GPIO" info="General-purpose I/Os" name="GPIOI" size="0x400" start="0x40022000"/>
+    <peripheral access="prw" group="SPI" name="SPI3" size="0x400" start="0x40003C00"/>
+    <peripheral access="prw" group="DMA" name="DMA1" size="0x400" start="0x40026000"/>
+    <peripheral access="prw" group="DMA" info="DMA controller" name="DMA2" size="0x400" start="0x40026400"/>
+    <peripheral access="prw" group="GPIO" name="GPIOF" size="0x400" start="0x40021400"/>
+    <peripheral access="prw" group="I2C" name="I2C2" size="0x400" start="0x40005800"/>
+    <peripheral access="prw" group="TIM" name="TIM4" size="0x400" start="0x40000800"/>
+    <peripheral access="prw" group="USART" name="USART1" size="0x400" start="0x40011000"/>
+    <peripheral access="prw" group="I2C" name="I2C1" size="0x400" start="0x40005400"/>
+    <peripheral access="prw" group="TIM" name="TIM8" size="0x400" start="0x40010400"/>
+    <peripheral access="prw" group="TIM" info="General purpose timers" name="TIM9" size="0x400" start="0x40014000"/>
+    <peripheral access="prw" group="Ethernet" info="Ethernet: Precision time protocol" name="Ethernet_PTP" size="0x900" start="0x40028700"/>
+    <peripheral access="prw" group="GPIO" info="General-purpose I/Os" name="GPIOB" size="0x400" start="0x40020400"/>
+    <peripheral access="prw" group="Ethernet" info="Ethernet: media access control&#10;      (MAC)" name="Ethernet_MAC" size="0x100" start="0x40028000"/>
+    <peripheral access="prw" group="USB_OTG_FS" info="USB on the go full speed" name="OTG_FS_PWRCLK" size="0x400" start="0x50000E00"/>
+    <peripheral access="prw" group="USB_OTG_HS" info="USB on the go high speed" name="OTG_HS_DEVICE" size="0x400" start="0x40040800"/>
+    <peripheral access="prw" group="TIM" info="General purpose timers" name="TIM2" size="0x400" start="0x40000000"/>
+    <peripheral access="prw" group="USB_OTG_FS" info="USB on the go full speed" name="OTG_FS_HOST" size="0x400" start="0x50000400"/>
+    <peripheral access="prw" group="USART" info="Universal synchronous asynchronous receiver&#10;      transmitter" name="UART4" size="0x400" start="0x40004C00"/>
+    <peripheral access="prw" group="CAN" name="CAN2" size="0x400" start="0x40006800"/>
+    <peripheral access="prw" group="TIM" name="TIM14" size="0x400" start="0x40002000"/>
+    <peripheral access="prw" group="USART" name="USART2" size="0x400" start="0x40004400"/>
+    <peripheral access="prw" group="GPIO" info="General-purpose I/Os" name="GPIOA" size="0x400" start="0x40020000"/>
   </partition>
+  <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>

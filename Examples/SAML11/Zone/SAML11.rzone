@@ -3,7 +3,7 @@
   <creator tool="CMSIS Zone PlugIn for Eclipse 0.9.5"/>
   <device Dfamily="SAML11" Dname="ATSAML11E16A" Dvendor="Microchip:3" info="ARM , 16 KB RAM, 66 KB ROM" url="http://www.keil.com/dd2/atmel/atsaml11e16a">
     <package info="Microchip SAML11 Series Device Support" name="SAML11_DFP" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.83"/>
-    <processor Dcore="Cortex-M23" Dendian="Little-endian" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ"/>
+    <processor Dcore="Cortex-M23" Dendian="Little-endian" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ" DnumInterrupts="48"  DnumSauRegions="8"/>
   </device>
   <resources>
     <memories>

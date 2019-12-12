@@ -2,8 +2,8 @@
 <rzone xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="rzone.xsd">
   <device Dname="Musca" Dvendor="ARM:82" info="ARM , 256 KB RAM, 4608 KB ROM">
     <package info="Musca A1 Board Support PACK for CoreLink SSE-200 based - TrustZone enabled subsystem for embedded. TFM Pack is required." name="Musca_A1_BSP" url="http://www.keil.com/pack/" vendor="ARM" version="2.0.0"/>
-    <processor Dclock="50000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="NO_DSP" Dendian="Configurable" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ" Pname="Cortex-M33-0"/>
-    <processor Dclock="50000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Configurable" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ" Pname="Cortex-M33-1"/>
+    <processor Dclock="50000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="NO_DSP" Dendian="Configurable" Dfpu="NO_FPU" Dmpu="MPU" Dtz="TZ" DnumInterrupts="480" DnumSauRegions="8" Pname="Cortex-M33-0"/>
+    <processor Dclock="50000000" Dcore="Cortex-M33" DcoreVersion="r0p0" Ddsp="DSP" Dendian="Configurable" Dfpu="SP_FPU" Dmpu="MPU" Dtz="TZ" DnumInterrupts="480" DnumSauRegions="8" Pname="Cortex-M33-1"/>
   </device>
   <resources>
     <memories>
