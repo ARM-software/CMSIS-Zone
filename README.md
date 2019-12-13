@@ -2,8 +2,8 @@
 
 The branch *master* of this GitHub repository contains the first alpha version of CMSIS-Zone Utility that supports
 the multi-step approach for splitting complex multi-core systems into sub-systems.
-The relevant part of the [documentation](https://arm-software.github.io/CMSIS-Zone/index.html) is available under 
-https://arm-software.github.io/CMSIS-Zone/index.html.
+The relevant part of the [documentation](https://arm-software.github.io/CMSIS_5/Zone/html/index.html) is available under 
+https://arm-software.github.io/CMSIS_5/Zone/html/index.html.
 
 This alpha version of CMSIS-Zone focuses on the TrustZone configuration of single or multi-core Cortex-M33 systems.
 It implements currently the infra-structure that is required for:
