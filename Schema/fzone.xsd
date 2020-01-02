@@ -250,6 +250,7 @@
               <xs:element name="Dname"      type="xs:string"/>
               <xs:element name="Pname"      type="xs:string"/>
               <xs:element name="security"   type="SecurityType"/>
+              <xs:element name="privilege"  type="PrivilegeType"/>
               <xs:element name="memory"     type="MemoryType"     maxOccurs="unbounded"/>
               <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
               <xs:element name="mpu_setup"  type="MpuSetupType"/>
