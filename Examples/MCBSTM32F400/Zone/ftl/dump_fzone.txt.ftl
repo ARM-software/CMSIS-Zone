@@ -120,7 +120,7 @@ ${c.type}
 <#list c.region?sort_by("start") as mpu_region>
 ${" "?right_pad(4)}- ${mpu_region.info?right_pad(31)} ${num2hex(hex2num(mpu_region.start))} .. ${num2hex(hex2num(mpu_region.end))}<#rt>
 <#if c.type == "v7M">
-  (${mpu_region.addr_v7M} : ${mpu_region.size_v7M}, ${mpu_region.srd_v7M})
+  (${mpu_region.addr_v7M} : ${pow2str(hex2num(mpu_region.size_v7M)+1)}B, ${mpu_region.srd_v7M})
 <#else>
 
 </#if>

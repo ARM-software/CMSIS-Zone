@@ -90,3 +90,25 @@ Example:
   </#if>
 </#function>
 
+<#--
+Returns a exponential string representation of a power-of-two
+value using suffixes 'K' (kilo), 'M' (mega) or 'G' (giga).
+
+Parameter:
+   n       exponent value
+   
+Returns:
+   power of 2 in exponential string representation
+
+Example:
+    pow2str(4)  => 16
+    pow2str(11) =>  2K
+    pow2str(25) => 32M
+    pow2str(30) =>  1G
+-->
+<#function pow2str n>
+  <#local expstr =['', 'K', 'M', 'G']>
+  <#local exp    = n / 10>
+  <#local base   = n % 10>
+  <#return pow2(base)?c+expstr[exp]/>
+</#function>
