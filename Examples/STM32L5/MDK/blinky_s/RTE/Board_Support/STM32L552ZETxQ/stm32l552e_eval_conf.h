@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2018 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2019 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under BSD 3-Clause license,
@@ -30,8 +30,12 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l5xx_hal.h"
 
-/* Activation of COM log */
-#define USE_COM_LOG 0U
+/* Usage of COM feature */
+#define USE_BSP_COM_FEATURE 1U
+#define USE_COM_LOG         0U
+
+/* Usage of POT feature */
+#define USE_BSP_POT_FEATURE 1U
 
 /* Usage of IO expander */
 #define USE_BSP_IO_CLASS 1U
@@ -61,6 +65,12 @@ extern "C" {
 /* OSPI RAM interrupt priority */
 #define BSP_OSPI_RAM_IT_PRIORITY      0x07UL  /* Default is lowest priority level */
 #define BSP_OSPI_RAM_DMA_IT_PRIORITY  0x07UL  /* Default is lowest priority level */
+
+/* Bus frequencies */
+#define BUS_I2C1_FREQUENCY            100000U /* Frequency of I2C1 = 100 KHz */
+
+/* Default AUDIO IN internal buffer size in 32-bit words per micro */
+#define DEFAULT_AUDIO_IN_BUFFER_SIZE  2048U   /* 2048*4 = 8Kbytes */
 
 #ifdef __cplusplus
 }

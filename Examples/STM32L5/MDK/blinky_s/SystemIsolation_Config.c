@@ -92,30 +92,7 @@ void SystemIsolation_Config(void)
   );
   WRITE_REG(GPIOB_S->SECCFGR,
     0x00000001 | /* GPIOB */
-    0x00000002 | /* GPIOB */
-    0x00000004 | /* GPIOB */
-    0x00000008 | /* GPIOB */
-    0x00000010 | /* GPIOB */
-    0x00000020 | /* GPIOB */
-    0x00000040 | /* GPIOB */
-    0x00000080 | /* GPIOB */
-    0x00000100 | /* GPIOB */
-    0x00000200 | /* GPIOB */
-    0x00000400 | /* GPIOB */
-    0x00000800 | /* GPIOB */
-    0x00001000 | /* GPIOB */
-    0x00002000 | /* GPIOB */
-    0x00004000 | /* GPIOB */
-    0x00008000   /* GPIOB */
-  );
-  WRITE_REG(GTZC_TZSC->PRIVCFGR1,
-    0x00000400 | /* USART2 */
-    0x00000004 | /* TIM4 */
-    0x40000000   /* TIM1 */
-  );
-  WRITE_REG(GTZC_TZSC->PRIVCFGR2,
-    0x00000002 | /* USART1 */
-    0x00000800   /* ADC */
+    0x00000002   /* GPIOB */
   );
   WRITE_REG(GTZC_TZSC->SECCFGR1,
     0x40000000   /* TIM1 */
@@ -139,7 +116,7 @@ void SystemIsolation_Config(void)
   }
 
   /* Enable TZIC secure interrupt */
-  HAL_NVIC_SetPriority(TZIC_S_IRQn, 0, 0); /* Highest priority level */
-  HAL_NVIC_ClearPendingIRQ(TZIC_S_IRQn);
-  HAL_NVIC_EnableIRQ(TZIC_S_IRQn);
+  HAL_NVIC_SetPriority(GTZC_IRQn, 0, 0); /* Highest priority level */
+  HAL_NVIC_ClearPendingIRQ(GTZC_IRQn);
+  HAL_NVIC_EnableIRQ(GTZC_IRQn);
 }

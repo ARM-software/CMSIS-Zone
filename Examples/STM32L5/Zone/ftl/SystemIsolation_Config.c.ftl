@@ -59,7 +59,7 @@ void SystemIsolation_Config(void)
   }
 
   /* Enable TZIC secure interrupt */
-  HAL_NVIC_SetPriority(TZIC_S_IRQn, 0, 0); /* Highest priority level */
-  HAL_NVIC_ClearPendingIRQ(TZIC_S_IRQn);
-  HAL_NVIC_EnableIRQ(TZIC_S_IRQn);
+  HAL_NVIC_SetPriority(GTZC_IRQn, 0, 0); /* Highest priority level */
+  HAL_NVIC_ClearPendingIRQ(GTZC_IRQn);
+  HAL_NVIC_EnableIRQ(GTZC_IRQn);
 }

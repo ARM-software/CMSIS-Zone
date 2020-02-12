@@ -2,7 +2,7 @@
  * @file     partition_gen.h
  * @brief    CMSIS-CORE Initial Setup for Secure / Non-Secure Zones for STM32L5xx Device
  * @version  V1.0.0      (FreeMarker generated)
- * @date     04-Jul-2019 17:24:24
+ * @date     12 Feb 2020 14:05:17
  ******************************************************************************/
 /*
  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
@@ -47,12 +47,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START0       0x20000000      /* start address of SAU region 0 */
+#define SAU_INIT_START0       0x08040000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END0       0x2001FFFF      /* end address of SAU region 0 */
+#define SAU_INIT_END0       0x0807FFE0      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
@@ -72,19 +72,19 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START1       0x40000000      /* start address of SAU region 0 */
+#define SAU_INIT_START1       0x0C03E000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END1       0x0      /* end address of SAU region 0 */
+#define SAU_INIT_END1       0x0C03FFE0      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
 //         <0=>Non-Secure
 //         <1=>Secure, Non-Secure Callable
 */
-#define SAU_INIT_NSC1       0
+#define SAU_INIT_NSC1       1
 /*
 //   </e>
 */
@@ -97,12 +97,12 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START2       0x8040000      /* start address of SAU region 0 */
+#define SAU_INIT_START2       0x20000000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END2       0x807FFFF      /* end address of SAU region 0 */
+#define SAU_INIT_END2       0x2001FFE0      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
@@ -122,19 +122,19 @@
 /*
 //     <o>Start Address <0-0xFFFFFFE0>
 */
-#define SAU_INIT_START3       0xC03E000      /* start address of SAU region 0 */
+#define SAU_INIT_START3       0x40000000      /* start address of SAU region 0 */
 
 /*
 //     <o>End Address <0x1F-0xFFFFFFFF>
 */
-#define SAU_INIT_END3       0xC03FFFF      /* end address of SAU region 0 */
+#define SAU_INIT_END3       0x4FFFFFE0      /* end address of SAU region 0 */
 
 /*
 //     <o>Region is
 //         <0=>Non-Secure
 //         <1=>Secure, Non-Secure Callable
 */
-#define SAU_INIT_NSC3       1
+#define SAU_INIT_NSC3       0
 /*
 //   </e>
 */
