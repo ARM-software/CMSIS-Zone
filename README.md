@@ -1,26 +1,20 @@
 # CMSIS-Zone
 
-The branch *master* of this GitHub repository contains the first alpha version of CMSIS-Zone Utility that supports
+The branch *master* of this GitHub repository contains the  CMSIS-Zone Utility that supports
 the multi-step approach for splitting complex multi-core systems into sub-systems.
-The relevant part of the [documentation](https://arm-software.github.io/CMSIS_5/Zone/html/index.html) is available under 
+The [CMSIS-Zone documentation](https://arm-software.github.io/CMSIS_5/Zone/html/index.html) is available under 
 https://arm-software.github.io/CMSIS_5/Zone/html/index.html.
 
-This alpha version of CMSIS-Zone focuses on the TrustZone configuration of single or multi-core Cortex-M33 systems.
-It implements currently the infra-structure that is required for:
+CMSIS-Zone is flexible and supports multiple use-cases, for example the setup of MPU (memory protection unit) or TrustZone.
+It implements the infra-structure that is required for:
   - Split of a multi-processor system for single processor views and secure/non-secure views
   - TrustZone setup (SAU, Interrupt assignment to Secure/Non-Secure)
   - Setup of device specific Memory Protection Controller (MPC)
   - Setup of device specific Peripheral Protection Controller (PPC)
+  - Setup of Memory Protection Unit (MPU)
   - Generation of linker scatter files.
   
-We will show how to apply this concept using example projects.
-
-The following CMSIS-Zone features are still under development and not yet available in the alpha version:
-  - Configuration of the Memory Protection Unit (MPU)
-  - Support for multi-core targets that contain a mixture of cores (Cortex-M/Cortex-A)
-  - Project wizard for creating new CMSIS-Zone projects
-
-The source code of the CMSIS-Zone Utility is released under open source license. However we will update this page frequently to show the current progress of this project and to solve issues that are detected during testing.
+The source code of the CMSIS-Zone is released under open source license and part of [cmsis-pack-eclipse](https://github.com/ARM-software/cmsis-pack-eclipse).
 
 Use [Issues](https://github.com/ARM-software/CMSIS-Zone#issues-and-labels) to provide feedback and report problems for the
 CMSIS-Zone Utility and the CMSIS-Zone project examples.
@@ -31,11 +25,11 @@ example projects and is constantly updated. It allows you to review the work and
 For further details see also the [Slides of the Embedded World CMSIS Partner Meeting](https://github.com/ARM-software/CMSIS_5/blob/develop/CMSIS_EW2019.pdf).
 
 ## Tool Installation
-The [CMSIS-Zone Utility](https://arm-software.github.io/CMSIS-Zone/zoneToolUsage.html) is provided as Eclipse plug in under [release](https://github.com/ARM-software/CMSIS-Zone/releases). For Windows the file *EclipseCDT_2019_3_CMSIS_Zone.zip* provides a complete Eclipse enviornment that is ready to use.  Just unzip it to a suitable folder.
+The installation of [CMSIS-Zone](https://arm-software.github.io/CMSIS_5/Zone/html/zTInstall.html) is described here https://arm-software.github.io/CMSIS_5/Zone/html/zTInstall.html.
 
 For first steps refer to:
   - [Configuring Armv8-M systems with CMSIS-Zone](https://community.arm.com/developer/tools-software/tools/b/tools-software-ides-blog/posts/configuring-armv8-m-systems-with-cmsis-zone) - this blog contains a video (at the end) that shows how to operate the CMSIS-Zone utility
-  - [CMSIS-Zone Utility - Examples](https://arm-software.github.io/CMSIS-Zone/zTExamples.html) - the documentation contains examples for four different hardware platforms. To get started with a new hardware platform a \*.rzone system resource file is required.
+  - [CMSIS-Zone Utility - Examples](https://arm-software.github.io/CMSIS-Zone/zTExamples.html) - the documentation contains examples for different hardware platforms. To get started with a new hardware platform a \*.rzone system resource file is required.
 
 ## Directory Structure
 
