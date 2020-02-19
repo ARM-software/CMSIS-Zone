@@ -14,6 +14,7 @@
 
 <#list regions?values as r>
 #define REGION_${r.name?upper_case}_START ${r.start}
+#define REGION_${r.name?upper_case}_PADR  ${r.physical}
 #define REGION_${r.name?upper_case}_SIZE  ${r.size}
 </#list>
 
