@@ -24,15 +24,12 @@ Example:
    hex2num(102)        => 258
 -->
 <#function hex2num hex>
-  <#local hexdigit={ "A":10, "B":11, "C":12, "D":13, "E":14, "F":15 } />
+  <#local hexdigit={ "0": 0, "1": 1, "2":  2, "3":  3, "4":  4, "5":  5, "6":  6, "7":  7,
+                     "8": 8, "9": 9, "A": 10, "B": 11, "C": 12, "D": 13, "E": 14, "F": 15 } />
   <#local result=0 />
   <#local hex=hex?remove_beginning("0x") />
   <#list hex?length-1..0 as i>
-    <#attempt>
-      <#local result += hex[i]?number*pow2(i?index*4)/>
-    <#recover>
-      <#local result += hexdigit[hex[i]]*pow2(i?index*4)/>
-    </#attempt>
+    <#local result += hexdigit[hex[i]]*pow2(i?index*4)/>
   </#list>
   <#return result/>
 </#function>
@@ -91,32 +88,24 @@ Example:
 </#function>
 
 <#--
- Filter a sequence of objects according to an arbitrary condition.
- 
- The newly created sequence contains only those elements of the original
- sequence for which the given condition evaluates to true.
- 
- The given condition must be a function taking a single element of the 
- sequence and returning a boolean.
- 
- Example:
- <#function myCondition(s)>
-   <#return s lt 5 />
- </#function>
- 
- seq = 1..10
- filter(seq, myCondition) => 1..4
- 
- seq A sequence of objects.
- condition A function to be called for each object of the sequence. 
- return A new sequence containing only filtered objects. 
+Returns a exponential string representation of a power-of-two
+value using suffixes 'K' (kilo), 'M' (mega) or 'G' (giga).
+
+Parameter:
+   n       exponent value
+   
+Returns:
+   power of 2 in exponential string representation
+
+Example:
+    pow2str(4)  => 16
+    pow2str(11) =>  2K
+    pow2str(25) => 32M
+    pow2str(30) =>  1G
 -->
-<#function filter seq condition>
-  <#local result = [] />
-  <#list seq as s>
-    <#if condition(s)>
-      <#local result += [s] />
-    </#if>
-  </#list>
-  <#return result />
+<#function pow2str n>
+  <#local expstr =['', 'K', 'M', 'G']>
+  <#local exp    = n / 10>
+  <#local base   = n % 10>
+  <#return pow2(base)?c+expstr[exp]/>
 </#function>

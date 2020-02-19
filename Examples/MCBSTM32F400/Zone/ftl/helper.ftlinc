@@ -24,15 +24,12 @@ Example:
    hex2num(102)        => 258
 -->
 <#function hex2num hex>
-  <#local hexdigit={ "A":10, "B":11, "C":12, "D":13, "E":14, "F":15 } />
+  <#local hexdigit={ "0": 0, "1": 1, "2":  2, "3":  3, "4":  4, "5":  5, "6":  6, "7":  7,
+                     "8": 8, "9": 9, "A": 10, "B": 11, "C": 12, "D": 13, "E": 14, "F": 15 } />
   <#local result=0 />
   <#local hex=hex?remove_beginning("0x") />
   <#list hex?length-1..0 as i>
-    <#attempt>
-      <#local result += hex[i]?number*pow2(i?index*4)/>
-    <#recover>
-      <#local result += hexdigit[hex[i]]*pow2(i?index*4)/>
-    </#attempt>
+    <#local result += hexdigit[hex[i]]*pow2(i?index*4)/>
   </#list>
   <#return result/>
 </#function>
