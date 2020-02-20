@@ -2,7 +2,7 @@
  * @file     partition_gen.h
  * @brief    CMSIS-CORE Initial Setup for Secure / Non-Secure Zones for STM32L5xx Device
  * @version  V1.0.0      (FreeMarker generated)
- * @date     12 Feb 2020 14:05:17
+ * @date     20 Feb 2020 09:10:01
  ******************************************************************************/
 /*
  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.

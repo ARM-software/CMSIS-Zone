@@ -10,13 +10,13 @@
       <TargetName>Debug</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6130001::V6.13.1::ARMCLANG</pCCUsed>
+      <pCCUsed>6140000::V6.14::..\..\ArmCompiler_6.14-dev4</pCCUsed>
       <uAC6>1</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32L552ZETxQ</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L5xx_DFP.1.1.1-dev1</PackID>
+          <PackID>Keil.STM32L5xx_DFP.1.1.1-dev2</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00030000) IRAM2(0x30000000,0x00030000) IROM(0x08000000,0x00080000) IROM2(0x0C000000,0x00080000) CPUTYPE("Cortex-M33") FPU3(SFPU) DSP TZ CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -441,11 +441,6 @@
                 </FileArmAds>
               </FileOption>
             </File>
-            <File>
-              <FileName>partition_gen.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\partition_gen.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -590,7 +585,7 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32L5 CMSIS">
-        <package name="STM32L5xx_DFP" schemaVersion="1.3" url="http://www.keil.com/pack" vendor="Keil" version="1.0.9-dev3"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
         <targetInfos>
           <targetInfo name="Debug"/>
         </targetInfos>
@@ -600,7 +595,7 @@
       <file attr="config" category="header" name="Drivers\Config\stm32l552e_eval_conf.h" version="1.0.0">
         <instance index="0">RTE\Board_Support\STM32L552ZETxQ\stm32l552e_eval_conf.h</instance>
         <component Cbundle="STM32L552E-EVAL" Cclass="Board Support" Cgroup="Drivers" Csub="Basic I/O" Cvendor="Keil" Cversion="1.0.0" condition="STM32L552E-EVAL BSP"/>
-        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev1"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
         <targetInfos>
           <targetInfo name="Debug"/>
         </targetInfos>
@@ -629,10 +624,18 @@
         <package name="V2M-MPS2+_BSP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.0.0-dev0"/>
         <targetInfos/>
       </file>
-      <file attr="config" category="header" condition="STM32L552_S" name="Drivers\CMSIS\Device\ST\STM32L5xx\Include\Templates\partition_stm32l552xx.h" version="1.0.0">
+      <file attr="config" category="header" condition="STM32L552_S" name="CMSIS\Zone\stm32l552xx\partition_gen.h" version="1.1.0">
+        <instance index="0">RTE\Device\STM32L552ZETxQ\partition_gen.h</instance>
+        <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32L5 CMSIS"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
+        <targetInfos>
+          <targetInfo name="Debug"/>
+        </targetInfos>
+      </file>
+      <file attr="config" category="header" condition="STM32L552_S" name="CMSIS\Zone\stm32l552xx\partition_stm32l552xx.h" version="1.1.0">
         <instance index="0">RTE\Device\STM32L552ZETxQ\partition_stm32l552xx.h</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32L5 CMSIS"/>
-        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev1"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
         <targetInfos>
           <targetInfo name="Debug"/>
         </targetInfos>
@@ -646,7 +649,7 @@
       <file attr="config" category="source" condition="STM32L552 ARMCC" name="Drivers\CMSIS\Device\ST\STM32L5xx\Source\Templates\arm\startup_stm32l552xx.s" version="1.0.0">
         <instance index="0">RTE\Device\STM32L552ZETxQ\startup_stm32l552xx.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32L5 CMSIS"/>
-        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev1"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
         <targetInfos>
           <targetInfo name="Debug"/>
         </targetInfos>
@@ -654,7 +657,7 @@
       <file attr="config" category="linkerScript" condition="STM32L552xE isSecure ARMCC" name="Drivers\CMSIS\Device\ST\STM32L5xx\Source\Templates\arm\linker\stm32l552xe_flash_s.sct" version="1.0.0">
         <instance index="0">RTE\Device\STM32L552ZETxQ\stm32l552xe_flash_s.sct</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32L5 CMSIS"/>
-        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev1"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
         <targetInfos>
           <targetInfo name="Debug"/>
         </targetInfos>
@@ -662,7 +665,7 @@
       <file attr="config" category="header" name="Drivers\Config\stm32l5xx_hal_conf.h" version="1.0.0">
         <instance index="0">RTE\Device\STM32L552ZETxQ\stm32l5xx_hal_conf.h</instance>
         <component Cclass="Device" Cgroup="STM32Cube HAL" Csub="Common" Cvendor="Keil" Cversion="1.0.0" condition="STM32L5 HAL Common"/>
-        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev1"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
         <targetInfos>
           <targetInfo name="Debug"/>
         </targetInfos>
@@ -676,7 +679,7 @@
       <file attr="config" category="source" condition="isSecure" name="Drivers\CMSIS\Device\ST\STM32L5xx\Source\Templates\system_stm32l5xx_s.c" version="1.0.0">
         <instance index="0">RTE\Device\STM32L552ZETxQ\system_stm32l5xx_s.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32L5 CMSIS"/>
-        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev1"/>
+        <package name="STM32L5xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="1.1.1-dev2"/>
         <targetInfos>
           <targetInfo name="Debug"/>
         </targetInfos>
