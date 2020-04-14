@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
  
-  Copyright (c) 2019 ARM Limited. All rights reserved.
+  Copyright (c) 2020 ARM Limited. All rights reserved.
  
   SPDX-License-Identifier: Apache-2.0
  
@@ -17,8 +17,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
-  $Date:        09. July 2019
-  $Revision:    0.3.0
+  $Date:        14. April 2020
+  $Revision:    0.3.1
 
   $Project: Schema File for CMSIS-Zone resource description file *.rzone
   Version History:
@@ -30,6 +30,7 @@
   0.1.1: adding privilege attribute for memory, peripheral and assign tags
   0.2.0: adding sau_init, mpc, peripheral setup element for security and privilege control
   0.3.0: rename Pref to Pname, removed processor_group element, added peripheral childs interrupt, setup and slot elements
+  0.3.1: added DnumMpuRegions to rzone/device/processor element with default value 8
 -->
 
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="qualified" version="0.1.1">
@@ -245,6 +246,7 @@
           <!-- DcoreVersion specifies the revision of the processor -->
           <xs:attribute name="DcoreVersion"   type="DcoreVersionType"   use="required"/>
           <xs:attribute name="DnumInterrupts" type="NonNegativeInteger" use="optional"/>
+          <xs:attribute name="DnumMpuRegions" type="NonNegativeInteger" use="optional"/>
           <xs:attribute name="DnumSauRegions" type="NonNegativeInteger" use="optional"/>
           <!-- info brief description -->
           <xs:attribute name="info"           type="xs:string"          use="optional"/>
