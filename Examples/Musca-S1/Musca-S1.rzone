@@ -15,15 +15,15 @@
       
       <memory access="rwx" info="Code SRAM (secure)" name="SRAM_S" physical="0x00000000" security="c" size="0x00200000" start="0x10000000" type="RAM"/>
       <memory access="rwx" info="Code SRAM (non secure)" name="SRAM_NS" physical="0x00000000" security="" size="0x00200000" start="0x00000000" type="RAM"/>
-      <mpc name="MPC_SRAM" blk_size="0x100" size="0x00200000" start="0x00000000" type="s" info="MPC Code SRAM"/>
+      <mpc name="MPC_SRAM" blk_size="0x1000" size="0x00200000" start="0x00000000" type="s" info="MPC Code SRAM"/>
 
       <memory access="rwx" info="eMRAM (secure)" name="MRAM_S" physical="0x0A000000" security="c" size="0x00200000" start="0x1A000000" type="RAM"/>
       <memory access="rwx" info="eMRAM (non secure)" name="MRAM_NS" physical="0x0A000000" security="" size="0x00200000" start="0x0A000000" type="RAM"/>
-      <mpc name="MPC_MRAM" blk_size="0x100" size="0x00200000" start="0x0A000000" type="s" info="MPC Embedded MRAM"/>
+      <mpc name="MPC_MRAM" blk_size="0x1000" size="0x00200000" start="0x0A000000" type="s" info="MPC Embedded MRAM"/>
       
       <memory access="rx" external="1" info="QSPI Flash (secure)" name="QSPI_Flash_S" physical="0x00200000" security="c" size="0x01000000" start="0x10200000" type="ROM"/>
       <memory access="rx" external="1" info="QSPI Flash (non secure)" name="QSPI_Flash_NS" physical="0x00200000" security="" size="0x01000000" start="0x00200000" type="ROM"/>
-      <mpc name="MPC_QSPI" blk_size="0x100" size="0x01000000" start="0x00000000" type="s" info="MPC SQPI Flash"/>
+      <mpc name="MPC_QSPI" blk_size="0x1000" size="0x01000000" start="0x00000000" type="s" info="MPC SQPI Flash"/>
     </memories>
     <peripherals>
       <peripheral access="rwp" info="CMSDK Watchdog on 32KCLK" name="S32K_WDOG" size="0x1000" start_ns="0x4002E000" start_s="0x5002E000"/>
