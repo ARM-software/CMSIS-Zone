@@ -149,6 +149,7 @@
       <xs:element name="shared"    type="xs:boolean"/>
       <xs:element name="dma"       type="xs:boolean"/>
       <xs:element name="info"      type="xs:string"/>
+      <xs:element name="linker_control"  type="xs:string"/>
     </xs:choice>
   </xs:complexType>
 
