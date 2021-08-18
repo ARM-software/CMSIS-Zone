@@ -250,6 +250,7 @@
               <xs:element name="name"       type="xs:string"/>
               <xs:element name="Dname"      type="xs:string"/>
               <xs:element name="Pname"      type="xs:string"/>
+              <xs:element name="class"      type="xs:string"/>
               <xs:element name="security"   type="SecurityType"/>
               <xs:element name="privilege"  type="PrivilegeType"/>
               <xs:element name="memory"     type="MemoryType"     maxOccurs="unbounded"/>
