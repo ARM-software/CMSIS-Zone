@@ -255,6 +255,7 @@
               <xs:element name="privilege"  type="PrivilegeType"/>
               <xs:element name="memory"     type="MemoryType"     maxOccurs="unbounded"/>
               <xs:element name="peripheral" type="PeripheralType" maxOccurs="unbounded"/>
+              <xs:element name="interrupt"  type="InterruptType"  maxOccurs="unbounded"/>
               <xs:element name="mpu_setup"  type="MpuSetupType"/>
               <xs:element name="info"       type="xs:string"/>
             </xs:choice>
