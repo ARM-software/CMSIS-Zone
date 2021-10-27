@@ -29,7 +29,7 @@ Peripheral:                                                           access   s
 <#if system.interrupt?has_content>
 Interrupt:                      security
   name                  number  s n
-<#list system.interrupt?sort_by("number(irqn)") as irq>
+<#list system.interrupt as irq>
   ${irq.name?right_pad(20)}<#rt>
   ${irq.irqn?number?left_pad(4)}  <#rt>
   ${irq.security.s} ${irq.security.n}
