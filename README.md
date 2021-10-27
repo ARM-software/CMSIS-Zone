@@ -1,8 +1,8 @@
 # CMSIS-Zone
 
-The branch *master* of this GitHub repository contains the  CMSIS-Zone Utility that supports
+The branch *main* of this GitHub repository contains the  CMSIS-Zone Utility that supports
 the multi-step approach for splitting complex multi-core systems into sub-systems.
-The [CMSIS-Zone documentation](https://arm-software.github.io/CMSIS_5/Zone/html/index.html) is available under 
+The [CMSIS-Zone documentation](https://arm-software.github.io/CMSIS_5/Zone/html/index.html) is available under
 https://arm-software.github.io/CMSIS_5/Zone/html/index.html.
 
 CMSIS-Zone is flexible and supports multiple use-cases, for example the setup of MPU (memory protection unit) or TrustZone.
@@ -13,13 +13,13 @@ It implements the infra-structure that is required for:
   - Setup of device specific Peripheral Protection Controller (PPC)
   - Setup of Memory Protection Unit (MPU)
   - Generation of linker scatter files.
-  
+
 The source code of the CMSIS-Zone is released under open source license and part of [cmsis-pack-eclipse](https://github.com/ARM-software/cmsis-pack-eclipse).
 
 Use [Issues](https://github.com/ARM-software/CMSIS-Zone#issues-and-labels) to provide feedback and report problems for the
 CMSIS-Zone Utility and the CMSIS-Zone project examples.
 
-**Note:** The branch *develop* of this GitHub repository reflects our current state of 
+**Note:** The branch *develop* of this GitHub repository reflects our current state of
 example projects and is constantly updated. It allows you to review the work and provide feedback or create pull requests for contributions.
 
 For further details see also the [Slides of the Embedded World CMSIS Partner Meeting](https://github.com/ARM-software/CMSIS_5/blob/develop/CMSIS_EW2019.pdf).
@@ -33,7 +33,7 @@ For first steps refer to:
 
 ## Directory Structure
 
-| Directory            | Content                                                   |                
+| Directory            | Content                                                   |
 | -------------------- | --------------------------------------------------------- |
 | Example              | Example projects that show the usage of CMSIS-Zone        |
 | Schema               | XML schema files for content validation                   |
@@ -54,7 +54,7 @@ Please feel free to raise an [issue on GitHub](https://github.com/ARM-software/C
 to report misbehavior (i.e. bugs) or start discussions about enhancements. This
 is your best way to interact directly with the maintenance team and the community.
 We encourage you to append implementation suggestions as this helps to decrease the
-workload of the very limited maintenance team. 
+workload of the very limited maintenance team.
 
 We will be monitoring and responding to issues as best we can.
 Please attempt to avoid filing duplicates of open or closed items when possible.
@@ -63,19 +63,19 @@ In the spirit of openness we will be tagging issues with the following:
 - **bug** – We consider this issue to be a bug that will be investigated.
 
 - **wontfix** - We appreciate this issue but decided not to change the current behavior.
-	
-- **enhancement** – Denotes something that will be implemented soon. 
+
+- **enhancement** – Denotes something that will be implemented soon.
 
 - **future** - Denotes something not yet schedule for implementation.
 
 - **out-of-scope** - We consider this issue loosely related to CMSIS. It might by implemented outside of CMSIS. Let us know about your work.
-	
+
 - **question** – We have further questions to this issue. Please review and provide feedback.
 
 - **documentation** - This issue is a documentation flaw that will be improved in future.
 
 - **review** - This issue is under review. Please be patient.
-	
+
 - **DONE** - We consider this issue as resolved - please review and close it. In case of no further activity this issues will be closed after a week.
 
 - **duplicate** - This issue is already addressed elsewhere, see comment with provided references.
