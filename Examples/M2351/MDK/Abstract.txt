@@ -1,4 +1,0 @@
-M2351 TrustZone Example
-
-Secure and non-secure SysTick timers are used to toggle LEDs (LEDG,
-LEDY) on the NuMaker board.
