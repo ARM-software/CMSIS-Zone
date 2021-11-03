@@ -73,7 +73,7 @@
 
 <#-- Calculate non-secure base address (NSBA) -->
 <#function fcmNsba zones>
-  <#assign nsflash = filter(filter(memories(zones)?values, isNonsecure), isFlash)?sort_by("start") />
+  <#assign nsflash = memories(zones)?values?filter(isNonsecure)?filter(isFlash)?sort_by("start") />
   <#if nsflash?size gt 0> 
     <#return hex2num(nsflash[0].start) % 268435456 />
   <#else>
