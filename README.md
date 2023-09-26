@@ -1,9 +1,9 @@
 # CMSIS-Zone
 
-The branch *main* of this GitHub repository contains the  CMSIS-Zone Utility that supports
+The branch *main* of this GitHub repository contains the CMSIS-Zone Utility that supports
 the multi-step approach for splitting complex multi-core systems into sub-systems.
-The [CMSIS-Zone documentation](https://arm-software.github.io/CMSIS_5/Zone/html/index.html) is available under
-https://arm-software.github.io/CMSIS_5/Zone/html/index.html.
+The [CMSIS-Zone documentation](https://arm-software.github.io/CMSIS-Zone) is available under
+https://arm-software.github.io/CMSIS-Zone
 
 CMSIS-Zone is flexible and supports multiple use-cases, for example the setup of MPU (memory protection unit) or TrustZone.
 It implements the infra-structure that is required for:
@@ -16,8 +16,7 @@ It implements the infra-structure that is required for:
 
 The source code of the CMSIS-Zone is released under open source license and part of [cmsis-pack-eclipse](https://github.com/ARM-software/cmsis-pack-eclipse).
 
-Use [Issues](https://github.com/ARM-software/CMSIS-Zone#issues-and-labels) to provide feedback and report problems for the
-CMSIS-Zone Utility and the CMSIS-Zone project examples.
+Use [Issues](https://github.com/ARM-software/CMSIS-Zone#issues-and-labels) to provide feedback and report problems for the CMSIS-Zone Utility and the CMSIS-Zone project examples.
 
 **Note:** The branch *develop* of this GitHub repository reflects our current state of
 example projects and is constantly updated. It allows you to review the work and provide feedback or create pull requests for contributions.
@@ -35,6 +34,7 @@ For first steps refer to:
 
 | Directory            | Content                                                   |
 | -------------------- | --------------------------------------------------------- |
+| Documentation        | Directory with source of [CMSIS-Zone Documentation](https://arm-software.github.io/CMSIS-Zone)|
 | Example              | Example projects that show the usage of CMSIS-Zone        |
 | Schema               | XML schema files for content validation                   |
 | Templates            | FreeMarker templates that generate output files           |
@@ -84,4 +84,4 @@ In the spirit of openness we will be tagging issues with the following:
 
 ---
 
-_Copyright (c) 2019, ARM Limited and Contributors. All rights reserved._
+_Copyright (c) 2019-2023, ARM Limited and Contributors. All rights reserved._
