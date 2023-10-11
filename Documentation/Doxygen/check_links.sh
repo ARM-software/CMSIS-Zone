@@ -2,14 +2,15 @@
 
 set -o pipefail
 
-DIRNAME=$(dirname $(realpath $0))
-REQUIRED_GEN_PACK_LIB="0.8.4"
+DIRNAME=$(dirname "$(realpath "$0")")
+REQUIRED_GEN_PACK_LIB="0.8.7"
 
 ############ gen-pack library ###########
 
 function install_lib() {
   local URL="https://github.com/Open-CMSIS-Pack/gen-pack/archive/refs/tags/v$1.tar.gz"
-  local STATUS=$(curl -sLI "${URL}" | grep "^HTTP" | tail -n 1 | cut -d' ' -f2 || echo "$((600+$?))")
+  local STATUS
+  STATUS=$(curl -sLI "${URL}" | grep "^HTTP" | tail -n 1 | cut -d' ' -f2 || echo "$((600+$?))")
   if [[ $STATUS -ge 400 ]]; then
     echo "Wrong/unavailable gen-pack lib version '$1'!" >&2
     echo "Check REQUIRED_GEN_PACK_LIB variable."  >&2

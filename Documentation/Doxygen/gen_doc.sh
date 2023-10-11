@@ -84,7 +84,6 @@ echo "\"${UTILITY_DOXYGEN}\" zone.dxy"
 "${UTILITY_DOXYGEN}" zone.dxy
 
 mkdir -p "${DIRNAME}/../html/search/"
-cp -f "${DIRNAME}/Doxygen_Templates/search.css" "${DIRNAME}/../html/search/"
 cp -f "${DIRNAME}/Doxygen_Templates/navtree.js" "${DIRNAME}/../html/"
 
 sed -e "s/{datetime}/${datetime}/" "${DIRNAME}/Doxygen_Templates/footer.js.in" \
