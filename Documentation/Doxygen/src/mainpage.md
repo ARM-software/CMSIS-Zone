@@ -2,7 +2,7 @@
 
 ## Overview {#Overview}
 
-Embedded systems frequently integrate specify hardware for access protection or system isolation. For example, a Cortex-M33 processor based system may incorporate:
+Embedded systems frequently integrate specific hardware for access protection or system isolation. For example, a Cortex-M33 processor based system may incorporate:
  - SAU (Secure Attribute Unit) to create a secure execution partition with controlled access from a non-secure execution partition.
  - MPC (Memory Protection Controller) to control the system-wide access permissions to memory.
  - PPC (Peripheral Protection Controller) to control the system-wide access permissions to peripherals.
@@ -42,6 +42,12 @@ It is possible to uses these steps multiple times which allows to split a comple
 The following SoC diagram exemplifies step 1 and step 2 of this workflow.
 
 ![Hardware partitioning in multiple steps](./images/Partitioning_Hardware.png)
+
+## Acess to CMSIS-Zone {#Access}
+
+CMSIS-Zone examples, templates and documentation are maintained in [**CMSIS-Zone GitHub repository**](https://github.com/ARM-software/CMSIS-Zone) and \ref zoneToolUsage is maintained and released as part of the [CMSIS-Pack Eclipse Plug-ins](https://github.com/ARM-software/cmsis-pack-eclipse/releases/latest).
+
+For an overview of other CMSIS software components, tools and specifications see [CMSIS Documentation](https://arm-software.github.io/CMSIS_6/).
 
 ## Documentation Structure {#ManualSections}
 

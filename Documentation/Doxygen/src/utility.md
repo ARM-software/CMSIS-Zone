@@ -22,7 +22,7 @@ It is assumed that you are familiar with Eclipse and [Open-CMSIS-Packs](https://
 
 ## Installation {#zTInstall}
 
-The CMSIS-Zone utility is part of the <a href="https://github.com/ARM-software/cmsis-pack-eclipse/releases/latest" target="_blank"><b>CMSIS-Pack Eclipse Plug-ins</b></a>.
+The CMSIS-Zone utility is part of the [CMSIS-Pack Eclipse Plug-ins](https://github.com/ARM-software/cmsis-pack-eclipse/releases/latest).
 
 Follow the instructions on the release page to install the tool.
 

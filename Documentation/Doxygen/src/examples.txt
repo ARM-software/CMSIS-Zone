@@ -191,7 +191,7 @@ the different memory regions.
 
 \note
 If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to
-<a href="https://www.keil.com/appnotes/docs/apnt_291.asp" target="_blank">Application Note 291</a>.
+<a href="https://developer.arm.com/documentation/kan291/latest/" target="_blank">Application Note 291</a>.
 
 \subsection zTEM2351_hwsScatter scatter_s.sct
 
@@ -328,7 +328,7 @@ using a preinclude to mem_layout.h to get the information about the different me
 
 \note
 If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to
-<a href="https://www.keil.com/appnotes/docs/apnt_291.asp" target="_blank">Application Note 291</a>.
+<a href="https://developer.arm.com/documentation/kan291/latest/" target="_blank">Keil Application Note 291</a>.
 
 \subsection zTELPC55_hwsScatter hello_world_s.sct
 
@@ -464,7 +464,7 @@ The projects use the files generated in CMSIS-Zone as follows:
 | blinky_s.sct               | blinky_s    | Scatter file for secure zone (initally based on generated file). |
 \note
 If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to
-<a href="https://www.keil.com/appnotes/docs/apnt_291.asp" target="_blank">Application Note 291</a>.
+<a href="https://developer.arm.com/documentation/kan291/latest/" target="_blank">Keil Application Note 291</a>.
 
 \subsection zTESTM32L5_hwsScatter blinky_s.sct
 
