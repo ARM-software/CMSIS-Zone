@@ -208,7 +208,7 @@ MDK project setup</h1>
 <td class="markdownTableBodyLeft">tzm_config_sau.c   </td><td class="markdownTableBodyLeft">hello_world_s   </td><td class="markdownTableBodyLeft">Functions called from tzm_config.c   </td></tr>
 </table>
 <p>The scatter files <code>hello_world_s.sct</code> and <code>hello_world_ns.sct</code> are based on the original scatter files from NXP and are using a preinclude to mem_layout.h to get the information about the different memory regions.</p>
-<dl class="section note"><dt>Note</dt><dd>If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to <a href="https://www.keil.com/appnotes/docs/apnt_291.asp" target="_blank">Application Note 291</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to <a href="https://developer.arm.com/documentation/kan291/latest/" target="_blank">Keil Application Note 291</a>.</dd></dl>
 <h2><a class="anchor" id="zTELPC55_hwsScatter"></a>
 hello_world_s.sct</h2>
 <p>As explained previously, the #defines in <code>mem_layout.h</code> can be used to create generic scatter files that are easy to update once changes in the CMSIS-Zone project happen. Using the <b>mem_layout.h</b> file from CMSIS-Zone, the following scatter file is used in the secure <code>hello_world</code> project:</p>

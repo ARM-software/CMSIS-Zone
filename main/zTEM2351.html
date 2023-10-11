@@ -196,7 +196,7 @@ MDK project setup</h1>
 <td class="markdownTableBodyLeft">scatter_s.sct   </td><td class="markdownTableBodyLeft">Secure   </td><td class="markdownTableBodyLeft">Scatter file for secure zone (initally based on generated file).   </td></tr>
 </table>
 <p>The scatter files <code>scatter_s.sct</code> and <code>scatter_ns.sct</code> are using a preinclude to mem_layout.h to get the information about the different memory regions.</p>
-<dl class="section note"><dt>Note</dt><dd>If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to <a href="https://www.keil.com/appnotes/docs/apnt_291.asp" target="_blank">Application Note 291</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If you want to learn more about the general project layout for an Armv8-M project using TrustZone, refer to <a href="https://developer.arm.com/documentation/kan291/latest/" target="_blank">Application Note 291</a>.</dd></dl>
 <h2><a class="anchor" id="zTEM2351_hwsScatter"></a>
 scatter_s.sct</h2>
 <p>As explained previously, the #defines in <code>mem_layout.h</code> can be used to create generic scatter files that are easy to update once changes in the CMSIS-Zone project happen. Using the <b>mem_layout.h</b> file from CMSIS-Zone, the following scatter file is used in the <code>Sections</code> project:</p>
