@@ -1,3 +1,6 @@
+[![License Apache--2.0](https://img.shields.io/badge/License-Apache--2.0-green?label=License)](https://github.com/Arm-Software/CMSIS-Zone/blob/main/LICENSE)
+[![Build and Deploy documentation](https://img.shields.io/github/actions/workflow/status/Arm-Software/CMSIS-Zone/docs.yml?logo=arm&logoColor=0091bd&label=Build%20and%20Deploy%20Documentation)](./.github/workflows/docs.yml)
+
 # CMSIS-Zone
 
 The branch *main* of this GitHub repository contains the CMSIS-Zone Utility that supports
