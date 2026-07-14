@@ -16,9 +16,9 @@ env:
 
 jobs:
   documentation:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -30,7 +30,7 @@ jobs:
     
       - name: Cache Doxygen ${{ env.DOXYGEN_VERSION }}
         id: cache-doxygen
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: /opt/doxygen-${{ env.DOXYGEN_VERSION }}
           key: doxygen-${{ env.DOXYGEN_VERSION }}-${{ runner.os }}
@@ -68,7 +68,7 @@ jobs:
 
       - name: Archive documentation
         if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           name: documentation
           path: ./Documentation/html/
@@ -81,7 +81,7 @@ jobs:
         run: |
           tar -cvjf /tmp/doc.tbz2 -C ./Documentation/html/ .
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         if: (github.event_name == 'release' || github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         with:
           ref: gh-pages
@@ -107,7 +107,7 @@ jobs:
           git commit -m "Update documentation for ${MSG} ${GITHUB_REF_NAME}"
           git push
   
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         if: (github.event_name == 'release' || github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         with:
           ref: ${{ github.ref }}
